@@ -1,0 +1,366 @@
+\documentclass[11pt]{amsart}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,hyperref,array}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Ftwo}{\mathbb F_2}
+\newcommand{\tr}{\operatorname{Tr}}
+\newcommand{\dimf}{\dim_{\Ftwo}}
+\title[Odd-degree zero-sum subspaces]{Zero-Sum Subspaces for the Multiplicative Inverse in Odd-Degree Finite Fields: A Lean Formalization}
+\author{Wang Quanzhi}
+\email{mrhwrn120504@gmail.com}
+\thanks{Email: \href{mailto:mrhwrn120504@gmail.com}{mrhwrn120504@gmail.com}.}
+\author{ChatGPT}
+\thanks{ChatGPT is an artificial intelligence system developed by OpenAI and contributed as a research-writing assistant. The human author accepts responsibility for the mathematical statements, code, and final manuscript.}
+\date{November 6, 2026}
+
+\begin{document}
+\begin{abstract}
+Let $K$ be a finite field of cardinality $2^n$, viewed as an $n$-dimensional vector space over $\Ftwo$. We prove that if $n$ is odd and $3\le k$ with $k+3\le n$, then there is a $k$-dimensional $\Ftwo$-linear subspace $E\subseteq K$ such that
+\[
+  \sum_{x\in E\setminus\{0\}}x^{-1}=0.
+\]
+The theorem has been formalized in Lean 4 with its full quantification over finite fields. The proof has four components: a root-product polynomial converts the reciprocal sum into the coefficient of $T^2$; an elliptic-curve Hasse bound gives the three-dimensional case; Fourier counts on a norm-one conic give the four- and five-dimensional cases; and a subspace-distribution recurrence with a two-step energy contraction handles large dimensions. Dimension addition and complementary-dimension symmetry assemble these cases into the stated theorem. The audited Lean dependencies of the main theorem are only classical choice, propositional extensionality, and quotient soundness; no \texttt{sorryAx} occurs. We prove the odd-degree statement and make no claim here about even extension degree.
+\end{abstract}
+
+\keywords{finite fields, multiplicative inverse, zero-sum subspace, subspace polynomial, Kloosterman sum, Hasse bound, Lean formalization}
+\subjclass[2020]{11T06, 12E20, 03B35, 68V20}
+
+\maketitle
+
+\section{Introduction and main theorem}
+
+Let $K$ be a finite field of characteristic $2$. Its nonzero elements form a finite group, but the inverse map $x\mapsto x^{-1}$ is not additive. This makes inverse sums on additive subspaces a natural finite-field problem: for which dimensions must a subspace contain a balanced collection of inverses? We study the zero-sum condition arising in Carlet's work~\cite{Carlet2025}, uniformly over all finite fields of a fixed cardinality.
+
+For an $\Ftwo$-linear subspace $E\subseteq K$, write
+\[
+ S(E)=\sum_{x\in E\setminus\{0\}}x^{-1}.
+\]
+The main result establishes the full admissible odd-degree range and is formalized with the same quantifiers in Lean.
+
+\begin{definition}
+A finite-dimensional $\Ftwo$-linear subspace $E\subseteq K$ is a \emph{zero-sum subspace} if
+\[
+ S(E):=\sum_{x\in E\setminus\{0\}}x^{-1}=0.
+\]
+\end{definition}
+
+\begin{theorem}[Odd-degree Carlet statement]\label{thm:main}
+Let $n,k\in\mathbb N$, with $n$ odd, $3\le k$, and $k+3\le n$. For every finite field $K$ of characteristic $2$ and cardinality $2^n$, there exists a $k$-dimensional $\Ftwo$-linear subspace $E\subseteq K$ such that $S(E)=0$.
+\end{theorem}
+
+The assertion is uniform in $K$: the formal theorem quantifies over every field structure, finiteness structure, and $\Ftwo$-algebra structure satisfying the cardinality equality. The lower-range condition $k+3\le n$ is retained exactly. No even-degree assertion is made.
+
+\section{Root products and a coefficient criterion}
+
+For a finite $\Ftwo$-subspace $E\subseteq K$, set
+\[
+ P_E(T)=\prod_{u\in E}(T+u).
+\]
+This is a linearized polynomial. If $r=\dimf E$, then
+\[
+ P_E(T)=c_0T+c_1T^2+c_2T^4+\cdots+T^{2^r},\qquad c_0\ne0.
+\]
+
+\begin{lemma}[Reciprocal-sum criterion]\label{lem:coeff}
+For every nonzero finite-dimensional $\Ftwo$-subspace $E$,
+\[
+ S(E)=\frac{c_1}{c_0},\qquad\text{and hence}\qquad
+ S(E)=0\Longleftrightarrow [T^2]P_E=0.
+\]
+\end{lemma}
+\begin{proof}
+Separate the zero root:
+\[
+ P_E(T)=T\prod_{u\in E\setminus\{0\}}(T+u).
+\]
+The constant coefficient of the product on the right is $\prod_{u\ne0}u=c_0$. Its linear coefficient is
+\[
+ \sum_{u\ne0}\prod_{v\ne0,u}v
+ =\left(\prod_{v\ne0}v\right)\left(\sum_{u\ne0}u^{-1}\right)=c_0S(E).
+\]
+After multiplication by $T$, this becomes the $T^2$ coefficient of $P_E$. Since $c_0\ne0$, the equivalence follows.
+\end{proof}
+
+Let $I(E)=P_E(K)$ and let $D(E)=I(E)^\perp$ with respect to the trace pairing. Then $\dimf I(E)=n-\dimf E$ and $\dimf D(E)=\dimf E$. If $\dimf E=k$ and $a_{k-1}=[T^{2^{k-1}}]P_E$, the formalized dual-polynomial identity gives
+\begin{equation}\label{eq:duality}
+ S(D(E))=a_{k-1}^{2}.
+\end{equation}
+Thus a $k$-dimensional space whose root product has vanishing next-to-leading Frobenius coefficient yields a $k$-dimensional zero-sum space. In general this zero-sum space is $D(E)$, not necessarily $E$ itself.
+
+If $x\notin E$, grouping the roots into the two cosets of $E$ and using $P_E(T+x)=P_E(T)+P_E(x)$ gives the extension identity
+\begin{equation}\label{eq:extension}
+ P_{E+\langle x\rangle}(T)=P_E(T)^2+P_E(x)P_E(T).
+\end{equation}
+This formula drives the low-dimensional constructions.
+
+\begin{lemma}[Complementary dimensions]\label{lem:complement}
+If $\dimf K=n$ and $|K|>2$, then $K$ has a $k$-dimensional zero-sum subspace if and only if it has an $(n-k)$-dimensional zero-sum subspace.
+\end{lemma}
+\begin{proof}
+The linear map $P_E:K\to K$ has kernel $E$ and image $I(E)$ of dimension $n-k$. The subspace polynomials satisfy
+\[
+ P_{I(E)}(P_E(T))=T^q-T.
+\]
+Write $c_0=[T]P_E\ne0$, $c_1=[T^2]P_E$, $d_0=[T]P_{I(E)}\ne0$, and $d_1=[T^2]P_{I(E)}$. Comparing $T^2$ coefficients gives $d_0c_1+d_1c_0^2=0$, so $c_1=0$ if and only if $d_1=0$. Lemma~\ref{lem:coeff} now shows that $E$ is zero-sum exactly when $I(E)$ is. Since $\dimf I(E)=n-k$, this proves one direction; applying the same dimension relation once more gives the reverse implication.
+\end{proof}
+
+\section{The three-dimensional case: an elliptic curve}
+
+Write $q=|K|=2^n$ and define the binary Kloosterman sum
+\[
+ \operatorname{Kl}_K=\sum_{v\in K^\times}(-1)^{\tr(v+v^{-1})}.
+\]
+Consider the characteristic-two Weierstrass curve
+\[
+ C:\quad y^2+xy=x^3+1.
+\]
+Its discriminant is $1$, so it is elliptic. Counting affine points by fibers over $x$ and using the fact that $z^2+z=c$ has $1+(-1)^{\tr(c)}$ roots gives
+\[
+ \#C(K)=q+1+\operatorname{Kl}_K.
+\]
+The Hasse bound~\cite{Silverman} therefore yields $|\operatorname{Kl}_K|\le2\sqrt q$.
+
+Partition the three-dimensional subspaces containing $1$ by their next Frobenius coefficient. The exact finite counting identity formalized in the project is
+\begin{equation}\label{eq:p3}
+ (q-2)(q-4)\,p_3(0)=q+1-3\operatorname{Kl}_K,
+\end{equation}
+where $p_3(0)$ is the proportion of the corresponding finite family for which that coefficient vanishes. For odd $n\ge7$, we have $q\ge128$ and
+\[
+ q+1-3\operatorname{Kl}_K\ge q+1-6\sqrt q>0.
+\]
+Both factors on the left of \eqref{eq:p3} are positive, so $p_3(0)>0$. A three-dimensional subspace with vanishing next coefficient exists; the coefficient-duality theorem and Lemma~\ref{lem:coeff} turn it into a zero-sum subspace.
+
+\begin{proposition}\label{prop:k3}
+For every odd $n\ge7$, every finite field $K$ of cardinality $2^n$ contains a three-dimensional zero-sum subspace.
+\end{proposition}
+
+\section{The four-dimensional case: Fourier counting on a norm-one conic}
+
+We prove the four-dimensional case for every admissible odd degree. The count must impose two trace-orthogonality conditions at once, so that two values lie in the image of a chosen subspace polynomial.
+
+\subsection{A two-dimensional seed and the extension identity}
+
+Choose $t\in K\setminus\{0,1\}$ and put $H=\langle1,t\rangle_{\Ftwo}$. Since $n$ is odd, $T^2+T+1$ has no root in $K$, so $c=t^2+t+1\ne0$. Direct multiplication gives
+\[
+ P_H(T)=T^4+cT^2+(t^2+t)T.
+\]
+Consider the norm-one conic
+\begin{equation}\label{eq:normcurve}
+ \mathcal C(K)=\{(a,u)\in K^2:a^2+au+u^2=1\}.
+\end{equation}
+For odd $n$, this conic has $q+1$ points. Define the linear map $L(x)=c^{-2}P_H(x)$ and let $D=(\operatorname{im}L)^\perp$, where orthogonality is with respect to the nondegenerate trace pairing $(r,s)\mapsto\tr(rs)$. Since $\ker L=H$, we have $\dimf\operatorname{im}L=n-2$, $\dimf D=2$, and $D^\perp=\operatorname{im}L$. Consequently, whenever $a,u\in D^\perp$, there are $x,y\in K$ such that
+\[
+ P_H(x)=c^2a,\qquad P_H(y)=c^2u.
+\]
+
+Impose on a point of $\mathcal C(K)$ the two conditions $u\in D^\perp$ and $a+u\in D^\perp$, equivalently
+\[
+ \tr(ru)=0,\quad \tr(s(a+u))=0\qquad(r,s\in D).
+\]
+Write $\chi(z)=(-1)^{\tr(z)}$. For a nonzero frequency pair $(A,B)$, the Fourier coefficient is
+\[
+ \mathcal A(A,B)=\sum_{x\in K}\chi\!\left(\frac{Bx^2+A}{x^2+x+1}\right)+\chi(B).
+\]
+It is obtained by counting the fibers of the Artin--Schreier equation
+\[
+ \delta^2+\delta=\frac{(A+B)x^2+Ax}{x^2+x+1}.
+\]
+A birational change of variables sends the generic solutions to the Weierstrass curve
+\[
+ y^2+xy+By=x^3+(A^2+B+1)x^2+(A+(A^2+B))x+B(A+(A^2+B))+A^2.
+\]
+Its discriminant is $(A^2+AB+B^2)^2$. Odd extension degree ensures that $T^2+T+1$ has no root in $K$ and that this discriminant is nonzero for every nonzero frequency pair. The Hasse bound controls the total curve-point count; the map from generic points to affine equation solutions is injective, and the exceptional fibers together account for at most five points. It follows that each nonzero-frequency coefficient satisfies $\mathcal A(A,B)\ge-2\sqrt q-4$. Using the four elements of $D$ as additive-character filters for each condition yields a 16-term Fourier expansion. The zero-frequency term is $q+1$, while the other 15 terms satisfy the bound above. Thus the number $N$ of points satisfying both conditions satisfies
+\begin{equation}\label{eq:k4count}
+ 16N\ge q+1-30\sqrt q-60.
+\end{equation}
+If $q\ge2048$, the right-hand side is greater than $48$, so $N>3$.
+
+For every point on the conic, $a=0$ forces $u=1$, while $a=1$ forces $u=0$ or $u=1$. There are at most three points with $a\in\{0,1\}$. Choose a good point with $a\ne0,1$. Since $u,a+u\in D^\perp$, also $a\in D^\perp$, so the preimages $x,y$ above exist.
+
+Set $V=H+\langle x\rangle$. Then $\dimf V=3$, and \eqref{eq:extension} gives
+\[
+ [T^4]P_V=c^2+P_H(x)=c^2(1+a)\ne0.
+\]
+Furthermore,
+\begin{align*}
+ P_V(y)&=P_H(y)^2+P_H(x)P_H(y)\\
+ &=c^4(u^2+au)=c^4(1+a^2)=\bigl(c^2(1+a)\bigr)^2.
+\end{align*}
+Here we used $a^2+au+u^2=1$ and $(1+a)^2=1+a^2$ in characteristic two. The displayed nonzero value implies $y\notin V$. Extending once more by $y$, identity \eqref{eq:extension} shows that the $T^8$ coefficient of the resulting four-dimensional root product vanishes. The same-dimension coefficient-duality theorem then gives a four-dimensional zero-sum subspace.
+
+\begin{proposition}\label{prop:k4large}
+For every odd $n\ge11$, every finite field $K$ of cardinality $2^n$ contains a four-dimensional zero-sum subspace.
+\end{proposition}
+
+The remaining admissible degrees $n=7,9,11,13,15$ are handled by exact finite-field constructions formalized in the project. Combining them with Proposition~\ref{prop:k4large} gives the full base family:
+\begin{theorem}\label{thm:k4}
+For every odd $n\ge7$ and every finite field $K$ of cardinality $2^n$, there is a four-dimensional zero-sum subspace.
+\end{theorem}
+
+\section{The five-dimensional case: a three-dimensional seed and a norm-one count}
+
+\subsection{A nonzero-coefficient seed from dimension four}
+
+By Theorem~\ref{thm:k4} and coefficient duality, choose a four-dimensional subspace $W$ with $[T^8]P_W=0$. Let $U$ be a three-dimensional hyperplane of $W$, and take $v\in W\setminus U$. Put $b=[T^4]P_U$. Comparing $T^8$ coefficients in \eqref{eq:extension} yields
+\[
+ 0=[T^8]P_W=b^2+P_U(v).
+\]
+Since the roots of $P_U$ are exactly $U$, we have $P_U(v)\ne0$, and hence $b\ne0$. Put $c=b^2\ne0$.
+
+Let $L=c^{-1}P_U$. Its image has codimension three. Set $D=(\operatorname{im}L)^\perp$; then $\dimf D=3$ and $|D|=8$. Impose on a point $(a,u)$ of \eqref{eq:normcurve} the conditions $u,a+u\in D^\perp$. Filtering both conditions over the eight elements of $D$ produces a 64-term Fourier expansion. The zero-frequency term is $q+1$, and each of the other 63 terms is at least $-2\sqrt q-4$. Therefore
+\begin{equation}\label{eq:k5count}
+ 64N\ge q+1-63(2\sqrt q+4)=q+1-126\sqrt q-252.
+\end{equation}
+For $q\ge65536$, the right-hand side exceeds $192$, hence $N>3$. At most one point on the conic has $a=0$, and at most two have $a=1$. We may therefore choose a good point with $a\ne0,1$.
+
+Because $u,a+u\in D^\perp=\operatorname{im}L$, their sum $a$ also belongs to the image. Choose $x,y\in K$ with
+\[
+ P_U(x)=ca,\qquad P_U(y)=cu.
+\]
+As $ca\ne0$, we have $x\notin U$. Let $V=U+\langle x\rangle$, so $\dimf V=4$. Write $A=[T^8]P_V$. Since $P_U$ is monic of degree eight, \eqref{eq:extension} gives
+\[
+ A=b^2+P_U(x)=c(1+a)\ne0.
+\]
+The conic equation implies $u^2+au=1+a^2$. Thus
+\[
+ P_V(y)=P_U(y)^2+P_U(x)P_U(y)
+       =c^2(u^2+au)=c^2(1+a^2)=A^2\ne0.
+\]
+So $y\notin V$. With $Z=V+\langle y\rangle$, formula \eqref{eq:extension} yields
+\[
+ [T^{16}]P_Z=A^2+P_V(y)=0.
+\]
+The five-dimensional coefficient-duality theorem converts this vanishing into a five-dimensional zero-sum subspace. This conversion is essential: the $T^{16}$ coefficient is not itself the reciprocal sum; the proved same-dimension duality connects them.
+
+\begin{proposition}\label{prop:k5large}
+For every odd $n\ge17$, every finite field $K$ of cardinality $2^n$ contains a five-dimensional zero-sum subspace.
+\end{proposition}
+
+For the other admissible odd degrees $n=9,11,13,15$, exact finite-field constructions are formalized using explicit field models, linear-algebra witnesses, and a proof that the result transfers to every field of the same cardinality. Hence:
+\begin{theorem}\label{thm:k5}
+For every odd $n\ge9$ and every finite field $K$ of cardinality $2^n$, there is a five-dimensional zero-sum subspace.
+\end{theorem}
+
+\section{Large dimensions: an actual probability recurrence and energy decay}
+
+Let $\Omega_d$ be the finite set of $d$-dimensional $\Ftwo$-subspaces containing $1$. For $E\in\Omega_d$, let $b(E)$ denote its next Frobenius coefficient, and define the exact distribution
+\[
+ p_d(b)=\frac{\#\{E\in\Omega_d:b(E)=b\}}{\#\Omega_d},\qquad
+ f_d(b)=p_d(b)-q^{-1}.
+\]
+Then $\sum_{b\in K}f_d(b)=0$. The Lean development derives the recurrence for these distributions from the underlying finite-subspace counts; no abstract probabilistic model is substituted for the actual family.
+
+For a nontrivial additive character $\psi:K\to\mathbb R$ and a real parameter $s$, define the transfer operator by
+\[
+ (T_sf)(b)=\frac{1}{q-s}\begin{cases}
+ (q-s)f(0),&b=1,\\[2pt]
+ \displaystyle\sum_{v\ne0}\left(1+(s-1)\psi\!\left(\frac{b-1}{v}\right)\right)f(v),&b\ne1.
+ \end{cases}
+\]
+Equivalently, the special branch is at shifted coordinate $b-1=0$; this is the convention used in the implementation. Put $\mathcal E(f)=\sum_b f(b)^2$.
+
+\begin{lemma}[Two-step energy contraction]\label{lem:energy}
+If $s\ge2$ and $32s^2\le q$, then every zero-sum function $f$ satisfies
+\[
+ \mathcal E(T_{2s}(T_sf))\le\frac{4s^2}{q}\mathcal E(f).
+\]
+If also $s^2\le q$ and $s<q$, then one step is nonexpansive: $\mathcal E(T_sf)\le\mathcal E(f)$.
+\end{lemma}
+\begin{proof}
+Decompose the transfer as a rank-one perturbation in the additive-character direction. Orthogonality of finite additive characters gives an exact squared-norm identity, including the exceptional coordinate term. For two successive ranks, the scalar on the distinguished direction is bounded by $2s/\sqrt q$; squaring gives $4s^2/q$. The condition $32s^2\le q$ makes the denominators $q-s$ and $q-2s$ positive and controls the remaining rank-one term. The same exact identity gives one-step nonexpansion when $s^2\le q$. The formal proof establishes the identity before applying these inequalities.
+\end{proof}
+
+The initial one-dimensional distribution is a point mass and has centered energy $1-q^{-1}$. Iterating Lemma~\ref{lem:energy} along odd dimensions gives, for $k=2r+1$,
+\[
+ \mathcal E(f_k)\le \frac{2^{2r^2+2r}}{q^r}(1-q^{-1}).
+\]
+For $k=2r+2$, apply one final nonexpansive step to obtain the same bound. If $p_k(0)=0$, then $f_k(0)=-q^{-1}$, and this coordinate alone implies $\mathcal E(f_k)\ge q^{-2}$. Thus a strict upper bound below $q^{-2}$ forces $p_k(0)>0$.
+
+For odd $k=2r+1$, the hypotheses $r\ge5$ and $n\ge4r+3$ imply
+\[
+ 2r^2+2r<n(r-2),
+\]
+so $2^{2r^2+2r}/q^r<q^{-2}$. For even $k=2r+2$, the same strict inequality follows from $r\ge4$ and $n\ge4r+5$. Therefore the coefficient-zero probability is positive for odd $k\ge11$ and even $k\ge10$, whenever $n\ge2k+1$. A positive probability means an actual subspace has the desired vanishing coefficient; coefficient duality then gives a zero-sum subspace.
+
+\section{Dimension addition and assembly of the parameter range}
+
+The low-dimensional cases also generate dimensions $6,7,8,9$. Suppose $E,F$ are zero-sum subspaces of dimensions $k,\ell$ and $k\ell<n$. A formalized linear-algebra lemma gives a nonzero scalar $a$ with $aF\subseteq P_E(K)$. Define
+\[
+ G=P_E^{-1}(aF).
+\]
+Since $\ker P_E=E$ and $\dimf P_E(K)=n-k$, we get $\dimf G=k+\ell$. The composition formula for subspace polynomials and the coefficient criterion show that $G$ is zero-sum. Thus
+\begin{equation}\label{eq:add}
+ \text{zero-sum dimensions }k,\ell\text{ and }k\ell<n
+ \quad\Longrightarrow\quad k+\ell\text{ is a zero-sum dimension}.
+\end{equation}
+Using dimensions $3$ and $4$, the pairs $(3,3),(3,4),(4,4),(3,6)$ give dimensions $6,7,8,9$. Dimensions $k\ge10$ are covered by the energy argument. Hence for the lower half $2k+1\le n$, the only base dimensions required are $3,4,5$.
+
+For the upper half $2k+1>n$, put $k'=n-k$. Since $n$ is odd and $k+3\le n$, one checks that $k'\ge3$ and $2k'+1\le n$. Apply the lower-half result to $k'$, then use Lemma~\ref{lem:complement} to obtain the desired $k$-dimensional space. This accounts for every admissible parameter.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If $2k+1\le n$, use Proposition~\ref{prop:k3}, Theorem~\ref{thm:k4}, or Theorem~\ref{thm:k5} for $k=3,4,5$ respectively; use \eqref{eq:add} for $6\le k\le9$; and use the energy argument for $k\ge10$. If $2k+1>n$, reduce to $k'=n-k$ and apply complementary-dimension symmetry. The finite-field constructions and all transitions work for every $K$ of cardinality $2^n$, so the original universal quantifier is preserved.
+\end{proof}
+
+\section{Formal verification and reproducibility}\label{sec:formal}
+
+The formalization uses Lean 4 and mathlib~\cite{Lean4,Mathlib}. Its target is the proposition
+\[
+\forall n,k,\quad \operatorname{Odd}(n)\to 3\le k\to k+3\le n\to
+\forall K,\quad |K|=2^n\to \operatorname{HasZeroSumSubspace}(K,k).
+\]
+The definition is in \url{carlet-formalization/Carlet/Statement.lean}; the main theorem is in \url{Carlet/MainTheorem.lean}.\par\noindent Its declaration is \texttt{oddCarletConjecture\_main : OddCarletConjecture}.\par The principal proof entry points are:
+\begin{center}
+\small\begin{tabular}{>{\raggedright\arraybackslash}p{0.43\textwidth}>{\raggedright\arraybackslash}p{0.47\textwidth}}
+\toprule
+Proof component & Lean source\\
+\midrule
+Reciprocal sum and root-product criterion & \texttt{Elementary.lean}, \texttt{Statement.lean}\\
+Three-dimensional Hasse/Kloosterman argument & \texttt{KloostermanThree.lean}\\
+All odd-degree four-dimensional cases & \texttt{K4AllOddDegreesProbe.lean} and imports\\
+Five-dimensional norm-one construction & \texttt{K5NormOneConstructionProbe.lean} and imports\\
+Distribution recurrence and energy contraction & \texttt{ProbabilityEnergy.lean}, \texttt{TwoStepEnergy.lean}\\
+Dimension addition and complementary reduction & \texttt{AdditiveClosure.lean}, \texttt{LowDimensionReduction.lean}\\
+Original quantified theorem & \texttt{MainTheorem.lean}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The checked project receipt records Lean 4.33.0, a full default build of 306 project modules, audits of 993 printed declarations, zero compiler warnings, and matching source/OLean hashes. The main theorem depends only on \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}; it has no \texttt{sorryAx} and no hidden assumption containing the target conclusion. The Hasse bound is imported through the fixed AINTLIB snapshot~\cite{AINTLIB} \texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b}, vendored at \url{formalization/vendor/aintlib/src/projects/HasseWeil/HasseWeil/HasseBound.lean} under Apache License 2.0. The pinned mathlib source baseline is \texttt{db584cd6\allowbreak d46c92f2\allowbreak 09a44c0f\allowbreak 1c829460\allowbreak d327499d}. The checked receipt was produced in the pinned local environment. The current build driver references a local Lean executable and dependency cache, so reproducing the build requires compatible Lean 4.33.0, mathlib, and AINTLIB artifacts and adapting those paths. The included scripts describe and audit the recorded build. The commands used in that environment were:
+\begin{verbatim}
+cd carlet-formalization
+python -I build.py
+python -I verify_build.py
+python -I audit_final_theorem.py
+\end{verbatim}
+The full-build summary and final axiom audit are recorded in \texttt{verified\_build\_summary.json} and \texttt{final\_theorem\_audit.json}.
+
+The proof presented here follows the route actually checked by Lean: subspace polynomials, Hasse-controlled character sums, norm-one counting, and energy iteration. Geometric and cohomological arguments in an earlier candidate manuscript are neither used nor claimed as independently verified here. The result is the complete odd-degree theorem; it does not assert the even-degree case, and finite computations are used only for the explicitly bounded small-degree branches.
+
+\section*{AI-use statement}
+ChatGPT assisted with research organization, formalization support, and manuscript drafting. The human author is responsible for the mathematical content, verification record, and final text.
+
+\begin{thebibliography}{9}
+\bibitem{Carlet2025}
+C.~Carlet, \emph{On the vector subspaces of $\mathbb F_{2^n}$ over which the multiplicative inverse function sums to zero}, Designs, Codes and Cryptography 93 (2025), 1237--1254. DOI: \href{https://doi.org/10.1007/s10623-024-01531-6}{10.1007/s10623-024-01531-6}.
+
+\bibitem{Silverman}
+J.~H.~Silverman, \emph{The Arithmetic of Elliptic Curves}, 2nd ed., Graduate Texts in Mathematics 106, Springer, 2009.
+
+\bibitem{Lean4}
+L.~de Moura and S.~Ullrich, \emph{The Lean 4 Theorem Prover and Programming Language}, in: Automated Deduction -- CADE 28, Lecture Notes in Computer Science 12699, Springer, 2021, pp.~625--635.
+
+\bibitem{Mathlib}
+The mathlib Community, \emph{The Lean Mathematical Library}, Proceedings of the 9th ACM SIGPLAN International Conference on Certified Programs and Proofs (CPP 2020), pp.~367--381. DOI: \href{https://doi.org/10.1145/3372885.3373824}{10.1145/3372885.3373824}.
+
+\bibitem{AINTLIB}
+C.~Birkbeck, \emph{AINTLIB}, Hasse--Weil bound module, project snapshot \texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b} (Apache License 2.0).
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,9 @@
+import Carlet.K4BadLocusSZProbe
+#check MvPolynomial.schwartz_zippel_totalDegree
+#check MvPolynomial.totalDegree_map_le
+#check MvPolynomial.totalDegree_map
+#check MvPolynomial.totalDegree_sub
+#check MvPolynomial.totalDegree_neg
+#check MvPolynomial.totalDegree_one
+#check Fintype.card_subtype_iff
+#check Finset.card_filter

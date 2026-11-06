@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "full_build_time_utc": "2026-11-06T04:51:07.804148+00:00",
+  "main_source_sha256": "0df99d703d338d61d0ad4aaa0215f0a79252f850b274cf3f7a77c359b24bf887",
+  "main_olean_sha256": "83fbb36e7ff3d055754aff7b0cde730830e22f75c7d876a7c336f8928413fd89",
+  "audit_source_sha256": "bb40a31cf9159cc0701f6482460530c2b954447b3fd7e516e60820a470dc228f",
+  "axioms": {
+    "Carlet.independently_checked_original_statement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Carlet.oddCarletConjecture_main": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Carlet.oddCarletConjecture_original_statement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "output": "Carlet.oddCarletConjecture_main : OddCarletConjecture\n'Carlet.oddCarletConjecture_main' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.oddCarletConjecture_original_statement' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.independently_checked_original_statement' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+}

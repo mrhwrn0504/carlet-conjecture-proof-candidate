@@ -1,0 +1,13 @@
+{
+  "modules": 306,
+  "hasse_dependency_modules": 188,
+  "printed_declarations_checked": 993,
+  "source_and_olean_hashes_match": true,
+  "compiler_warnings": 0,
+  "main_conjecture_proved": true,
+  "main_theorem_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ]
+}
