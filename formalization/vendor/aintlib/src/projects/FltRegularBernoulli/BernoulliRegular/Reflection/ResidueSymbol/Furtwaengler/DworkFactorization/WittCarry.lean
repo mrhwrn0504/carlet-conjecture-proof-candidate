@@ -1,0 +1,10 @@
+module
+
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.DworkFactorization.WittCarry.TraceCarryDef
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.DworkFactorization.WittCarry.TraceCarryTeichmullerExpansion
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.DworkFactorization.WittCarry.AdjustedProductRecursion
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.DworkFactorization.WittCarry.ProductBaseComparison
+
+/-!
+This module has been split into smaller implementation files.
+-/

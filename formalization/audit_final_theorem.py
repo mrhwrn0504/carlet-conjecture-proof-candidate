@@ -6,6 +6,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parent
@@ -14,7 +15,9 @@ LIBRARIES = Path('C:/Users/Administrator/Documents/ChatGPT/jsp423_fast_runtime_2
 ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
 REQUIRED = {'Carlet.oddCarletConjecture_main',
             'Carlet.oddCarletConjecture_original_statement',
-            'Carlet.independently_checked_original_statement'}
+            'Carlet.independently_checked_original_statement',
+            'Carlet.evenDegreeCarlet_unconditional',
+            'Carlet.independently_checked_even_degree_statement'}
 
 
 def sha256(path):
@@ -31,6 +34,7 @@ def expected_modules():
 
 
 def main():
+    sys.stdout.reconfigure(encoding='utf-8')
     receipt = json.loads((ROOT / 'build_receipt.json').read_text(encoding='utf-8'))
     if [m['module'] for m in receipt['modules']] != expected_modules():
         raise RuntimeError('A complete default build receipt is required')
@@ -42,6 +46,11 @@ def main():
     olean = source.with_suffix('.olean')
     if sha256(source) != main_entry['source_sha256'] or sha256(olean) != main_entry['olean_sha256']:
         raise RuntimeError('Final theorem source or compiled artifact does not match the full build')
+    even_entry = next(m for m in receipt['modules'] if m['module'] == 'Carlet/EvenDegree.lean')
+    even_source = ROOT / 'Carlet/EvenDegree.lean'
+    even_olean = even_source.with_suffix('.olean')
+    if sha256(even_source) != even_entry['source_sha256'] or sha256(even_olean) != even_entry['olean_sha256']:
+        raise RuntimeError('Even-degree theorem source or compiled artifact does not match the full build')
 
     env = os.environ.copy()
     env['LEAN_PATH'] = os.pathsep.join([str(ROOT), str(ROOT / 'vendor/aintlib/olean'),
@@ -69,6 +78,8 @@ def main():
     result = {'status': 'passed', 'lean_version': version,
               'full_build_time_utc': receipt['time_utc'],
               'main_source_sha256': sha256(source), 'main_olean_sha256': sha256(olean),
+              'even_degree_source_sha256': sha256(even_source),
+              'even_degree_olean_sha256': sha256(even_olean),
               'audit_source_sha256': sha256(ROOT / 'Carlet/FinalTheoremAudit.lean'),
               'axioms': {name: sorted(audits[name]) for name in sorted(REQUIRED)},
               'output': output}

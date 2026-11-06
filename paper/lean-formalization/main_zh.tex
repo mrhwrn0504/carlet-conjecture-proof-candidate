@@ -14,19 +14,19 @@
 \newcommand{\tr}{\operatorname{Tr}}
 \newcommand{\dimf}{\dim_{\Ftwo}}
 \newcommand{\Psub}{P_E}
-\title{卡莱特零和子空间猜想奇数次数情形的 Lean 形式化证明}
+\title{卡莱特零和子空间猜想的证明及其 Lean 形式化}
 \author{王泉智\\[-.3em]\small\href{mailto:mrhwrn120504@gmail.com}{\texttt{mrhwrn120504@gmail.com}}\and ChatGPT\\[-.3em]\small AI 研究协作者}
-\date{2026年11月6日}
+\date{2026年11月}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-设 $K$ 是含 $2^n$ 个元素的有限域，并把它看作 $\Ftwo$-向量空间。对 $x\ne0$，考虑乘法逆映射 $x\mapsto x^{-1}$。本文证明：若 $n$ 为奇数，$3\le k$ 且 $k+3\le n$，则存在 $k$ 维 $\Ftwo$-线性子空间 $E\subseteq K$，使
+设 $K$ 是含 $2^n$ 个元素的有限域，并把它看作 $\Ftwo$-向量空间。对 $x\ne0$，考虑乘法逆映射 $x\mapsto x^{-1}$。本文证明 Carlet 零和子空间猜想的奇偶次数完整范围：若 $n$ 为奇数且 $3\le k,\ k+3\le n$，或 $n$ 为偶数且 $2\le k,\ k+2\le n$，则存在 $k$ 维 $\Ftwo$-线性子空间 $E\subseteq K$，使
 \[
   \sum_{x\in E\setminus\{0\}}x^{-1}=0.
 \]
-证明已经在 Lean 4 中对任意满足这些量词的有限域完整形式化。数学路线由四部分组成：根积多项式把倒数和转化为 $T^2$ 系数；椭圆曲线 Hasse 界处理 $k=3$；范数一曲线上的 Fourier 计数给出 $k=4,5$；有限域上的子空间递推及两步能量收缩处理高维。维数相加与互补维数对称性将这些基例拼成原命题。主定理的 Lean 公理审计只含 Lean 核心的经典选择、命题外延与商类型相等公理，不含 \texttt{sorryAx}。本文只陈述奇数次数版本，不声称证明偶数次数情形。
+奇数次数的证明以根积多项式、椭圆曲线 Hasse 界、低维构造和高维能量迭代为基础；偶数次数的证明由二、三维基例、维数递推和互补维数对称性给出。两部分均已在 Lean 4 中对相应量词及任意有限域完整形式化。完整默认构建、独立验证和主定理公理审计均已通过：无编译警告，源码与 OLean 哈希一致，依赖只含 \texttt{propext}、\texttt{Classical.choice} 和 \texttt{Quot.sound}，不含 \texttt{sorryAx} 或自建公理。作者另有一份采用几何—上同调路线的候选稿，其逐项形式化核验仍在进行；本文不声称该路线已完整认证。
 \end{abstract}
 
 \noindent\textbf{关键词：} 有限域；乘法逆映射；零和子空间；子空间多项式；Kloosterman 和；Hasse 界；Lean 形式化
@@ -39,7 +39,7 @@
 \[
  S(E)=\sum_{x\in E\setminus\{0\}}x^{-1}.
 \]
-本文主定理给出奇数次数下完整的适用维数范围；其 Lean 形式化版本保留相同量词。
+本文先分别给出奇数与偶数次数的适用维数范围，再将它们拼接为完整的奇偶次数结论。Lean 形式化对两部分分别保留原始量词。
 
 \begin{definition}
 若 $E$ 是 $K$ 的有限维 $\Ftwo$-线性子空间，称 $E$ 为\emph{零和子空间}，若
@@ -52,7 +52,7 @@
 设 $n,k\in\mathbb N$，$n$ 为奇数，$3\le k$ 且 $k+3\le n$。对任意特征为 $2$ 且基数为 $2^n$ 的有限域 $K$，存在 $k$ 维 $\Ftwo$-线性子空间 $E\subseteq K$，使 $S(E)=0$。
 \end{theorem}
 
-本文证明对有限域 $K$ 的选择是统一的：Lean 定理对所有满足字段结构、有限性、$\Ftwo$-代数结构及基数等式的 $K$ 同时量化。主定理的机器陈述见第\,\ref{sec:formal}节。注意 $k+3\le n$ 是原始范围的一部分；本文不把它改成渐近版本，也不推断偶数 $n$ 的结论。
+本文证明对有限域 $K$ 的选择是统一的：Lean 定理对所有满足字段结构、有限性、$\Ftwo$-代数结构及基数等式的 $K$ 同时量化。奇数部分的机器陈述见第\,\ref{sec:formal}节；偶数部分随后单独陈述。两个适用范围各自保留其基例条件，不作渐近外推。
 
 \section{根积多项式与系数判据}
 
@@ -286,7 +286,30 @@
 \]
 所以 $2^{2r^2+2r}/q^r<q^{-2}$。偶数维情形 $r\ge4$ 且 $n\ge4r+5$ 时同样有该严格不等式。因此得到 $k\ge11$ 奇数或 $k\ge10$ 偶数、且 $n\ge2k+1$ 时的高维存在性。$p_k(0)>0$ 意味着某个实际子空间的下一系数为零；经同维对偶和引理\,\ref{lem:coeff}即为所求零和子空间。
 
-\section{维数相加与参数拼接}
+\section{偶数次数：二维基例、递推与互补维数}
+
+偶数次数部分的起点与奇数部分不同。若 $n$ 为偶数，则 $K$ 含有唯一的四元子域 $\mathbb F_4$。取 $\omega\in\mathbb F_4\setminus\mathbb F_2$，有 $\omega^2+\omega+1=0$；该子域的三个非零元素的逆元之和为 $1+\omega+\omega^2=0$，因此得到 $k=2$ 基例。对偶数 $n\ge6$，三维基例由 Kloosterman 和与椭圆曲线 Hasse 界得到。
+
+\begin{theorem}[偶数次数命题]\label{thm:even}
+设 $n$ 为偶数，$|K|=2^n$。若 $2\le k$ 且 $k+2\le n$，则 $K$ 含有 $k$ 维零和子空间。
+\end{theorem}
+\begin{proof}
+先说明三维基例。令 $q=|K|$，并记 $\operatorname{Kl}_K=\sum_{v\in K^\times}(-1)^{\operatorname{Tr}(v+v^{-1})}$。椭圆曲线 $y^2+xy=x^3+1$ 的点数给出 $|\operatorname{Kl}_K|\le2\sqrt q$。对包含 $1$ 的三维子空间按下一 Frobenius 系数分组，偶数次数的精确计数恒等式为
+\[
+ (q-2)(q-4)p_3(0)=q-13+3\operatorname{Kl}_K.
+\]
+这里偶数次数下 $\operatorname{Tr}(1)=0$，所以对应的加法特征加权计数与奇数次数公式不同。若 $n\ge6$，则 $q\ge64$，从 Hasse 界得到
+\[
+q-13+3\operatorname{Kl}_K\ge q-13-6\sqrt q=(\sqrt q-3)^2-22\ge3>0.
+\]
+又 $(q-2)(q-4)>0$，故 $p_3(0)>0$，确有三维系数零的子空间；系数判据及同维对偶给出三维零和子空间。
+
+再考虑低半维数 $2k\le n$。偶数维数从二维基例开始，每次由 $k-2$ 维零和空间与二维零和空间作维数相加；奇数维数从上述三维基例开始，每次由 $k-2$ 维和二维空间相加。相加引理要求两维数之积小于 $n$，此处为 $2(k-2)<n$，由 $2k\le n$ 得到。故所有 $2\le k\le n/2$ 的维数均成立。最小次数 $n=4$ 的允许参数只有 $k=2$，由二维基例覆盖。
+
+若 $2k>n$，令 $k'=n-k$。由 $k+2\le n$ 得 $k'\ge2$，而 $2k'<n$。先对 $k'$ 应用低半结果，再用互补维数对称性得到 $k$ 维零和空间。$n=4$ 时条件只允许 $k=2$，恰由前述二维基例处理。
+\end{proof}
+
+\section{奇数次数的维数拼接与参数范围}
 
 除了高维结果，低维基例可产生 $k=6,7,8,9$。若 $E,F$ 分别是 $k$、$\ell$ 维零和子空间，且 $k\ell<n$，形式化的线性代数引理保证存在非零标量 $a$，使 $aF\subseteq P_E(K)$。令
 \[
@@ -299,20 +322,34 @@
 \end{equation}
 由 $3,4$ 维基例，依次用 $(3,3),(3,4),(4,4),(3,6)$ 得到 $6,7,8,9$ 维。$k\ge10$ 时用能量结果。这样，对于 $2k+1\le n$ 的低半范围，除 $k=3,4,5$ 外不再需要新基例。
 
-若 $2k+1>n$，令 $k'=n-k$。因 $n$ 奇数且 $k+3\le n$，可验证 $2k'+1\le n$，并且 $k'\ge3$。先在较小的 $k'$ 维数应用低半结论，再用引理\,\ref{lem:complement}取得 $k$ 维零和子空间。该步骤覆盖了低半与高半之间的全部参数。
+若 $2k+1>n$，令 $k'=n-k$。因 $n$ 奇数且 $k+3\le n$，可验证 $2k'+1\le n$，并且 $k'\ge3$。先在较小的 $k'$ 维数应用低半结论，再用引理\,\ref{lem:complement}取得 $k$ 维零和子空间。该步骤覆盖了奇数次数低半与高半之间的全部参数。
 
 \begin{proof}[定理\,\ref{thm:main} 的证明]
 根据 $2k+1\le n$ 或 $2k+1>n$ 分情况。前者中，若 $k=3,4,5$，分别应用命题\,\ref{prop:k3}、定理\,\ref{thm:k4}、定理\,\ref{thm:k5}；若 $6\le k\le9$，应用\eqref{eq:add}；若 $k\ge10$，应用第\,\ref{lem:energy}节的高维结论。后三类结论的阈值均满足所需的 $n\ge2k+1$。后者对 $k'=n-k$ 使用前述低半结论和互补维数对称性。所有构造及拼接均在任意有限域 $K$ 上进行，只使用 $|K|=2^n$ 与特征 $2$，所以保留了定理的全部量词。
 \end{proof}
 
-\section{Lean 形式化、复现与范围说明}\label{sec:formal}
+\begin{theorem}[完整奇偶次数形式]\label{thm:full}
+设 $n,k\in\mathbb N$，$|K|=2^n$，且 $K$ 为特征 $2$ 的有限域。若
+\[
+ (\operatorname{Odd}(n)\land 3\le k\land k+3\le n)
+ \quad\text{或}\quad
+ (\operatorname{Even}(n)\land 2\le k\land k+2\le n),
+\]
+则 $K$ 含有 $k$ 维零和子空间。
+\end{theorem}
+\begin{proof}
+奇数情形由定理\,\ref{thm:main}给出，偶数情形由定理\,\ref{thm:even}给出。两个结论都对所有满足基数条件的有限域 $K$ 成立。
+\end{proof}
 
-项目使用 Lean 4 与 mathlib\cite{Lean4,Mathlib}，并把主命题原样定义为
+\section{Lean 形式化、复现与范围说明}\label{sec:formal}
+\sloppy
+
+项目使用 Lean 4 与 mathlib\cite{Lean4,Mathlib}。原始奇数次数命题原样定义为
 \[
 \forall n,k,\quad \operatorname{Odd}(n)\to 3\le k\to k+3\le n\to
 \forall K,\quad |K|=2^n\to \operatorname{HasZeroSumSubspace}(K,k).
 \]
-定义文件是 \texttt{Statement.lean}，主定理文件是 \texttt{MainTheorem.lean}。\par\noindent 主定理声明：\texttt{oddCarletConjecture\_main}。\par 相关证明入口如下：
+定义文件是 \texttt{Statement.lean}，奇数主定理文件是 \texttt{MainTheorem.lean}。声明为 \texttt{oddCarletConjecture\_main : OddCarletConjecture}。偶数部分的无条件定理为 \texttt{evenDegreeCarlet\_unconditional}，位于 \texttt{EvenDegree.lean}，其范围为偶数 $n$、任意 $|K|=2^n$ 的有限域、$2\le k$ 且 $k+2\le n$。这两项 Lean 定理合起来给出定理\,\ref{thm:full}。相关证明入口如下：
 \begin{center}
 \small\begin{tabular}{>{\raggedright\arraybackslash}p{0.43\textwidth}>{\raggedright\arraybackslash}p{0.47\textwidth}}
 \toprule
@@ -324,12 +361,13 @@
 五维范数曲线构造 & \texttt{K5NormOneConstructionProbe.lean} 及其导入模块\\
 概率递推与两步能量收缩 & \texttt{ProbabilityEnergy.lean}, \texttt{TwoStepEnergy.lean}\\
 维数拼接、互补维数约化 & \texttt{AdditiveClosure.lean}, \texttt{LowDimensionReduction.lean}\\
-最终原始量词 & \texttt{MainTheorem.lean}\\
+偶数二维基例、三维基例与递推 & \texttt{EvenDegree.lean}, \texttt{KloostermanThree.lean}\\
+奇数主定理与偶数完整定理 & \texttt{MainTheorem.lean}, \texttt{EvenDegree.lean}\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-本次项目验收记录显示：Lean 4.33.0；默认项目构建 306 个模块；对 993 项打印声明执行了无空洞和公理检查；编译警告为零；主源码和 OLean 哈希匹配。主定理的依赖公理为 \texttt{propext}、\texttt{Classical.choice}、\texttt{Quot.sound}，不含 \texttt{sorryAx}，也没有把主结论作为假设。Hasse 界通过固定的 AINTLIB Hasse 模块导入，见参考文献\cite{AINTLIB}（快照 \texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b}，本地文件 \url{formalization/vendor/aintlib/src/projects/HasseWeil/HasseWeil/HasseBound.lean}）；主定理审计未发现其他公理。验收回执由固定的本机 Lean 4.33.0 环境生成。当前构建脚本引用了本机 Lean 可执行文件和依赖缓存；复现需要提供兼容版本的 Lean、mathlib、AINTLIB 编译产物并调整对应路径。项目附带的脚本用于说明并审计该次构建记录。该环境使用的命令为：
+2026 年 11 月 7 日的验收记录使用 Lean 4.33.0。完整默认构建检查 327 个模块，独立验证审计 1,188 项打印声明，并另行检查 188 个 Hasse 依赖模块；编译警告为零，所有源码与 OLean 哈希一致。奇数主定理与偶数完整定理均通过独立声明核对；两者的公理集合都是 \texttt{propext}、\texttt{Classical.choice}、\texttt{Quot.sound}。审计不含 \texttt{sorryAx}、未证明的自建公理或包含目标结论的隐藏假设。Hasse 界通过固定的 AINTLIB Hasse 模块导入，见参考文献\cite{AINTLIB}（快照 \texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b}，本地文件 \texttt{vendor/aintlib/src/HasseWeil/HasseBound.lean}）。复现命令为：
 \begin{verbatim}
 cd carlet-formalization
 python -I build.py
@@ -342,12 +380,14 @@ python -I audit_final_theorem.py
 依赖的 mathlib 源码基线为：\par
 \begin{quote}\small\ttfamily db584cd6d46c92f209a44c0f1c829460d327499d\end{quote}
 
-本文的数学叙述遵循当前通过 Lean 检查的范数曲线与能量路线。此前候选稿中的几何、上同调与 Betti 数估计并非本证明所需，也不由本文声称已逐项认证。本文的结论是奇数 $n$ 的完整形式化定理；它既不声称证明偶数次数版本，也不把有限计算本身用作无限族证明。
+本文的奇数次数论证遵循当前通过 Lean 检查的范数曲线与能量路线；偶数次数论证使用二维、三维基例、维数相加和互补维数对称性。有限计算只用于文中明确限定的有限小次数分支，并已在 Lean 中验证相应构造及其向任意同基数有限域的传递。
+
+作者另有一份采用几何—上同调路线的候选稿。项目正在逐项形式化该稿：已有部分有限域代数、子空间多项式和坐标恒等式的 Lean 结果；但候选稿中的射影几何识别、边界几何、上同调与点数估计尚未全部通过 Lean 认证。本文的奇数和偶数主定理及其 Lean 证明已经完整；这不等同于宣称候选稿的具体论证路线已逐行完成形式化。逐节对应与剩余事项记录在项目研究笔记中。
 
 \section*{致谢与 AI 使用说明}
 写作和代码整理过程中使用了 ChatGPT 辅助。形式化检查由 Lean 内核及项目构建脚本执行；作者对数学内容、引用、代码来源和最终稿件负责。
 
-\sloppy\begin{thebibliography}{9}
+\sloppy\begin{thebibliography}{9}\small
 \bibitem{Carlet2025}
 C.~Carlet, \emph{On the vector subspaces of $\mathbb F_{2^n}$ over which the multiplicative inverse function sums to zero}, Designs, Codes and Cryptography 93 (2025), 1237--1254. DOI: \href{https://doi.org/10.1007/s10623-024-01531-6}{10.1007/s10623-024-01531-6}.
 

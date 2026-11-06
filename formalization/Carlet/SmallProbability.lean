@@ -55,11 +55,27 @@ theorem traceCharacter_one_of_odd_finrank (n : ℕ)
   change (if Algebra.trace (ZMod 2) K 1 = 0 then (1 : ℝ) else -1) = -1
   simp [htrace]
 
+omit [Fintype K] [DecidableEq K] in
+theorem traceCharacter_one_of_even_finrank (n : ℕ)
+    (hn : Module.finrank (ZMod 2) K = n) (heven : Even n) :
+    traceCharacter (K := K) 1 = 1 := by
+  have htrace := Algebra.trace_algebraMap (R := ZMod 2) (S := K) (1 : ZMod 2)
+  simp only [map_one, hn, nsmul_eq_mul, mul_one, heven.natCast_zmod_two] at htrace
+  change (if Algebra.trace (ZMod 2) K 1 = 0 then (1 : ℝ) else -1) = 1
+  simp [htrace]
+
 theorem containingOne_probability_two_zero_of_odd (n : ℕ)
     (hn : Module.finrank (ZMod 2) K = n) (hn2 : 2 ≤ n) (hodd : Odd n) :
     containingOneCoefficientProbability (K := K) 2 0 = 0 := by
   rw [containingOne_probability_two_dim n hn hn2]
   simp [traceCharacter_one_of_odd_finrank n hn hodd]
+
+theorem containingOne_probability_two_zero_of_even (n : ℕ)
+    (hn : Module.finrank (ZMod 2) K = n) (hn2 : 2 ≤ n) (heven : Even n) :
+    containingOneCoefficientProbability (K := K) 2 0 =
+      2 / ((Fintype.card K : ℝ) - 2) := by
+  rw [containingOne_probability_two_dim n hn hn2]
+  norm_num [traceCharacter_one_of_even_finrank n hn heven]
 
 /-- The first genuinely nontrivial zero-coordinate recurrence in odd degree. -/
 theorem containingOne_probability_three_zero (n : ℕ)
@@ -75,9 +91,28 @@ theorem containingOne_probability_three_zero (n : ℕ)
   norm_num only [zero_add, one_div, sub_zero, pow_succ, pow_zero, mul_one] at h
   exact h
 
+/-- Even-parity three-dimensional probability recursion, retaining the
+    nonzero two-dimensional mass at zero instead of silently discarding it. -/
+theorem containingOne_probability_three_zero_of_even (n : ℕ)
+    (hn : Module.finrank (ZMod 2) K = n) (hn3 : 3 ≤ n) (heven : Even n) :
+    ((Fintype.card K : ℝ) - 4) * containingOneCoefficientProbability (K := K) 3 0 =
+      1 - 2 / ((Fintype.card K : ℝ) - 2) + 3 *
+        (∑ v ∈ Transfer.nonzeroElements (K := K),
+          traceCharacter (K := K) (v⁻¹) * containingOneCoefficientProbability (K := K) 2 v) := by
+  have h := containingOne_probability_recursion (K := K) n 2 hn (by omega) (by omega)
+    0 (by simp)
+  rw [containingOne_probability_two_zero_of_even n hn (by omega) heven] at h
+  simp only [zero_add] at h
+  rw [normalizedReciprocalFiberSum_finset 2 1 one_ne_zero] at h
+  norm_num only [one_div, pow_succ, pow_zero, mul_one] at h
+  exact h
+
 #print axioms containingOne_probability_two_dim
 #print axioms traceCharacter_one_of_odd_finrank
+#print axioms traceCharacter_one_of_even_finrank
 #print axioms containingOne_probability_two_zero_of_odd
+#print axioms containingOne_probability_two_zero_of_even
 #print axioms containingOne_probability_three_zero
+#print axioms containingOne_probability_three_zero_of_even
 
 end Carlet

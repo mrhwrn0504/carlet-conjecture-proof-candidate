@@ -631,7 +631,76 @@ k & \ensuremath{N_{k}} & lo\ensuremath{g_2} C(\ensuremath{N_{k}}−1,k−2)（�
 
 附带程序用整数平方比较验证含半整数指数的 k=17 门槛，避免任何浮点误差。
 
+\section{偶数次数部分：独立的无条件证明}
+
+本节补入偶数次数情形。它使用有限域计数、椭圆曲线 Hasse 界和子空间多项式构造；这条证明路线与前文奇数次数的互反几何路线不同。令 $K$ 为特征 $2$、基数 $q=2^n$ 的有限域。记
+\[
+L_E(T)=\prod_{x\in E}(T+x)
+\]
+为有限维 $\mathbb F_2$-子空间 $E\subset K$ 的子空间多项式。它是线性化多项式，可写成 $T^{2^d}+c_{d-1}T^{2^{d-1}}+\cdots+c_1T^2+c_0T$，其中 $d=\dim E$。其 $T^2$ 系数为零等价于 $\sum_{x\in E\setminus\{0\}}x^{-1}=0$（引理 2.2）。以下称满足此条件的子空间为零和子空间。
+
+\subsection{二维和三维基例}
+
+若 $n$ 为偶数，则 $K$ 含有唯一的四元子域 $\mathbb F_4=\{0,1,\omega,\omega^2\}$，其中 $\omega^2+\omega+1=0$。因 $\omega^{-1}=\omega^2$、$(\omega^2)^{-1}=\omega$，有
+\[
+\sum_{x\in\mathbb F_4^\times}x^{-1}=1+\omega+\omega^2=0.
+\]
+因此 $k=2$ 对所有偶数 $n\ge2$ 成立。
+
+现在设 $n$ 偶且 $n\ge6$。在所有含 $1$ 的三维子空间中均匀取样，令 $p_3(0)$ 表示其 $T^2$ 系数为零的比例。令 $\operatorname{Tr}:K\to\mathbb F_2$ 为迹，并定义二元 Kloosterman 和
+\[
+\mathrm{Kl}_n=\sum_{v\in K^\times}(-1)^{\operatorname{Tr}(v+v^{-1})}.
+\]
+对椭圆曲线 $C:y^2+xy=x^3+1$，逐个固定 $x\in K$ 计数 $y$，得到
+\[
+\#C(K)=q+1+\mathrm{Kl}_n.
+\]
+该曲线的判别式为 $1$，故在特征 $2$ 下仍是光滑椭圆曲线。椭圆曲线 Hasse 界（参见 [Silverman] 第 V.1.1 定理）遂给出 $|\mathrm{Kl}_n|\le2\sqrt q$。为说明计数恒等式，记 $N_d(c)$ 为所有 $d$ 维子空间中 $T^2$ 系数为 $c$ 的个数，$H_d(c)$ 为其中含 $1$ 的个数，$A_d$ 为所有含 $1$ 的 $d$ 维子空间数。令 $\chi(x)=(-1)^{\operatorname{Tr}(x)}$。对每个 $b\ne1$，Artin--Schreier 映射 $x\mapsto x^2+x$ 的纤维按迹字符分解，给出原始计数恒等式
+\[
+2^d H_{d+1}(b)=N_d(b+1)+\sum_{w\ne0}\chi(w)H_d((b+1)/w).
+\]
+另一方面，对每个 $c\ne0$，按非零系数子空间及其是否含 $1$ 计数，得到
+\[
+(2^d-1)N_d(c)+H_d(0)=A_d.
+\]
+含固定向量的相邻维数子空间总数满足 $A_{d+1}/A_d=(q-2^d)/(2^d(2^d-1))$。将这些恒等式除以相应总数，并取 $d=2,b=0$，即得
+\[
+(q-2)(q-4)p_3(0)=q-13+3\mathrm{Kl}_n.
+\]
+右端满足
+\[
+q-13+3\mathrm{Kl}_n\ge q-13-6\sqrt q.
+\]
+令 $s=\sqrt q\ge8$。函数 $s^2-6s-13$ 在 $s\ge8$ 上递增，且在 $s=8$ 时等于 $3$，故右端严格为正；分母 $(q-2)(q-4)$ 也为正。因此 $p_3(0)>0$，存在含 $1$ 的三维子空间使 $L_E(T)$ 的 $T^2$ 系数为零。由引理 2.2，这就是所需的三维零和子空间。注意 $n=4$ 时目标范围内只需 $k=2$，已由上述四元子域处理。
+
+\subsection{维数扩张引理}
+
+若 $E,F\subset K$ 是维数分别为 $a,b$ 的零和子空间，且 $ab<n$，则存在维数 $a+b$ 的零和子空间。证明如下。$L_E:K\to K$ 是 $\mathbb F_2$-线性映射，核为 $E$，故其像 $I$ 的余维为 $a$，并且 $\dim(K/I)=a$。考虑线性映射
+\[
+K\longrightarrow\operatorname{Hom}_{\mathbb F_2}(F,K/I),\qquad
+\lambda\longmapsto (x\mapsto \lambda x\bmod I).
+\]
+目标空间维数为 $ab<n$，所以该映射有非零核元 $\lambda\in K^\times$。于是 $\lambda F\subset I$。令 $G=L_E^{-1}(\lambda F)$；由核像维数公式，$\dim G=a+b$。又有
+\[
+L_G=L_{\lambda F}\circ L_E.
+\]
+缩放子空间不改变零和性质，因为缩放使 $T^2$ 系数乘以非零常数的平方。对线性化多项式复合，复合式的 $T^2$ 系数只由外层的 $T$ 项系数乘以内层的 $T^2$ 系数，以及外层的 $T^2$ 项系数乘以内层的 $T$ 项系数平方组成；后一项因 $\lambda F$ 零和而为零，前一项因 $E$ 零和而为零。因此 $G$ 也是零和子空间。
+
+\subsection{互补维数与拼接}
+
+对任意子空间 $E$，令 $I=L_E(K)$。恒等式
+\[
+L_I\circ L_E=T^q-T
+\]
+成立，因为两边均为首一、根恰为 $K$ 中所有元素且次数为 $q$ 的多项式。比较 $T^2$ 系数可知，当 $q>2$ 时，$E$ 零和当且仅当 $I$ 零和；又 $\dim I=n-\dim E$。因此零和子空间存在性在维数 $k$ 与 $n-k$ 之间等价。
+
+归纳证明 $2\le d\le n/2$ 的存在性。$d=2$ 已证；若 $d=3$，则偶数条件和 $d\le n/2$ 蕴含 $n\ge6$，三维基例适用。对 $d\ge4$，假设维数 $d-2$ 已成立，并将它与二维基例应用维数扩张引理。其条件为 $2(d-2)<n$，由 $d\le n/2$ 可得。故所有 $2\le d\le n/2$ 均成立。
+
+最后给定任意 $2\le k\le n-2$。若 $k\le n/2$，直接使用刚证结果；若 $k>n/2$，则 $2\le n-k<n/2$，先取维数 $n-k$ 的零和子空间，再用互补维数构造得到维数 $k$ 的零和子空间。综上，对每个偶数 $n\ge4$ 及所有 $2\le k\le n-2$，结论成立。证明没有对有限域作模型选择，因而适用于任意基数为 $2^n$ 的有限域。
+
 \section{参考文献}
+
+[Silverman] J. H. Silverman, The Arithmetic of Elliptic Curves, 2nd ed., Graduate Texts in Mathematics 106, Springer, 2009, Chapter V, Theorem 1.1.
 
 [Carlet1] C. Carlet, Two Generalizations of Almost Perfect Nonlinearity, Journal of Cryptology 38 (2025), Article 20. DOI 10.1007/s00145-025-09538-5.
 

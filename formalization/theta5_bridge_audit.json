@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "full_build_time_utc": "2026-11-06T04:51:07.804148+00:00",
+  "modules": [
+    {
+      "module": "Theta5Probe",
+      "source_sha256": "aff307cd61a7ff478a87693cdfa09555367f502705fe5ec21118fb5af2d86de4",
+      "olean_sha256": "5b41b3b7f0b8f39ba2756dffde1772195fd9ef108ea116c2a164e83f27633056",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5SparseMonomial",
+      "source_sha256": "9088259229f5279d6b915d63125fb4ed7d589feffd4939f83def14671e580cf5",
+      "olean_sha256": "552ed320eb98cce167758620e44f464178d47b4d02e891dc1a5d76abce542ee9",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5EvaluationStagesProbe",
+      "source_sha256": "6250ecec3df93eafb7f546c3cba11019e3ab0b9939f89f4b04577fdffaff4340",
+      "olean_sha256": "caef38e1e9f36664027195959f8fad6d70530184724989aa6c2103e898707d40",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5SparseBridgeProbe",
+      "source_sha256": "fdf08d46a5fe26e3a0cafd368a99037ed0fd23a6996052e8fa6dbf53fa0e552b",
+      "olean_sha256": "78e24e53cf0d7a64e7170aecd0217b7915293e4f5c7f6991e9d89710bce557fe",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5LastCoordinateExpansionProbe",
+      "source_sha256": "61b34824835cd045ce2901407f2292fd1db8ba79b0daa33a5bb670aa69c68323",
+      "olean_sha256": "3c3b833a39249af61700ad5166f36e1a758688acdc00038ac03462befaef998a",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5SparseSupportListsProbe",
+      "source_sha256": "8eec058e9c7600c9821138655a5743adffff9eff68efdd99de25ff4b001b2781",
+      "olean_sha256": "0dda96ea0d9b78982124b5545dfaa5809432bd76b3125a737c13c28225c3f6c8",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5PositiveSupportListsProbe",
+      "source_sha256": "469ac28b47ba73535b377ea95ad45b709a84f308d2328fc7b9fbf875aa8797e9",
+      "olean_sha256": "45255f4efea0957362c0d77e9b5e60bbba75d758da46cae5dc849c238c360e05",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5LastZeroCoefficientProbe",
+      "source_sha256": "fcaa485bbefd4d5b2f88dd543ddf1b56cb26a638e7ab77f6e1cbc2891551ff64",
+      "olean_sha256": "aee0c2b4b9b1002336acc2db48d6a728347f647748bdb231e2d6dab9c07414c6",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5RecurrenceWordCertificateProbe",
+      "source_sha256": "25a66a9508568886d922a3f3aae8b5f62890b030cdf119f5be71275891fefdf5",
+      "olean_sha256": "6b9adb53dacff289954bf970735217dadaeb814176c021fddf042d784edc11b8",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5PositiveRecurrenceWordProbe",
+      "source_sha256": "47d1dabc81a18acbf0216be35c5aff3141c0af13ca88677b4943b4797f1e8c88",
+      "olean_sha256": "ee78fdd141c5c3ee6ad0215a8e17bc12be7495eaaf3756e4b43684a34321a8ad",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5SpecializationBridgeProbe",
+      "source_sha256": "6baac7cf6283c8ed1202de37fa965a29f1c33bd924419a643d99443643525e71",
+      "olean_sha256": "e86abb58059614dfaaf6ab3f2fc88a9725896582dde1e3b3b6ab86164cbc17b1",
+      "exit_code": 0
+    },
+    {
+      "module": "Theta5RankFourSpanBridgeProbe",
+      "source_sha256": "3147bbb3ceba09d5c482cef971d981c138f977c0affd99cdec4495d2b713906f",
+      "olean_sha256": "bc38d7413aea49b0873995843a9d81d9ee880194f58de8b0e3a72b39c807e96d",
+      "exit_code": 0
+    }
+  ],
+  "required_axioms": {
+    "Carlet.hasZeroSumSubspace_five_of_theta5_independent_zero": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Carlet.theta5Span4_polynomial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Carlet.theta5_specialization_eq_span_polynomial": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  }
+}

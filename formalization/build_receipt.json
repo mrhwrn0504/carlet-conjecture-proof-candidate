@@ -1,5 +1,5 @@
 {
-  "time_utc": "2026-11-06T04:51:07.804148+00:00",
+  "time_utc": "2026-11-06T23:11:04.222014+00:00",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
   "lean_executable": "C:\\Users\\Administrator\\Documents\\ChatGPT\\New project 3\\jsp423-repro\\_toolchain\\bin\\lean.exe",
   "mathlib_source_commit": "db584cd6d46c92f209a44c0f1c829460d327499d",
@@ -55,6 +55,43 @@
       "source_sha256": "99f0548b502b68f5cb5f08e635f73c0faf54448b7c126e14ec655d7c5a5cd906",
       "olean_sha256": "b1654d06b8a4d3f6ec5de86ce96ec59543bed1877773258072d1774d0392b701",
       "stdout": "'Carlet.rootProduct_coeff_one' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.inverse_sum_eq_coeff_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.inverse_sum_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.inverse_sum_eq_rootProduct_coeff_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.inverse_sum_eq_zero_iff_rootProduct_coeff_two' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.extension_coeff_two' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.extension_coeff_two_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.extension_coeff_two_eq_zero_iff_char_two' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section32CoordinateSplit.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section32CoordinateSplit.binaryLinearForm_lastCases": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32CoordinateSplit.binaryReciprocalSum_eq_sum_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32CoordinateSplit.binaryReciprocalSum_lastCases": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32CoordinateSplit.binaryLinearForm_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32CoordinateSplit.fiber_reciprocal_sum_eq_image": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "280d39c9f07e1400f940fe7c04f22ce60aabe61351acea8962ca9dcca148d750",
+      "olean_sha256": "b143ac0d32f042fc4e2cd4a8cb45ab80144330a858d6917e71ade9b321fc22e8",
+      "stdout": "'Carlet.CandidatePaper.Section32CoordinateSplit.binaryLinearForm_lastCases' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32CoordinateSplit.binaryReciprocalSum_eq_sum_nonzero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32CoordinateSplit.binaryReciprocalSum_lastCases' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32CoordinateSplit.binaryLinearForm_injective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32CoordinateSplit.fiber_reciprocal_sum_eq_image' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
       "stderr": ""
     },
     {
@@ -169,6 +206,75 @@
       "stderr": ""
     },
     {
+      "module": "Carlet/CandidatePaper/RationalFunctionLogDerivative.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.RationalFunctionLogDerivative.rootProduct_monic": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.RationalFunctionLogDerivative.rootProduct_natDegree": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.RationalFunctionLogDerivative.rootProduct_derivative_natDegree_lt": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.RationalFunctionLogDerivative.scalar_mul_add_derivative_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.RationalFunctionLogDerivative.fraction_map_poly_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.RationalFunctionLogDerivative.fraction_scalar_mul_add_derivative_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.RationalFunctionLogDerivative.scalar_add_logDerivative_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.RationalFunctionLogDerivative.sum_inverse_linearFactors_eq_logDerivative": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "a02a417c3f4e5ae0050934abc925cbd4e3a9ae06003c606b1d888c1c0bb514c5",
+      "olean_sha256": "53cab0e2b24b5d0b8b3dd2da39e3ade8c9589e16cde5b94f4934c7e44d592696",
+      "stdout": "'Carlet.CandidatePaper.RationalFunctionLogDerivative.rootProduct_monic' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.RationalFunctionLogDerivative.rootProduct_natDegree' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.RationalFunctionLogDerivative.rootProduct_derivative_natDegree_lt' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.RationalFunctionLogDerivative.scalar_mul_add_derivative_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.RationalFunctionLogDerivative.fraction_map_poly_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.RationalFunctionLogDerivative.fraction_scalar_mul_add_derivative_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.RationalFunctionLogDerivative.scalar_add_logDerivative_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.RationalFunctionLogDerivative.sum_inverse_linearFactors_eq_logDerivative' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section32Nonvanishing.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section32Nonvanishing.nonzero_constant_add_fiber_reciprocal_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "0ec63744ab3539c13bce4fde943861fb7527c4ab47880f9c392034d3019f9258",
+      "olean_sha256": "270e3226cbd35109145c507b8a1afbd4b52786b4d413142e2695f7de54b68070",
+      "stdout": "'Carlet.CandidatePaper.Section32Nonvanishing.nonzero_constant_add_fiber_reciprocal_sum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
       "module": "Carlet/K4PoleRoots.lean",
       "exit_code": 0,
       "hole_free_output": true,
@@ -255,6 +361,38 @@
       "source_sha256": "1a77c70fd2925a372ffe800050325e98f6638868ce81756d04c0137180d6ddf2",
       "olean_sha256": "3def73364b99a069392f75033db121f41c4162b78e401e0152860c6fa171e82e",
       "stdout": "'Carlet.subspacePolynomial_translation' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.subspacePolynomial_extension' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.subspacePolynomial_eval_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.extension_zeroSum_iff' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.subspacePolynomialMap_ker' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.solver_yields_zeroSum_subspace' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section2.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section2.lemma_2_2_reciprocal_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section2.lemma_2_3_extension": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section2.corollary_2_4_extension_solver": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section2.final_step_solver": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "8560b611c858aec9e4d27f5ff4900c0582965dab2597d44ecbe2d2ec56efd422",
+      "olean_sha256": "867888973bfe4132ebb82be8ceb1d877caaa9ca4fc6ff73cf841efb9156ace7f",
+      "stdout": "'Carlet.CandidatePaper.Section2.lemma_2_2_reciprocal_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section2.lemma_2_3_extension' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section2.corollary_2_4_extension_solver' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section2.final_step_solver' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     },
     {
@@ -645,6 +783,157 @@
       "stderr": ""
     },
     {
+      "module": "Carlet/CandidatePaper/Section3.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section3.combination_scale": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.combination_eq_coeff_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.bitsCoeff_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.bitsCoeff_bijective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.bitsCoeffEquiv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.bitsCoeff_zeroBits": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.reciprocalSum_eq_coeff_vectors": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.openPoint_coordinates_linearIndependent": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.openPointSpan_finrank": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.coefficientCombinationMap_range": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.openPoint_coefficientMap_range": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.coefficientCombinationMap_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.coefficientsEquivOpenPointSpan": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.reciprocalSum_eq_openPointSpan_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.openPoint_sum_condition_iff_span_reciprocal_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.isZeroSum_iff_subtype_reciprocal_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.openPoint_condition_iff_zeroSumSpan": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.openPoint_yields_zeroSumSubspace": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.fullReciprocalSum_scale": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.fullReciprocalSum_scale_eq_zero_iff": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.basisCoefficientsEquiv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.basisCoefficientsEquiv_apply": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.reciprocalSum_eq_basis_subtype_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.basis_reciprocal_sum_eq_zero_iff_isZeroSum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.basis_combination_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.openPointOfZeroSumBasis": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.openPointOfZeroSumSubspace": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section3.exists_openPoint_iff_hasZeroSumSubspace": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "fb61d03a1f62bde9c3733d707312efe7719ce9dfd94ab8446f43f8680e4abf2a",
+      "olean_sha256": "9061752fa81531454a23d2d055e5b21ec47b0343ba510b924a3578dc412cea1b",
+      "stdout": "'Carlet.CandidatePaper.Section3.combination_scale' depends on axioms: [propext, Quot.sound]\n'Carlet.CandidatePaper.Section3.combination_eq_coeff_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.bitsCoeff_injective' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.bitsCoeff_bijective' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.bitsCoeffEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.bitsCoeff_zeroBits' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.reciprocalSum_eq_coeff_vectors' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.openPoint_coordinates_linearIndependent' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.openPointSpan_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.coefficientCombinationMap_range' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.openPoint_coefficientMap_range' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.coefficientCombinationMap_injective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.coefficientsEquivOpenPointSpan' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.reciprocalSum_eq_openPointSpan_sum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.openPoint_sum_condition_iff_span_reciprocal_sum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.isZeroSum_iff_subtype_reciprocal_sum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.openPoint_condition_iff_zeroSumSpan' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.openPoint_yields_zeroSumSubspace' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.fullReciprocalSum_scale' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.fullReciprocalSum_scale_eq_zero_iff' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.basisCoefficientsEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.basisCoefficientsEquiv_apply' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.reciprocalSum_eq_basis_subtype_sum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.basis_reciprocal_sum_eq_zero_iff_isZeroSum' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section3.basis_combination_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.openPointOfZeroSumBasis' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.openPointOfZeroSumSubspace' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section3.exists_openPoint_iff_hasZeroSumSubspace' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
       "module": "Carlet/FiniteNaturality.lean",
       "exit_code": 0,
       "hole_free_output": true,
@@ -865,6 +1154,204 @@
       "stderr": ""
     },
     {
+      "module": "Carlet/CandidatePaper/Section4.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section4.affine_model_points_equiv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section4.exists_quadraticPoint_iff_hasZeroSumSubspace": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section4.prefix_coordinates_linearIndependent": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section4.prefixCoefficientsEquiv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section4.blockSum_eq_prefixSpan_sum": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section4.manuscript_reciprocal_fiber_eq_quadraticT": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section4.manuscript_fiber_sum_eq_linearCoefficient_over_delta": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section4.manuscript_fiber_sum_eq_subspacePolynomial_coefficient_over_delta": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section4.affine_presentation_scheme_iso": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "11496f608bd94c1538e870834991ce7036f6f5ad2d9ea5de540f9f6367ca8a23",
+      "olean_sha256": "1d8e14da7087311134e90bb85200852a7e33b69bd458058c8fb2242c58ce856a",
+      "stdout": "'Carlet.CandidatePaper.Section4.affine_model_points_equiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section4.exists_quadraticPoint_iff_hasZeroSumSubspace' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section4.prefix_coordinates_linearIndependent' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section4.prefixCoefficientsEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section4.blockSum_eq_prefixSpan_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.Section4.manuscript_reciprocal_fiber_eq_quadraticT' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section4.manuscript_fiber_sum_eq_linearCoefficient_over_delta' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section4.manuscript_fiber_sum_eq_subspacePolynomial_coefficient_over_delta' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section4.affine_presentation_scheme_iso' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/ReciprocalCoordinates.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.ReciprocalCoordinates.linearForm_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalCoordinates.linearForm_fraction_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalCoordinates.reciprocalCoordinate_mul_linearForm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalCoordinates.reciprocalCoordinate_mem_subalgebra": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalCoordinates.eval₂_linearForm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalCoordinates.eval₂_linearForm_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalCoordinates.eval₂_linearForm_ne_zero_of_openPoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalCoordinates.reciprocalGeneratorValue_mul_denominator": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "e5510fd55a3c63aa22a392824d3b43f0b42d25c0c04cce53f947cfc78407bd9f",
+      "olean_sha256": "28d4d141152640280a7704e99de0c746614a8e15580730faa97fb249f46c4def",
+      "stdout": "'Carlet.CandidatePaper.ReciprocalCoordinates.linearForm_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalCoordinates.linearForm_fraction_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalCoordinates.reciprocalCoordinate_mul_linearForm' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalCoordinates.reciprocalCoordinate_mem_subalgebra' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalCoordinates.eval₂_linearForm' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalCoordinates.eval₂_linearForm_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalCoordinates.eval₂_linearForm_ne_zero_of_openPoint' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalCoordinates.reciprocalGeneratorValue_mul_denominator' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section31SymmetricAlgebraBridge.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section31SymmetricAlgebraBridge.symmetricAlgebra_vector_eq_linearForm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31SymmetricAlgebraBridge.symmetricPolynomialEquiv_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "80da09c39198d5dc0b302df3629498cedd9957c3c043194922e6cb87d796cc16",
+      "olean_sha256": "d31340f6493a14ddc5a511d9b12f76f05271740f9f0c01f6e28f84ebd07ea673",
+      "stdout": "'Carlet.CandidatePaper.Section31SymmetricAlgebraBridge.symmetricAlgebra_vector_eq_linearForm' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31SymmetricAlgebraBridge.symmetricPolynomialEquiv_injective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/ReciprocalLocalization.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.ReciprocalLocalization.eval_commonLinearDenominator_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.eval_denominator_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.denominatorSubmonoid_le_nonZeroDivisors": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.evalHom_units": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.evalOnLocalization": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.evalOnLocalization_base": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.localizedReciprocal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.localizationToFraction": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.localizationToFraction_base": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.localizationToFraction_reciprocal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.ReciprocalLocalization.evalOnLocalization_reciprocal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "ec631430aaaacf71c77b44dc6361370fdc88a4dc90754ea98bd2f91b373ab07d",
+      "olean_sha256": "fc73ce91c1cb757ea3a975295c7265b95b142277601ebe42a38eb7de42c7f8c0",
+      "stdout": "'Carlet.CandidatePaper.ReciprocalLocalization.eval_commonLinearDenominator_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.eval_denominator_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.denominatorSubmonoid_le_nonZeroDivisors' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.evalHom_units' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.evalOnLocalization' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.evalOnLocalization_base' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.localizedReciprocal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.localizationToFraction' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.localizationToFraction_base' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.localizationToFraction_reciprocal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.ReciprocalLocalization.evalOnLocalization_reciprocal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
       "module": "Carlet/TransferOperator.lean",
       "exit_code": 0,
       "hole_free_output": true,
@@ -1081,6 +1568,660 @@
       "source_sha256": "5b6f43a5deb5fb1c80e88149fbe4e38f591ee49b798efc88e2e8c60c04eec6ac",
       "olean_sha256": "e2971f6ede936a77b32ec7e776f3de2d4574be78dff303d85d46ffbc645497eb",
       "stdout": "'Carlet.frobeniusSupported_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.coeff_comp_artinSchreier' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section32SubspaceDerivative.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section32SubspaceDerivative.derivative_eq_C_coeff_one_of_frobeniusSupported": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "e48765c98c53a7ae770e72af0fa69357c0a0a8ff08d6a26afd81f5b14fce8ba1",
+      "olean_sha256": "c9ae99c9d691ab21789047bb21eb3ff16daab27071bff18d4f650e03229ea9fb",
+      "stdout": "'Carlet.CandidatePaper.Section32SubspaceDerivative.derivative_eq_C_coeff_one_of_frobeniusSupported' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section32InfiniteFiber.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_lastCases": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_lastCases_recurrence": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_lastCases_translation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_translation": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_frobeniusSupported": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_eq_rootProduct_image": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_coeff_one_ne": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_derivative_eq_C": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_derivative_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryFiber_reciprocal_sum_eq_image": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryFiber_add_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.algebraMapF2Linear": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryLinearForm_algebraMap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32InfiniteFiber.binaryReciprocalSum_algebraMap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "ee93bff4426819a0d3ccfb7aff451a813fba83449579350990386e374283bfef",
+      "olean_sha256": "1c325d42c487e2c4968989f1e55dfdeb4f518196955d6322f8699946eac05fb1",
+      "stdout": "'Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_lastCases' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_lastCases_recurrence' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_lastCases_translation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_translation' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_frobeniusSupported' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_eq_rootProduct_image' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_coeff_one_ne' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_derivative_eq_C' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryRootProduct_derivative_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryFiber_reciprocal_sum_eq_image' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryFiber_add_nonzero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.algebraMapF2Linear' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryLinearForm_algebraMap' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32InfiniteFiber.binaryReciprocalSum_algebraMap' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section32IntegralDomainFiber.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section32IntegralDomainFiber.sum_inverse_linearFactors_eq_logDerivative": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32IntegralDomainFiber.coeffMap_frac_rep": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32IntegralDomainFiber.scalar_mul_derivative_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32IntegralDomainFiber.fractionConstant_add_fiberSum_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "3761d537fd58ef998c3dfb8664f86159f565c6c69580b6244c64bd10341d7dc8",
+      "olean_sha256": "5944f323bd930a939fb521943c713e7fff5e47d64a49fe522baeb18fcc5b3e85",
+      "stdout": "'Carlet.CandidatePaper.Section32IntegralDomainFiber.sum_inverse_linearFactors_eq_logDerivative' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32IntegralDomainFiber.coeffMap_frac_rep' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32IntegralDomainFiber.scalar_mul_derivative_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32IntegralDomainFiber.fractionConstant_add_fiberSum_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section32GenericCoordinateField.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_comp_coeffMap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_algebraMap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.rationalFieldMap_algebraMap": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.polynomialRename_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccPolynomialEquiv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccPolynomialEquiv_old": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccPolynomialEquiv_new": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_old": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_new": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.rationalFieldMap_base": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.genericCoordinates_linearIndependent": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericCoordinateField.genericReciprocalSum_map": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "3b4186f44fc2e7ccb1ba8c06467b3cd1fcbf67711a55eb5377d0333bbb7c3d16",
+      "olean_sha256": "f9300083bc77b23be01dfa76f8e45073d601ab4569b2529d026328d95930bd2f",
+      "stdout": "'Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_comp_coeffMap' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_algebraMap' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.rationalFieldMap_algebraMap' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.polynomialRename_injective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccPolynomialEquiv' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccPolynomialEquiv_old' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccPolynomialEquiv_new' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_injective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_old' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.finSuccFractionFieldMap_new' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.rationalFieldMap_base' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.genericCoordinates_linearIndependent' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericCoordinateField.genericReciprocalSum_map' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section32GenericReciprocalInduction.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.candidatePaperEll_mem_reciprocalSubring": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.candidatePaperEllElement_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.polynomialRename_binaryLinearForm": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.binaryLinearFormPoly_map": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.binaryLinearFormPoly_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.fiberSum_map": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.genericReciprocalSum_succ_split": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.genericReciprocalSum_succ_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.genericReciprocalSum_nonzero_of_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32GenericReciprocalInduction.candidatePaperEll_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "e5e0fda05f059c1dc0b9018714b10f1d83a304ab626cbbd6d3b0aac5f7a6fb8b",
+      "olean_sha256": "bf04e1d696f664f456dbe4f62066e831f814758d13026bf2c93cda402635d64a",
+      "stdout": "'Carlet.CandidatePaper.Section32GenericReciprocalInduction.candidatePaperEll_mem_reciprocalSubring' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericReciprocalInduction.candidatePaperEllElement_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericReciprocalInduction.polynomialRename_binaryLinearForm' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericReciprocalInduction.binaryLinearFormPoly_map' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericReciprocalInduction.binaryLinearFormPoly_injective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericReciprocalInduction.fiberSum_map' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericReciprocalInduction.genericReciprocalSum_succ_split' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericReciprocalInduction.genericReciprocalSum_succ_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericReciprocalInduction.genericReciprocalSum_nonzero_of_pos' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32GenericReciprocalInduction.candidatePaperEll_nonzero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section32ReciprocalRingBridge.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.linearForm_eq_genericCoordinate_form": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.reciprocalCoordinate_eq_genericForm_inv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEll_mem_reciprocalSubring": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEllElement_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.symmetricFractionEquiv_ι": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.symmetricFractionEquiv_candidatePaperEll": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEllInSymmetricFractionField_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.symmetricAlgebra_vector_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.symmetricVector_fraction_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEllInSymmetricFractionField_mem_subring": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEllInSymmetricReciprocalSubring_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "1c35991f1415ad0c3997966f01d2f44cf6c6921174c3e5c4f20ecaaa7a192fb9",
+      "olean_sha256": "98aba5d73e2b510608adf12b47699a218fb879869dbb4b6499d99c80bf3b5e71",
+      "stdout": "'Carlet.CandidatePaper.Section32ReciprocalRingBridge.linearForm_eq_genericCoordinate_form' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.reciprocalCoordinate_eq_genericForm_inv' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEll_mem_reciprocalSubring' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEllElement_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.symmetricFractionEquiv_ι' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.symmetricFractionEquiv_candidatePaperEll' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEllInSymmetricFractionField_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.symmetricAlgebra_vector_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.symmetricVector_fraction_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEllInSymmetricFractionField_mem_subring' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section32ReciprocalRingBridge.candidatePaperEllInSymmetricReciprocalSubring_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section31ReciprocalDegreeOne.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section31ReciprocalDegreeOne.candidatePaperEll_mem_reciprocalGeneratorSpan": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalDegreeOne.candidatePaperEll_mem_generatorSpan_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "ebdb759a7cf299888270e4fde256563adbffa6ed665e1d95da49e3c2d038d431",
+      "olean_sha256": "bcee709abe4401b38034de1d12b52666396592d74dde968b9bc3f8601eae42a6",
+      "stdout": "'Carlet.CandidatePaper.Section31ReciprocalDegreeOne.candidatePaperEll_mem_reciprocalGeneratorSpan' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalDegreeOne.candidatePaperEll_mem_generatorSpan_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section31ReciprocalPresentation.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section31ReciprocalPresentation.ellPolynomial_homogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalPresentation.ellPolynomial_component_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalPresentation.ellPolynomial_maps_to_candidate": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalPresentation.homogeneousComponent_eq_zero_of_isHomogeneous_of_ne": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalPresentation.aeval_smul_of_isHomogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalPresentation.homogeneous_sum_eq_zero_each": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "ce85a67668abf7d7f68c676954bc5382c23ba71d5cd62739e63fa773ce35d936",
+      "olean_sha256": "38a029083c57138d629dbf1a125037e9dc2b1959f2ff375be62fabe9b5affb77",
+      "stdout": "'Carlet.CandidatePaper.Section31ReciprocalPresentation.ellPolynomial_homogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalPresentation.ellPolynomial_component_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalPresentation.ellPolynomial_maps_to_candidate' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalPresentation.homogeneousComponent_eq_zero_of_isHomogeneous_of_ne' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalPresentation.aeval_smul_of_isHomogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalPresentation.homogeneous_sum_eq_zero_each' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section31ReciprocalCommonDenominator.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.linearForm_isHomogeneous_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.commonDenominator_isHomogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorComplement_isHomogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorComplement_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.commonDenominator_nonzero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.commonDenominator_factor": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorComplement_eq_common_mul_reciprocal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorScaledGenerator_isHomogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorScaledEvaluation_preservesHomogeneity": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorScaledEvaluation_toFraction_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorScaledEvaluation_field_eq_of_isHomogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "fdfbe42d1e5f366e0fbad385720bcafd20a38ab8f1e52ef64ef18d1bcc44b9e5",
+      "olean_sha256": "5a0af54888872b349a20cb95a0eed608c4efacd5af32016f6c4b65afa673a268",
+      "stdout": "'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.linearForm_isHomogeneous_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.commonDenominator_isHomogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorComplement_isHomogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorComplement_nonzero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.commonDenominator_nonzero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.commonDenominator_factor' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorComplement_eq_common_mul_reciprocal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorScaledGenerator_isHomogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorScaledEvaluation_preservesHomogeneity' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorScaledEvaluation_toFraction_eq' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalCommonDenominator.denominatorScaledEvaluation_field_eq_of_isHomogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/GradedQuotient.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {},
+      "source_sha256": "6b4d6045d8b974a36f9bfbfba456512e0a2ba102b8eeaa014e9db949242eccf2",
+      "olean_sha256": "381be884ce22960dbc59680a9f8fc4b9958357e554388cef4060cd0245624e20",
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/CandidatePaper/Section31ReciprocalKernelHomogeneous.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.clearedComponentTerm_isHomogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.clearedComponentDegree_eq": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.clearedComponentDegree_injective": [
+          "propext",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.clearedComponentTerm_field_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.commonDenominatorInField_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.nonzeroVectors_card_pos": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.symmetricFractionEquiv_reciprocalEvaluation_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.symmetricFractionEquiv_reciprocalEvaluation_apply": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.genericEvaluation_kernel_homogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluation_kernel_homogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluation_ker_isHomogeneous": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationKernelIdeal": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientGradedAlgebra": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.ellPolynomial_class_mem_degree_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.ellPolynomial_class_ne_zero": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationToSubring": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationToSubring_comp_val": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationToSubring_surjective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationToSubring_ker_eq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientRingEquiv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgHom": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgHom_surjective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgHom_injective": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgEquiv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgEquiv_mk": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgEquiv_ellPolynomial": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringComponentSumEquiv": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringComponentSumMap_coe": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringComponentSumMap_component": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringGradedAlgebra": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientGradedRingHom": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringGradedRingHom": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.ellPolynomial_reciprocalSubring_mem_degree_one": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "3911e678d63c888d86fa00d0d9fa100c4f947b33d334938368f7c779afbf67ac",
+      "olean_sha256": "a188cef147a6c8e08d967b89e09c732118f28bd9f8abf93ad76ee1a78d65ca51",
+      "stdout": "'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.clearedComponentTerm_isHomogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.clearedComponentDegree_eq' depends on axioms: [propext,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.clearedComponentDegree_injective' depends on axioms: [propext,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.clearedComponentTerm_field_eq' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.commonDenominatorInField_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.nonzeroVectors_card_pos' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.symmetricFractionEquiv_reciprocalEvaluation_eq' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.symmetricFractionEquiv_reciprocalEvaluation_apply' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.genericEvaluation_kernel_homogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluation_kernel_homogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluation_ker_isHomogeneous' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationKernelIdeal' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientGradedAlgebra' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.ellPolynomial_class_mem_degree_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.ellPolynomial_class_ne_zero' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationToSubring' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationToSubring_comp_val' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationToSubring_surjective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationToSubring_ker_eq' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientRingEquiv' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgHom' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgHom_surjective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgHom_injective' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgEquiv' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgEquiv_mk' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientAlgEquiv_ellPolynomial' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringComponentSumEquiv' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringComponentSumMap_coe' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringComponentSumMap_component' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringGradedAlgebra' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationQuotientGradedRingHom' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.reciprocalEvaluationSubringGradedRingHom' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Carlet.CandidatePaper.Section31ReciprocalKernelHomogeneous.ellPolynomial_reciprocalSubring_mem_degree_one' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
       "stderr": ""
     },
     {
@@ -1916,7 +3057,17 @@
           "Classical.choice",
           "Quot.sound"
         ],
+        "Carlet.traceCharacter_one_of_even_finrank": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
         "Carlet.containingOne_probability_two_zero_of_odd": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.containingOne_probability_two_zero_of_even": [
           "propext",
           "Classical.choice",
           "Quot.sound"
@@ -1925,11 +3076,16 @@
           "propext",
           "Classical.choice",
           "Quot.sound"
+        ],
+        "Carlet.containingOne_probability_three_zero_of_even": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
         ]
       },
-      "source_sha256": "bb6ed3a0ccc5c916020f43b4f3d0fc5b8c165aa26ee2893b9df16fae191f5c44",
-      "olean_sha256": "620d88ad0058e92993c210d80532e88c7b49f514c7f75247c1dcd15a9a090565",
-      "stdout": "'Carlet.containingOne_probability_two_dim' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.traceCharacter_one_of_odd_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.containingOne_probability_two_zero_of_odd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.containingOne_probability_three_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "source_sha256": "ff3fddfd3bd2616850bbaea55299a8057e59ed1ed10fdd86968c4525c48af1a0",
+      "olean_sha256": "7e9bfb9e421cb0165dc362e5700968d3d06f3cde8fc1910b76cf6a6f0f6005e9",
+      "stdout": "'Carlet.containingOne_probability_two_dim' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.traceCharacter_one_of_odd_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.traceCharacter_one_of_even_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.containingOne_probability_two_zero_of_odd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.containingOne_probability_two_zero_of_even' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.containingOne_probability_three_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.containingOne_probability_three_zero_of_even' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     },
     {
@@ -2017,7 +3173,27 @@
           "Classical.choice",
           "Quot.sound"
         ],
+        "Carlet.probability_three_formula_even": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.probability_three_positive_even": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
         "Carlet.weighted_probability_two": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.weighted_probability_two_even": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.hasZeroSumSubspace_three_even": [
           "propext",
           "Classical.choice",
           "Quot.sound"
@@ -2068,9 +3244,9 @@
           "Quot.sound"
         ]
       },
-      "source_sha256": "355f603786ef2577aada4e25792d792022d9ca29f7f645be3f0f642ca219b682",
-      "olean_sha256": "670e2f5b62eb598dc859ebd1788f4820e1728f6c2b17f87b175c092248bf19ab",
-      "stdout": "'Carlet.hasZeroSumSubspace_three' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.probability_three_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.weighted_probability_two' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_discriminant' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_equation' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_pointCount' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_pairs_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.artinSchreier_fiber_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_nonzero_fiber_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_zero_fiber_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_pointCount_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.binaryKloostermanSum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "source_sha256": "13ac003cdea7bc9d354a1c4910e79671704dbc8f11c1048de94e12b890885a8e",
+      "olean_sha256": "274138ef1699eacfe8898112bb2ba0a9cde982da3e9cf7ec7b6ae22cdf65b922",
+      "stdout": "'Carlet.hasZeroSumSubspace_three' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.probability_three_positive' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.probability_three_formula_even' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.probability_three_positive_even' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.weighted_probability_two' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.weighted_probability_two_even' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.hasZeroSumSubspace_three_even' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_discriminant' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_equation' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_pointCount' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_pairs_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.artinSchreier_fiber_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_nonzero_fiber_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_zero_fiber_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.kloostermanCurve_pointCount_eq' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.binaryKloostermanSum_bound' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     },
     {
@@ -2115,6 +3291,53 @@
       "source_sha256": "46b6a2b351a882b730b0da7dda41abcef8166563dae5f4409fb02afbc4218651",
       "olean_sha256": "68afd504b4e71ceecc0fba513f5567b1e7e02e96a4092dfeb516cb4b58f9cc4f",
       "stdout": "'Carlet.hasZeroSumSubspace_five_of_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.embedded_finite_field_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.sum_inverse_finite_field_zero' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+      "stderr": ""
+    },
+    {
+      "module": "Carlet/EvenDegree.lean",
+      "exit_code": 0,
+      "hole_free_output": true,
+      "printed_axiom_audit": true,
+      "theorem_axioms": {
+        "Carlet.hasZeroSumSubspace_le_half_of_two_three": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.evenDegreeCarlet_of_two_three_bases": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.hasZeroSumSubspace_two_of_even_degree": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.evenDegreeCarlet_of_three_base": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.hasZeroSumSubspace_three_of_three_dvd": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.evenDegreeCarlet_of_six_dvd": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "Carlet.evenDegreeCarlet_unconditional": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "source_sha256": "d3cb460e41e212e067d49b137f64330a2bc7f6ce8d0c449a4d87adaef93eebc2",
+      "olean_sha256": "6fc2a6c9a61d01fadf741ab8a2d4e25a8c036c3d6df8bf8ac7b185eb67ef8389",
+      "stdout": "'Carlet.hasZeroSumSubspace_le_half_of_two_three' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.evenDegreeCarlet_of_two_three_bases' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.hasZeroSumSubspace_two_of_even_degree' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.evenDegreeCarlet_of_three_base' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.hasZeroSumSubspace_three_of_three_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.evenDegreeCarlet_of_six_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.evenDegreeCarlet_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]\ntheorem Carlet.evenDegreeCarlet_unconditional : ∀ (n : ℕ),\n  Even n →\n    ∀ (K : Type) [inst : Field K] [inst_1 : Fintype K] [inst_2 : Algebra (ZMod 2) K] [DecidableEq K],\n      Fintype.card K = 2 ^ n → ∀ (k : ℕ), 2 ≤ k → k + 2 ≤ n → HasZeroSumSubspace K k :=\nfun n hnEven K [Field K] [Fintype K] [Algebra (ZMod 2) K] [DecidableEq K] hcard k hk hkmax =>\n  have hnlow := Decidable.byContradiction fun a => evenDegreeCarlet_unconditional._proof_1_1 n K k hk hkmax a;\n  if hn6 : 6 ≤ n then\n    have hn := finrank_eq_of_card n hcard;\n    evenDegreeCarlet_of_three_base n hnEven K hcard (hasZeroSumSubspace_three_even n hn hnEven hn6) k hk hkmax\n  else\n    have hn4 :=\n      Exists.casesOn hnEven fun m hm =>\n        Decidable.byContradiction fun a => evenDegreeCarlet_unconditional._proof_1_2 n K k hnlow hn6 m hm a;\n    have hk2 := Decidable.byContradiction fun a => evenDegreeCarlet_unconditional._proof_1_3 n K k hk hkmax hn4 a;\n    Eq.ndrec (motive := fun k => 2 ≤ k → k + 2 ≤ n → HasZeroSumSubspace K k)\n      (fun hk hkmax =>\n        have hcard4 := id (Eq.mp (congrArg (Eq (Fintype.card K)) (congrArg (HPow.hPow 2) hn4)) hcard);\n        have hn' := finrank_eq_of_card 4 hcard4;\n        have heven4 := Eq.mp (congrArg Even hn4) hnEven;\n        hasZeroSumSubspace_two_of_even_degree 4 hn' heven4)\n      (Eq.symm hk2) hk hkmax\n",
       "stderr": ""
     },
     {
@@ -2313,7 +3536,7 @@
         ]
       },
       "source_sha256": "6106b61403884d68e9f57fc213d8c413fa5c52ef3f54591e369bc912d5bf98a1",
-      "olean_sha256": "742823d5833a12814f582d8d0ac1bbd78258292d3ccef5410170a244b3e5efd7",
+      "olean_sha256": "9e63939c48063eb5c210de726dd683061ae87539c77bb1e5f4b40ade975a4c1e",
       "stdout": "'Carlet.oddCarletConjecture_iff_four_and_five_remaining' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.five_poly_splits_of_small_splits' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.hasZeroSumSubspace_five_of_21_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.small_kernels_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.smallMap2_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.smallMap3_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.smallL2_separable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.smallL3_separable' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.small_poly_kernel_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     },
@@ -2362,7 +3585,7 @@
         ]
       },
       "source_sha256": "0be47d8ca537dd529591b31ac20d7015245673d1c2418b5808d371c46f2f8841",
-      "olean_sha256": "e63326ebc3171e6478f7c9ef9ed299b94bdd75ff97c3eff0dd5ac3134f367dea",
+      "olean_sha256": "a227cfa259f00f6f48253bbcf0d2619742e576a7dc4343555cf29b10e826475c",
       "stdout": "'Carlet.linearizedP31_splits_of_31_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.hasZeroSumSubspace_five_of_31_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.oddCarletConjecture_iff_four_and_five_31_remaining' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     },
@@ -2384,7 +3607,7 @@
         ]
       },
       "source_sha256": "056dd8066e0bff502f7a0627228e87ba2f236c30e5c14716c313d3dafd02f179",
-      "olean_sha256": "32c30e548b831c91969b52497dc3fb4e6104508bbbaf0d56f64f8fb014ecda32",
+      "olean_sha256": "a340970847a5914c4b8417dc75367c4eeee9d6a196ec0b3876c117d3101a349e",
       "stdout": "'Carlet.hasZeroSumSubspace_four_of_seven_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.oddCarletConjecture_iff_four_and_five_7_31_remaining' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     },
@@ -2406,7 +3629,7 @@
         ]
       },
       "source_sha256": "d54604185d26caff866aacddf7efeb7ad165e6fb2966412ad065f62274ffadf5",
-      "olean_sha256": "4558fe1690f8be08cc8e1ced1b9c0c90012be4e02add3bf0ca2c212199573eb2",
+      "olean_sha256": "02caf1517d79500680d02790a9f106b07ae4137972e7c6116d8abc5e6eda8be9",
       "stdout": "'Carlet.hasZeroSumSubspace_four_of_15_dvd' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.oddCarletConjecture_iff_four_and_five_7_15_31_remaining' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n",
       "stderr": ""
     },
@@ -8382,7 +9605,7 @@
         ]
       },
       "source_sha256": "e3a381f4c6e14fa6225af18dac41946140887410b7fffdecb858447677cadfe4",
-      "olean_sha256": "219d9a597c11e6a36dccd97e84a42fed6c8b16a5999a02edf6da331ffed1c6e4",
+      "olean_sha256": "6dcc2f1b2ac2ea3fd0d562eabbdf117185eefdcf7d0cbd2ae8e19100be003bcb",
       "stdout": "'Carlet.hasZeroSumSubspace_five_of_odd_card_lt37' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     },
@@ -8552,7 +9775,7 @@
         ]
       },
       "source_sha256": "65a256524362353972324c6f40c3fd6c78284efbaf59c949ecab1d0e0e4fd783",
-      "olean_sha256": "593dfd688a09d2c14c97d30c85858460b14773591e243fb0891c4b2f3877da22",
+      "olean_sha256": "b322d44a433863e222193d68f08d6b903c22a2e042bde1eab58be6436ed76aa7",
       "stdout": "'Carlet.k5NormOneTracePlane_finrank' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.k5NormOneTracePlane_exists_nondegenerate' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.k5NormOneTracePlane_preimage' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     },
@@ -8584,7 +9807,7 @@
         ]
       },
       "source_sha256": "0ee998f79cb0f8e0bbd3b0bf72ffb360e215d0e0cb084400b5519a1195bd1ed2",
-      "olean_sha256": "2763e409e2ea8db5e63a27786a1df58a960e0bf81623a36048daac4e0ab4dd15",
+      "olean_sha256": "5fc6d4438f4ce4604970a0030ddc977cad0f347c9959cbd34bcf7d73fe90ee16",
       "stdout": "'Carlet.k5_of_rankThree_coeffFour_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.hasZeroSumSubspace_five_of_odd_card_ge17' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.hasZeroSumSubspace_five_of_odd_card' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.oddCarletConjecture_normOne' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     },
@@ -8606,7 +9829,7 @@
         ]
       },
       "source_sha256": "0df99d703d338d61d0ad4aaa0215f0a79252f850b274cf3f7a77c359b24bf887",
-      "olean_sha256": "83fbb36e7ff3d055754aff7b0cde730830e22f75c7d876a7c336f8928413fd89",
+      "olean_sha256": "b1fa5ec04cb67bd3f324eec4746d89889f9e62a1c8a20d5be85cf9b1d86b4d21",
       "stdout": "def Carlet.OddCarletConjecture : Prop :=\n∀ (n k : ℕ),\n  Odd n →\n    3 ≤ k →\n      k + 3 ≤ n →\n        ∀ (K : Type) [inst : Field K] [inst_1 : Fintype K] [inst_2 : Algebra (ZMod 2) K],\n          Fintype.card K = 2 ^ n → HasZeroSumSubspace K k\ntheorem Carlet.oddCarletConjecture_original_statement : ∀ (n k : ℕ),\n  Odd n →\n    3 ≤ k →\n      k + 3 ≤ n →\n        ∀ (K : Type) [inst : Field K] [inst_1 : Fintype K] [inst_2 : Algebra (ZMod 2) K],\n          Fintype.card K = 2 ^ n → HasZeroSumSubspace K k :=\noddCarletConjecture_main\n'Carlet.oddCarletConjecture_main' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.oddCarletConjecture_original_statement' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
       "stderr": ""
     }

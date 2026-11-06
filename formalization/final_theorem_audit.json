@@ -1,11 +1,23 @@
 {
   "status": "passed",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "full_build_time_utc": "2026-11-06T04:51:07.804148+00:00",
+  "full_build_time_utc": "2026-11-06T23:11:04.222014+00:00",
   "main_source_sha256": "0df99d703d338d61d0ad4aaa0215f0a79252f850b274cf3f7a77c359b24bf887",
-  "main_olean_sha256": "83fbb36e7ff3d055754aff7b0cde730830e22f75c7d876a7c336f8928413fd89",
-  "audit_source_sha256": "bb40a31cf9159cc0701f6482460530c2b954447b3fd7e516e60820a470dc228f",
+  "main_olean_sha256": "b1fa5ec04cb67bd3f324eec4746d89889f9e62a1c8a20d5be85cf9b1d86b4d21",
+  "even_degree_source_sha256": "d3cb460e41e212e067d49b137f64330a2bc7f6ce8d0c449a4d87adaef93eebc2",
+  "even_degree_olean_sha256": "6fc2a6c9a61d01fadf741ab8a2d4e25a8c036c3d6df8bf8ac7b185eb67ef8389",
+  "audit_source_sha256": "7e23cdf4cee2df9785bd13ccebe7115dc6208aef93d09daf7e6245fc9283476c",
   "axioms": {
+    "Carlet.evenDegreeCarlet_unconditional": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "Carlet.independently_checked_even_degree_statement": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
     "Carlet.independently_checked_original_statement": [
       "Classical.choice",
       "Quot.sound",
@@ -22,5 +34,5 @@
       "propext"
     ]
   },
-  "output": "Carlet.oddCarletConjecture_main : OddCarletConjecture\n'Carlet.oddCarletConjecture_main' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.oddCarletConjecture_original_statement' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.independently_checked_original_statement' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
+  "output": "Carlet.oddCarletConjecture_main : OddCarletConjecture\n'Carlet.oddCarletConjecture_main' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.oddCarletConjecture_original_statement' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.independently_checked_original_statement' depends on axioms: [propext, Classical.choice, Quot.sound]\nCarlet.evenDegreeCarlet_unconditional (n : ℕ) (hnEven : Even n) (K : Type) [Field K] [Fintype K] [Algebra (ZMod 2) K]\n  [DecidableEq K] (hcard : Fintype.card K = 2 ^ n) (k : ℕ) : 2 ≤ k → k + 2 ≤ n → HasZeroSumSubspace K k\n'Carlet.evenDegreeCarlet_unconditional' depends on axioms: [propext, Classical.choice, Quot.sound]\n'Carlet.independently_checked_even_degree_statement' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
 }

@@ -92,6 +92,18 @@ def verify():
             axioms.update(names)
     if not axioms <= ALLOWED_AXIOMS:
         raise RuntimeError(f'Unexpected axioms: {axioms - ALLOWED_AXIOMS}')
+    even_entries = [m for m in modules if m['module'] == 'Carlet/EvenDegree.lean']
+    if len(even_entries) != 1:
+        raise RuntimeError('Missing or duplicated even-degree theorem module')
+    even = even_entries[0]
+    even_theorem = 'Carlet.evenDegreeCarlet_unconditional'
+    if even_theorem not in even['theorem_axioms']:
+        raise RuntimeError('Unconditional even-degree theorem axiom audit missing')
+    if f'theorem {even_theorem} :' not in even['stdout']:
+        raise RuntimeError('Unconditional even-degree theorem statement was not printed')
+    even_axioms = set(even['theorem_axioms'][even_theorem])
+    if not even_axioms <= ALLOWED_AXIOMS:
+        raise RuntimeError(f'Unexpected axioms in the even-degree theorem: {even_axioms - ALLOWED_AXIOMS}')
     main_entries = [m for m in modules if m['module'] == 'Carlet/MainTheorem.lean']
     if len(main_entries) != 1:
         raise RuntimeError('Missing or duplicated final main theorem module')
@@ -109,7 +121,8 @@ def verify():
     summary = dict(modules=len(modules), hasse_dependency_modules=len(entries), printed_declarations_checked=declarations,
                    source_and_olean_hashes_match=True, compiler_warnings=0,
                    main_conjecture_proved=True,
-                   main_theorem_axioms=sorted(final_axioms))
+                   main_theorem_axioms=sorted(final_axioms), even_degree_theorem_proved=True,
+                   even_degree_theorem_axioms=sorted(even_axioms))
     (ROOT / 'verified_build_summary.json').write_text(
         json.dumps(summary, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(dict(summary, audited_axioms=sorted(axioms)), indent=2))

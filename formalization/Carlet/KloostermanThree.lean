@@ -252,6 +252,67 @@ theorem weighted_probability_two (n : ℕ)
         _ = _ := by rw [hp v]; ring
     _ = _ := by rw [Finset.sum_sub_distrib, Finset.sum_sub_distrib, ha, hb, hc]; ring
 
+/-- Even-parity counterpart of the weighted two-dimensional probability sum.
+    The trace of 1 is +1, so the resulting Kloosterman expression is Kl - 3. -/
+theorem weighted_probability_two_even (n : ℕ)
+    (hn : Module.finrank (ZMod 2) K = n) (heven : Even n) (hn6 : 6 ≤ n) :
+    ((Fintype.card K : ℝ) - 2) *
+      (∑ v ∈ Transfer.nonzeroElements (K := K),
+        traceCharacter (K := K) (v⁻¹) * containingOneCoefficientProbability (K := K) 2 v) =
+      binaryKloostermanSum (K := K) - 3 := by
+  classical
+  have hqnat : 64 ≤ Fintype.card K := by
+    rw [field_card_eq_pow_finrank_local n hn]
+    exact le_trans (by norm_num : 64 ≤ 2^6) (Nat.pow_le_pow_right (by omega) hn6)
+  have hq : (64 : ℝ) ≤ Fintype.card K := by exact_mod_cast hqnat
+  have hden : (Fintype.card K : ℝ) - 2 ≠ 0 := by linarith
+  have hψ := traceCharacter_one_of_even_finrank (K := K) n hn heven
+  have hp (v : K) : ((Fintype.card K : ℝ) - 2) *
+      containingOneCoefficientProbability (K := K) 2 v =
+        1 + traceCharacter (K := K) v - (if v = 1 then 2 else 0) := by
+    rw [containingOne_probability_two_dim n hn (by omega)]
+    by_cases hv : v = 1
+    · subst v
+      simp [hψ]
+      norm_num
+    · rw [if_neg hv, if_neg hv]
+      have hadd : traceCharacter (K := K) (v + 1) = traceCharacter (K := K) v := by
+        rw [AddChar.map_add_eq_mul, hψ, mul_one]
+      rw [hadd]
+      field_simp
+      ring
+  have ha : (∑ v ∈ Transfer.nonzeroElements (K := K),
+      traceCharacter (K := K) (v⁻¹)) = -1 := by
+    simpa only [one_div] using
+      (Transfer.sum_nonzero_char_div_left (traceCharacter (K := K))
+        (traceCharacter_ne_zero (K := K)) 1 one_ne_zero)
+  have hb : (∑ v ∈ Transfer.nonzeroElements (K := K),
+      traceCharacter (K := K) (v⁻¹) * traceCharacter (K := K) v) =
+      binaryKloostermanSum (K := K) := by
+    unfold binaryKloostermanSum
+    apply Finset.sum_congr rfl
+    intro v hv
+    rw [← AddChar.map_add_eq_mul, add_comm]
+  have hc : (∑ v ∈ Transfer.nonzeroElements (K := K),
+      traceCharacter (K := K) (v⁻¹) * (if v = 1 then (2 : ℝ) else 0)) = 2 := by
+    rw [Finset.sum_eq_single 1]
+    · simp [hψ]
+    · intro v hv hv1; simp [hv1]
+    · simp [Transfer.nonzeroElements]
+  calc
+    _ = ∑ v ∈ Transfer.nonzeroElements (K := K),
+        (traceCharacter (K := K) (v⁻¹) +
+          traceCharacter (K := K) (v⁻¹) * traceCharacter (K := K) v -
+          traceCharacter (K := K) (v⁻¹) * (if v = 1 then (2 : ℝ) else 0)) := by
+      rw [Finset.mul_sum]
+      apply Finset.sum_congr rfl
+      intro v hv
+      calc
+        _ = traceCharacter (K := K) (v⁻¹) *
+            (((Fintype.card K : ℝ) - 2) * containingOneCoefficientProbability (K := K) 2 v) := by ring
+        _ = _ := by rw [hp v]; ring
+    _ = _ := by rw [Finset.sum_sub_distrib, Finset.sum_add_distrib, ha, hb, hc]; ring
+
 theorem probability_three_formula (n : ℕ)
     (hn : Module.finrank (ZMod 2) K = n) (hodd : Odd n) (hn7 : 7 ≤ n) :
     ((Fintype.card K : ℝ) - 2) * ((Fintype.card K : ℝ) - 4) *
@@ -260,6 +321,41 @@ theorem probability_three_formula (n : ℕ)
   have h := containingOne_probability_three_zero (K := K) n hn (by omega) hodd
   have hw := weighted_probability_two (K := K) n hn hodd hn7
   nlinarith
+
+theorem probability_three_formula_even (n : ℕ)
+    (hn : Module.finrank (ZMod 2) K = n) (heven : Even n) (hn6 : 6 ≤ n) :
+    ((Fintype.card K : ℝ) - 2) * ((Fintype.card K : ℝ) - 4) *
+      containingOneCoefficientProbability (K := K) 3 0 =
+        (Fintype.card K : ℝ) - 13 + 3 * binaryKloostermanSum (K := K) := by
+  let q : ℝ := Fintype.card K
+  have hqnat : 64 ≤ Fintype.card K := by
+    rw [field_card_eq_pow_finrank_local n hn]
+    exact le_trans (by norm_num : 64 ≤ 2^6) (Nat.pow_le_pow_right (by omega) hn6)
+  have hq : (64 : ℝ) ≤ q := by dsimp [q]; exact_mod_cast hqnat
+  have hden : q - 2 ≠ 0 := by linarith
+  have hrec := containingOne_probability_three_zero_of_even (K := K) n hn (by omega) heven
+  have hw := weighted_probability_two_even (K := K) n hn heven hn6
+  have hrec' : ((Fintype.card K : ℝ) - 4) * containingOneCoefficientProbability (K := K) 3 0 =
+      1 - 2 / (q - 2) + 3 *
+        (∑ v ∈ Transfer.nonzeroElements (K := K),
+          traceCharacter (K := K) (v⁻¹) * containingOneCoefficientProbability (K := K) 2 v) := by
+    simpa [q] using hrec
+  have hsum : (q - 2) *
+      (∑ v ∈ Transfer.nonzeroElements (K := K),
+        traceCharacter (K := K) (v⁻¹) * containingOneCoefficientProbability (K := K) 2 v) =
+      binaryKloostermanSum (K := K) - 3 := by
+    simpa [q] using hw
+  have hfrac : (q - 2) * (2 / (q - 2)) = 2 := by field_simp
+  calc
+    _ = (q - 2) * (((Fintype.card K : ℝ) - 4) *
+        containingOneCoefficientProbability (K := K) 3 0) := by ring
+    _ = (q - 2) * (1 - 2 / (q - 2) + 3 *
+        (∑ v ∈ Transfer.nonzeroElements (K := K),
+          traceCharacter (K := K) (v⁻¹) * containingOneCoefficientProbability (K := K) 2 v)) := by rw [hrec']
+    _ = q - 4 + 3 * ((q - 2) *
+        (∑ v ∈ Transfer.nonzeroElements (K := K),
+          traceCharacter (K := K) (v⁻¹) * containingOneCoefficientProbability (K := K) 2 v)) := by rw [mul_add, mul_sub, hfrac]; ring
+    _ = q - 13 + 3 * binaryKloostermanSum (K := K) := by rw [hsum]; ring
 
 theorem probability_three_positive (n : ℕ)
     (hn : Module.finrank (ZMod 2) K = n) (hodd : Odd n) (hn7 : 7 ≤ n) :
@@ -282,6 +378,30 @@ theorem probability_three_positive (n : ℕ)
       containingOneCoefficientProbability (K := K) 3 0 := by linarith
   exact (mul_pos_iff_of_pos_left hp).mp hpositive
 
+theorem probability_three_positive_even (n : ℕ)
+    (hn : Module.finrank (ZMod 2) K = n) (heven : Even n) (hn6 : 6 ≤ n) :
+    0 < containingOneCoefficientProbability (K := K) 3 0 := by
+  have hqnat : 64 ≤ Fintype.card K := by
+    rw [field_card_eq_pow_finrank_local n hn]
+    exact le_trans (by norm_num : 64 ≤ 2^6) (Nat.pow_le_pow_right (by omega) hn6)
+  have hq : (64 : ℝ) ≤ Fintype.card K := by exact_mod_cast hqnat
+  have hs := Real.sqrt_nonneg (Fintype.card K : ℝ)
+  have hsq := Real.sq_sqrt (show (0 : ℝ) ≤ Fintype.card K by positivity)
+  have hs8 : 8 ≤ Real.sqrt (Fintype.card K : ℝ) := by nlinarith
+  have hk := binaryKloostermanSum_bound (K := K)
+  have hk' : -2 * Real.sqrt (Fintype.card K : ℝ) ≤ binaryKloostermanSum (K := K) := by
+    have hklower := (abs_le.mp hk).1
+    nlinarith
+  have hrhs : 0 < (Fintype.card K : ℝ) - 13 +
+      3 * binaryKloostermanSum (K := K) := by
+    nlinarith
+  have hf := probability_three_formula_even (K := K) n hn heven hn6
+  have hp : 0 < ((Fintype.card K : ℝ) - 2) * ((Fintype.card K : ℝ) - 4) :=
+    mul_pos (by linarith) (by linarith)
+  have hpositive : 0 < (((Fintype.card K : ℝ) - 2) * ((Fintype.card K : ℝ) - 4)) *
+      containingOneCoefficientProbability (K := K) 3 0 := by linarith
+  exact (mul_pos_iff_of_pos_left hp).mp hpositive
+
 theorem hasZeroSumSubspace_three (n : ℕ)
     (hn : Module.finrank (ZMod 2) K = n) (hodd : Odd n) (hn7 : 7 ≤ n) :
     HasZeroSumSubspace K 3 := by
@@ -294,9 +414,25 @@ theorem hasZeroSumSubspace_three (n : ℕ)
   let Z := nextCoefficientZeroEquivZeroSum (K := K) 3 (by omega) E
   exact ⟨Z.val, Z.property.1, Z.property.2⟩
 
+theorem hasZeroSumSubspace_three_even (n : ℕ)
+    (hn : Module.finrank (ZMod 2) K = n) (heven : Even n) (hn6 : 6 ≤ n) :
+    HasZeroSumSubspace K 3 := by
+  have hprob := probability_three_positive_even (K := K) n hn heven hn6
+  obtain ⟨H⟩ := containingOneCoefficientFiber_nonempty_of_probability_pos
+    (K := K) n 3 hn (by omega) (by omega) hprob
+  let E : {E : Submodule (ZMod 2) K //
+      Module.finrank (ZMod 2) E = 3 ∧ nextFrobeniusCoefficient E = 0} :=
+    ⟨H.val, H.property.1, H.property.2.2⟩
+  let Z := nextCoefficientZeroEquivZeroSum (K := K) 3 (by omega) E
+  exact ⟨Z.val, Z.property.1, Z.property.2⟩
+
 #print axioms hasZeroSumSubspace_three
 #print axioms probability_three_positive
+#print axioms probability_three_formula_even
+#print axioms probability_three_positive_even
 #print axioms weighted_probability_two
+#print axioms weighted_probability_two_even
+#print axioms hasZeroSumSubspace_three_even
 #print axioms kloostermanCurve_discriminant
 #print axioms kloostermanCurve_equation
 #print axioms kloostermanCurve_pointCount

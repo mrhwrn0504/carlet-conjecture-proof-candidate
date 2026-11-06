@@ -1,14 +1,16 @@
 cff-version: 1.2.0
-message: "If you use the Lean formalization or the accompanying papers, please cite the corresponding paper and identify which component you used."
-title: "Carlet Conjecture: Odd-Degree Formalization and Proof Candidate"
-version: "0.1.0"
-date-released: "2026-11-06"
+message: "If you use the Lean formalization or accompanying papers, cite the paper and identify the result or proof component used."
+title: "Carlet Conjecture: Complete Odd- and Even-Degree Results and Lean Formalization"
+version: "0.2.0"
+date-released: "2026-11-07"
 authors:
   - family-names: Wang
     given-names: Quanzhi
     email: mrhwrn120504@gmail.com
   - name: ChatGPT
 abstract: >-
-  A public package containing a Lean 4 formalization of the odd-degree
-  zero-sum-subspace statement and a separate, explicitly labeled proof-
-  candidate manuscript supplied by Wang Quanzhi.
+  A research package containing Lean 4 proofs of the admissible odd- and
+  even-degree zero-sum-subspace results, complete-build and axiom-audit
+  records, a bilingual formalization paper, and a separate proof-candidate
+  manuscript whose specific geometric/cohomological route remains under
+  formalization and independent review.

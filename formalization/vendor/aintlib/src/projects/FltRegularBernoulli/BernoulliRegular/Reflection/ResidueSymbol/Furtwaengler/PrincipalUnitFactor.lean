@@ -1,0 +1,12 @@
+module
+
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PrincipalUnitFactor.UnitFactorChainInterface
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PrincipalUnitFactor.ConductorFlexiblePhiFacts
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PrincipalUnitFactor.ConjNormSemiPrimaryAndUnitFactorData
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PrincipalUnitFactor.UnitSignEndpointAndKellyEquality
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PrincipalUnitFactor.SignUnitFactor
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PrincipalUnitFactor.KellyEqualityFromPrimeFamilyFacts
+
+/-!
+This module has been split into smaller implementation files.
+-/

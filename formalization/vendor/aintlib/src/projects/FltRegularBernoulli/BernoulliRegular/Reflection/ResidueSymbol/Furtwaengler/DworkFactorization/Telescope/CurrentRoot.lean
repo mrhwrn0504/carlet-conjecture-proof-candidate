@@ -1,0 +1,9 @@
+module
+
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.DworkFactorization.Telescope.CurrentRoot.PeelProductIsUnitAndTriangularExpansion
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.DworkFactorization.Telescope.CurrentRoot.TransportMultiplierAndFrobeniusFold
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.DworkFactorization.Telescope.CurrentRoot.InverseParameterSuccessorEndpoint
+
+/-!
+This module has been split into smaller implementation files.
+-/

@@ -1,0 +1,10 @@
+module
+
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.ArtinHasse.ArtinHasseSeriesDworkIdentity
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.ArtinHasse.ArtinHasseCoeffRingMapAndDworkApprox
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.ArtinHasse.DworkParameterApproxCompatibility
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.ArtinHasse.DworkCoeffLeadingTermCongruence
+
+/-!
+This module has been split into smaller implementation files.
+-/

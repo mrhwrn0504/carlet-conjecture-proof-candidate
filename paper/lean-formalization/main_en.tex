@@ -13,21 +13,21 @@
 \newcommand{\Ftwo}{\mathbb F_2}
 \newcommand{\tr}{\operatorname{Tr}}
 \newcommand{\dimf}{\dim_{\Ftwo}}
-\title[Odd-degree zero-sum subspaces]{Zero-Sum Subspaces for the Multiplicative Inverse in Odd-Degree Finite Fields: A Lean Formalization}
+\title[The Carlet zero-sum subspace conjecture]{A Proof and Lean Formalization of the Carlet Zero-Sum Subspace Conjecture}
 \author{Wang Quanzhi}
 \email{mrhwrn120504@gmail.com}
 \thanks{Email: \href{mailto:mrhwrn120504@gmail.com}{mrhwrn120504@gmail.com}.}
 \author{ChatGPT}
 \thanks{ChatGPT is an artificial intelligence system developed by OpenAI and contributed as a research-writing assistant. The human author accepts responsibility for the mathematical statements, code, and final manuscript.}
-\date{November 6, 2026}
+\date{November 2026}
 
 \begin{document}
 \begin{abstract}
-Let $K$ be a finite field of cardinality $2^n$, viewed as an $n$-dimensional vector space over $\Ftwo$. We prove that if $n$ is odd and $3\le k$ with $k+3\le n$, then there is a $k$-dimensional $\Ftwo$-linear subspace $E\subseteq K$ such that
+Let $K$ be a finite field of cardinality $2^n$, viewed as an $n$-dimensional vector space over $\Ftwo$. We prove the full odd- and even-degree ranges of the Carlet zero-sum subspace conjecture: if $n$ is odd with $3\le k$ and $k+3\le n$, or $n$ is even with $2\le k$ and $k+2\le n$, then there is a $k$-dimensional $\Ftwo$-linear subspace $E\subseteq K$ such that
 \[
   \sum_{x\in E\setminus\{0\}}x^{-1}=0.
 \]
-The theorem has been formalized in Lean 4 with its full quantification over finite fields. The proof has four components: a root-product polynomial converts the reciprocal sum into the coefficient of $T^2$; an elliptic-curve Hasse bound gives the three-dimensional case; Fourier counts on a norm-one conic give the four- and five-dimensional cases; and a subspace-distribution recurrence with a two-step energy contraction handles large dimensions. Dimension addition and complementary-dimension symmetry assemble these cases into the stated theorem. The audited Lean dependencies of the main theorem are only classical choice, propositional extensionality, and quotient soundness; no \texttt{sorryAx} occurs. We prove the odd-degree statement and make no claim here about even extension degree.
+Both parity ranges have been formalized in Lean 4 with universal quantification over the corresponding finite fields. The odd-degree proof uses root-product polynomials, Hasse bounds, low-dimensional constructions, and energy iteration; the even-degree proof uses two- and three-dimensional base cases, dimension recurrence, and complementary-dimension symmetry. The complete default build, independent verification, and final axiom audit pass: there are no compiler warnings, source and OLean hashes match, and the audited dependencies are only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}, with no \texttt{sorryAx} or custom axiom. The author has a separate geometric/cohomological proof-candidate manuscript; line-by-line formalization of that route remains in progress and is not claimed complete here.
 \end{abstract}
 
 \keywords{finite fields, multiplicative inverse, zero-sum subspace, subspace polynomial, Kloosterman sum, Hasse bound, Lean formalization}
@@ -43,7 +43,7 @@ For an $\Ftwo$-linear subspace $E\subseteq K$, write
 \[
  S(E)=\sum_{x\in E\setminus\{0\}}x^{-1}.
 \]
-The main result establishes the full admissible odd-degree range and is formalized with the same quantifiers in Lean.
+We state the odd-degree range first, give the even-degree range separately, and then combine them into a parity-dependent conclusion. The Lean formalization preserves the original quantifiers in both cases.
 
 \begin{definition}
 A finite-dimensional $\Ftwo$-linear subspace $E\subseteq K$ is a \emph{zero-sum subspace} if
@@ -56,7 +56,7 @@ A finite-dimensional $\Ftwo$-linear subspace $E\subseteq K$ is a \emph{zero-sum 
 Let $n,k\in\mathbb N$, with $n$ odd, $3\le k$, and $k+3\le n$. For every finite field $K$ of characteristic $2$ and cardinality $2^n$, there exists a $k$-dimensional $\Ftwo$-linear subspace $E\subseteq K$ such that $S(E)=0$.
 \end{theorem}
 
-The assertion is uniform in $K$: the formal theorem quantifies over every field structure, finiteness structure, and $\Ftwo$-algebra structure satisfying the cardinality equality. The lower-range condition $k+3\le n$ is retained exactly. No even-degree assertion is made.
+The assertion is uniform in $K$: the formal theorem quantifies over every field structure, finiteness structure, and $\Ftwo$-algebra structure satisfying the cardinality equality. The lower-range condition $k+3\le n$ is retained exactly. The even-degree assertion is stated separately below with its own base dimension and admissibility condition.
 
 \section{Root products and a coefficient criterion}
 
@@ -290,7 +290,31 @@ For odd $k=2r+1$, the hypotheses $r\ge5$ and $n\ge4r+3$ imply
 \]
 so $2^{2r^2+2r}/q^r<q^{-2}$. For even $k=2r+2$, the same strict inequality follows from $r\ge4$ and $n\ge4r+5$. Therefore the coefficient-zero probability is positive for odd $k\ge11$ and even $k\ge10$, whenever $n\ge2k+1$. A positive probability means an actual subspace has the desired vanishing coefficient; coefficient duality then gives a zero-sum subspace.
 
-\section{Dimension addition and assembly of the parameter range}
+\section{Even degree: base cases, recurrence, and complementary dimensions}
+\sloppy
+
+The even-degree argument starts from different base cases. If $n$ is even, $K$ contains its unique subfield $\mathbb F_4$. Choose $\omega\in\mathbb F_4\setminus\mathbb F_2$, so $\omega^2+\omega+1=0$. The sum of the inverses of its three nonzero elements is $1+\omega+\omega^2=0$, giving the $k=2$ base. For even $n\ge6$, a three-dimensional base follows from the Kloosterman sum and the Hasse bound for an elliptic curve.
+
+\begin{theorem}[Even-degree statement]\label{thm:even}
+Let $n$ be even and $|K|=2^n$. If $2\le k$ and $k+2\le n$, then $K$ contains a $k$-dimensional zero-sum subspace.
+\end{theorem}
+\begin{proof}
+We first establish the three-dimensional base. Put $q=|K|$ and define $\operatorname{Kl}_K=\sum_{v\in K^\times}(-1)^{\operatorname{Tr}(v+v^{-1})}$. The point count for $y^2+xy=x^3+1$ gives $|\operatorname{Kl}_K|\le2\sqrt q$. Partitioning the three-dimensional subspaces containing $1$ by their next Frobenius coefficient yields the exact even-degree identity
+\[
+ (q-2)(q-4)p_3(0)=q-13+3\operatorname{Kl}_K.
+\]
+In even degree $\operatorname{Tr}(1)=0$, so the character-weighted count differs from the odd-degree formula. For $n\ge6$, we have $q\ge64$, and the Hasse bound gives
+\[
+q-13+3\operatorname{Kl}_K\ge q-13-6\sqrt q=(\sqrt q-3)^2-22\ge3>0.
+\]
+Since $(q-2)(q-4)>0$, it follows that $p_3(0)>0$. Thus a three-dimensional subspace with vanishing coefficient exists, and the coefficient criterion together with same-dimension duality gives a three-dimensional zero-sum subspace.
+
+Now suppose $2k\le n$. Even dimensions start from the two-dimensional base, and each next case follows by adding a two-dimensional zero-sum subspace to one of dimension $k-2$. Odd dimensions start from the three-dimensional base just proved and use the same step. The dimension-addition lemma requires $2(k-2)<n$, which follows from $2k\le n$. This proves the result for every $2\le k\le n/2$.
+
+If $2k>n$, put $k'=n-k$. The assumption $k+2\le n$ gives $k'\ge2$, and $2k'<n$. Apply the lower-half result to $k'$ and then use complementary-dimension symmetry to obtain dimension $k$. When $n=4$, the hypotheses allow only $k=2$, which is the base case.
+\end{proof}
+
+\section{Odd-degree dimension assembly}
 
 The low-dimensional cases also generate dimensions $6,7,8,9$. Suppose $E,F$ are zero-sum subspaces of dimensions $k,\ell$ and $k\ell<n$. A formalized linear-algebra lemma gives a nonzero scalar $a$ with $aF\subseteq P_E(K)$. Define
 \[
@@ -303,20 +327,34 @@ Since $\ker P_E=E$ and $\dimf P_E(K)=n-k$, we get $\dimf G=k+\ell$. The composit
 \end{equation}
 Using dimensions $3$ and $4$, the pairs $(3,3),(3,4),(4,4),(3,6)$ give dimensions $6,7,8,9$. Dimensions $k\ge10$ are covered by the energy argument. Hence for the lower half $2k+1\le n$, the only base dimensions required are $3,4,5$.
 
-For the upper half $2k+1>n$, put $k'=n-k$. Since $n$ is odd and $k+3\le n$, one checks that $k'\ge3$ and $2k'+1\le n$. Apply the lower-half result to $k'$, then use Lemma~\ref{lem:complement} to obtain the desired $k$-dimensional space. This accounts for every admissible parameter.
+For the upper half $2k+1>n$, put $k'=n-k$. Since $n$ is odd and $k+3\le n$, one checks that $k'\ge3$ and $2k'+1\le n$. Apply the lower-half result to $k'$, then use Lemma~\ref{lem:complement} to obtain the desired $k$-dimensional space. This accounts for every admissible odd-degree parameter.
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
 If $2k+1\le n$, use Proposition~\ref{prop:k3}, Theorem~\ref{thm:k4}, or Theorem~\ref{thm:k5} for $k=3,4,5$ respectively; use \eqref{eq:add} for $6\le k\le9$; and use the energy argument for $k\ge10$. If $2k+1>n$, reduce to $k'=n-k$ and apply complementary-dimension symmetry. The finite-field constructions and all transitions work for every $K$ of cardinality $2^n$, so the original universal quantifier is preserved.
 \end{proof}
 
-\section{Formal verification and reproducibility}\label{sec:formal}
+\begin{theorem}[Combined odd- and even-degree statement]\label{thm:full}
+Let $n,k\in\mathbb N$, and let $K$ be a finite field of characteristic $2$ and cardinality $2^n$. If
+\[
+ (\operatorname{Odd}(n)\land 3\le k\land k+3\le n)
+ \quad\text{or}\quad
+ (\operatorname{Even}(n)\land 2\le k\land k+2\le n),
+\]
+then $K$ contains a $k$-dimensional zero-sum subspace.
+\end{theorem}
+\begin{proof}
+The odd case is Theorem~\ref{thm:main}; the even case is Theorem~\ref{thm:even}. Both hold uniformly for every finite field of the specified cardinality.
+\end{proof}
 
-The formalization uses Lean 4 and mathlib~\cite{Lean4,Mathlib}. Its target is the proposition
+\section{Formal verification and reproducibility}\label{sec:formal}
+\sloppy
+
+The formalization uses Lean 4 and mathlib~\cite{Lean4,Mathlib}. The original odd-degree statement is defined as the proposition
 \[
 \forall n,k,\quad \operatorname{Odd}(n)\to 3\le k\to k+3\le n\to
 \forall K,\quad |K|=2^n\to \operatorname{HasZeroSumSubspace}(K,k).
 \]
-The definition is in \url{carlet-formalization/Carlet/Statement.lean}; the main theorem is in \url{Carlet/MainTheorem.lean}.\par\noindent Its declaration is \texttt{oddCarletConjecture\_main : OddCarletConjecture}.\par The principal proof entry points are:
+The definition is in \url{carlet-formalization/Carlet/Statement.lean}, and the odd-degree theorem is \texttt{oddCarletConjecture\_main : OddCarletConjecture} in \url{Carlet/MainTheorem.lean}. The unconditional even-degree theorem is \texttt{evenDegreeCarlet\_unconditional} in \url{Carlet/EvenDegree.lean}; it quantifies over every even $n$, every finite field $K$ with $|K|=2^n$, and every $k$ with $2\le k$ and $k+2\le n$. Together these Lean declarations imply Theorem~\ref{thm:full}. The main proof entry points are:
 \begin{center}
 \small\begin{tabular}{>{\raggedright\arraybackslash}p{0.43\textwidth}>{\raggedright\arraybackslash}p{0.47\textwidth}}
 \toprule
@@ -329,11 +367,13 @@ Five-dimensional norm-one construction & \texttt{K5NormOneConstructionProbe.lean
 Distribution recurrence and energy contraction & \texttt{ProbabilityEnergy.lean}, \texttt{TwoStepEnergy.lean}\\
 Dimension addition and complementary reduction & \texttt{AdditiveClosure.lean}, \texttt{LowDimensionReduction.lean}\\
 Original quantified theorem & \texttt{MainTheorem.lean}\\
+Even-degree bases and dimension recurrence & \texttt{EvenDegree.lean}, \texttt{KloostermanThree.lean}\\
+Combined odd/even parameter ranges & \texttt{MainTheorem.lean}, \texttt{EvenDegree.lean}\\
 \bottomrule
 \end{tabular}
 \end{center}
 
-The checked project receipt records Lean 4.33.0, a full default build of 306 project modules, audits of 993 printed declarations, zero compiler warnings, and matching source/OLean hashes. The main theorem depends only on \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}; it has no \texttt{sorryAx} and no hidden assumption containing the target conclusion. The Hasse bound is imported through the fixed AINTLIB snapshot~\cite{AINTLIB} \texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b}, vendored at \url{formalization/vendor/aintlib/src/projects/HasseWeil/HasseWeil/HasseBound.lean} under Apache License 2.0. The pinned mathlib source baseline is \texttt{db584cd6\allowbreak d46c92f2\allowbreak 09a44c0f\allowbreak 1c829460\allowbreak d327499d}. The checked receipt was produced in the pinned local environment. The current build driver references a local Lean executable and dependency cache, so reproducing the build requires compatible Lean 4.33.0, mathlib, and AINTLIB artifacts and adapting those paths. The included scripts describe and audit the recorded build. The commands used in that environment were:
+The 7 November 2026 acceptance record uses Lean 4.33.0. The complete default build checked 327 modules; the independent verifier audited 1,188 printed declarations and also checked 188 Hasse dependency modules. There were zero compiler warnings, and all source/OLean hashes match. Both the odd main theorem and the unconditional even theorem passed independent statement checks. Their axiom sets are exactly \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}; the audit found no \texttt{sorryAx}, custom unproved axiom, or hidden assumption containing the target conclusion. The Hasse bound is imported through the fixed AINTLIB snapshot~\cite{AINTLIB} \texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b}, vendored at \url{carlet-formalization/vendor/aintlib/src/HasseWeil/HasseBound.lean} under Apache License 2.0. The pinned mathlib source baseline is \texttt{db584cd6\allowbreak d46c92f2\allowbreak 09a44c0f\allowbreak 1c829460\allowbreak d327499d}. Reproduction commands are:
 \begin{verbatim}
 cd carlet-formalization
 python -I build.py
@@ -342,7 +382,9 @@ python -I audit_final_theorem.py
 \end{verbatim}
 The full-build summary and final axiom audit are recorded in \texttt{verified\_build\_summary.json} and \texttt{final\_theorem\_audit.json}.
 
-The proof presented here follows the route actually checked by Lean: subspace polynomials, Hasse-controlled character sums, norm-one counting, and energy iteration. Geometric and cohomological arguments in an earlier candidate manuscript are neither used nor claimed as independently verified here. The result is the complete odd-degree theorem; it does not assert the even-degree case, and finite computations are used only for the explicitly bounded small-degree branches.
+The odd-degree proof follows the route checked by Lean: subspace polynomials, Hasse-controlled character sums, norm-one counts, and energy iteration. The even-degree proof uses two- and three-dimensional bases, dimension addition, and complementary-dimension symmetry. Finite computations are used only in the explicitly bounded small-degree branches, with the relevant constructions and transfer to arbitrary fields of the same cardinality checked in Lean.
+
+The author's separate proof-candidate manuscript follows a distinct geometric and cohomological route. Formalization of that manuscript is in progress: some finite-field algebra, subspace-polynomial, and coordinate identities have Lean counterparts, while its projective-geometric identification, boundary geometry, cohomology, and point-count estimates have not all been certified. The main odd- and even-degree theorems in this paper are fully formalized; this does not claim that the candidate manuscript's particular proof has been formalized line by line. The project research notes contain the section-by-section correspondence and open obligations.
 
 \section*{AI-use statement}
 ChatGPT assisted with research organization, formalization support, and manuscript drafting. The human author is responsible for the mathematical content, verification record, and final text.

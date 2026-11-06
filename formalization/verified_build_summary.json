@@ -1,11 +1,17 @@
 {
-  "modules": 306,
+  "modules": 327,
   "hasse_dependency_modules": 188,
-  "printed_declarations_checked": 993,
+  "printed_declarations_checked": 1188,
   "source_and_olean_hashes_match": true,
   "compiler_warnings": 0,
   "main_conjecture_proved": true,
   "main_theorem_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "even_degree_theorem_proved": true,
+  "even_degree_theorem_axioms": [
     "Classical.choice",
     "Quot.sound",
     "propext"
