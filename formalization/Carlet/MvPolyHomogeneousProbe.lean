@@ -1,5 +1,0 @@
-import Mathlib.RingTheory.MvPolynomial.Homogeneous
-#print MvPolynomial.IsHomogeneous
-#check MvPolynomial.homogeneousComponent_eq_self
-#check MvPolynomial.homogeneousComponent_of_isHomogeneous
-#check MvPolynomial.homogeneousComponent_eq_zero_of_not_isHomogeneous

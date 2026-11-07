@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use the Lean formalization or accompanying papers, cite the paper and identify the result or proof component used."
-title: "Carlet Conjecture: Complete Odd- and Even-Degree Results and Lean Formalization"
+title: "Carlet Zero-Sum Subspace Conjecture: Complete Lean Proof"
 version: "0.2.0"
 date-released: "2026-11-07"
 authors:
@@ -9,8 +9,6 @@ authors:
     email: mrhwrn120504@gmail.com
   - name: ChatGPT
 abstract: >-
-  A research package containing Lean 4 proofs of the admissible odd- and
-  even-degree zero-sum-subspace results, complete-build and axiom-audit
-  records, a bilingual formalization paper, and a separate proof-candidate
-  manuscript whose specific geometric/cohomological route remains under
-  formalization and independent review.
+  A bilingual mathematical paper and Lean 4 formalization proving the full
+  admissible odd- and even-degree zero-sum-subspace ranges, with complete-build
+  receipts and axiom audits.

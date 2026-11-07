@@ -1,9 +1,0 @@
-import Carlet.Theta5RankFourSpanBridgeProbe
-#check Fintype.linearIndependent_iff
-#check linearIndependent_iff
-#check LinearIndependent.iff_not_mem_span
-#check LinearIndependent.ne_zero
-#check Submodule.span_le
-#check Submodule.span_singleton_le_iff_mem
-#check Set.mem_range
-#check Set.mem_image

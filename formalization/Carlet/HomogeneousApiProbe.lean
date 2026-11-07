@@ -1,7 +1,0 @@
-import Mathlib.RingTheory.MvPolynomial.Homogeneous
-#check Finset.sum_eq_single
-#check Finset.sum_eq_single_of_mem
-#check MvPolynomial.homogeneousComponent_eq_self
-#check MvPolynomial.IsHomogeneous.aeval
-#check MvPolynomial.homogeneousComponent_isHomogeneous
-#check MvPolynomial.isHomogeneous_homogeneousComponent

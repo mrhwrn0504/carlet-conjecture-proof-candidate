@@ -1,18 +1,28 @@
-# Carlet Conjecture: Complete Parity Results, Lean Formalization, and Proof Candidate
+# Carlet 零和子空间猜想：完整 Lean 证明
 
-This repository includes (1) a paper proving the full admissible odd- and even-degree ranges, (2) the Lean 4 development and its complete-build/audit evidence, and (3) Wang Quanzhi's August 2026 proof-candidate manuscript. The Lean proof route in the paper is separate from the candidate manuscript's geometric/cohomological route.
+本仓库只收录本文采用的奇偶次数证明路线：中英文数学论文、完整 Lean 4 证明源码、完整默认构建记录、独立验证脚本和主定理公理审计。
 
-## Results and exact scope
+## 定理范围
 
-For odd `n`, if `3 <= k` and `k + 3 <= n`, then every finite field `K` of characteristic 2 and cardinality `2^n` has a `k`-dimensional F2-linear subspace whose nonzero inverses sum to zero. This is the original proposition `OddCarletConjecture` in `formalization/Carlet/Statement.lean`, proved by `oddCarletConjecture_main`.
+设 $K$ 是含 $2^n$ 个元素的特征 2 有限域。
 
-For even `n`, if `2 <= k` and `k + 2 <= n`, the same conclusion holds for every such finite field. The Lean theorem is `evenDegreeCarlet_unconditional` in `formalization/Carlet/EvenDegree.lean`. The two declarations imply the paper's combined parity-dependent theorem.
+- 奇数 $n$：对 $3\le k$ 且 $k+3\le n$，存在 $k$ 维 $\mathbb F_2$ 线性子空间 $E\subseteq K$，使 $\sum_{x\in E\setminus\{0\}}x^{-1}=0$。原始命题定义为 `OddCarletConjecture`，定理为 `Carlet.oddCarletConjecture_main`。
+- 偶数 $n$：对 $2\le k$ 且 $k+2\le n$，同样存在这样的子空间；Lean 定理为 `Carlet.evenDegreeCarlet_unconditional`。
 
-## Lean verification
+上述陈述对每个满足基数条件的有限域统一成立。论文说明了低维构造、Hasse 界、能量迭代、偶数维数递推及它们与 Lean 定理的对应。
 
-The latest full default build and independent verification report (2026-11-07) records 327 modules, 1,188 audited declarations, zero compiler warnings, matching source/OLean hashes, and axiom sets for both main results limited to `propext`, `Classical.choice`, and `Quot.sound`. No `sorryAx` or custom unproved axiom occurs in either result's audited dependency chain. See `formalization/verified_build_summary.json`, `formalization/final_theorem_audit.json`, and `formalization/build_receipt.json`.
+## 内容
 
-The proof-paper PDFs and TeX sources are in [`paper/lean-formalization/`](paper/lean-formalization/). Reproduction commands are:
+- `paper/lean-formalization/`：论文中英文 PDF 和可编辑 TeX 源码。
+- `formalization/Carlet/`：主定理及证明依赖闭包中的 Lean 源码。
+- `formalization/build.py`：完整默认构建入口。
+- `formalization/verify_build.py`：检查默认构建清单、源码/OLean 哈希、打印声明和主定理公理。
+- `formalization/audit_final_theorem.py`：独立重新核验奇数原命题与偶数定理。
+- `formalization/build_receipt.json`、`verified_build_summary.json`、`final_theorem_audit.json`：本仓库快照对应的构建与审计记录。
+
+## 验证
+
+在配置了 Lean 4.33.0、回执记录中的 mathlib 源码基线及 AINTLIB Hasse 依赖的环境中运行：
 
 ```powershell
 cd formalization
@@ -21,12 +31,10 @@ python -I verify_build.py
 python -I audit_final_theorem.py
 ```
 
-The recorded environment uses Lean 4.33.0, a pinned Mathlib source baseline, local compatible caches, and the included AINTLIB Hasse-Weil source. A clean-room build from a fresh machine has not been demonstrated; the checked receipt reports the actual full build and source/OLean audit, not a fresh external reproduction.
+脚本可通过 `CARLET_LEAN_BIN` 指定 Lean 可执行文件，并通过 `CARLET_MATHLIB_LIBRARIES` 指定包含 mathlib 等已编译依赖的目录；未设置时会尝试本机 `lean` 命令和记录中的兼容缓存路径。
 
-## The supplied proof-candidate manuscript
+完整默认构建与独立审计通过时，奇数主定理及偶数定理的公理集合仅为 `propext`、`Classical.choice` 和 `Quot.sound`；不含 `sorryAx` 或自建未证明公理。回执会记录构建模块、警告数与源码/OLean 哈希。该记录验证的是回执所列的本机 Lean/mathlib/AINTLIB 环境；不将其表述为已在全新机器完成的干净室复现。
 
-`paper/original-proof-candidate/` contains the Chinese and English PDF editions, TeX sources and the supplied finite-certificate verifier. Both manuscripts now include a separate complete even-degree proof supplement. The odd-degree reciprocal-geometric argument remains a proof candidate undergoing independent review; the current Lean proof establishes the odd and even theorem statements through the separate route described in `paper/lean-formalization/`, and does not certify that candidate route. The finite certificates verify only their stated finite cases.
+## 许可与引用
 
-## Licensing
-
-Original Lean code and repository-authored code are offered under the MIT License in [`LICENSE`](LICENSE). Papers and manuscript materials in `paper/` are offered under CC BY 4.0 as described in [`paper/LICENSE.md`](paper/LICENSE.md). Vendored AINTLIB material retains its Apache-2.0 notice. Third-party sources retain their own notices.
+仓库原创 Lean 源码适用根目录 MIT 许可。论文适用 `paper/LICENSE.md` 中的 CC BY 4.0。AINTLIB 文件保留其 Apache-2.0 许可与上游声明。引用信息见 `CITATION.cff`。

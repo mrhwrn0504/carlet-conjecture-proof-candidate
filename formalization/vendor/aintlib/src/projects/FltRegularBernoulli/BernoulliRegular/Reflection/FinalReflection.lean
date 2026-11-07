@@ -1,3 +1,0 @@
-module
-
-public import BernoulliRegular.Reflection.FinalReflection.WeakReflection

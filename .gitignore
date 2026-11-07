@@ -8,6 +8,3 @@
 *.fls
 *.fdb_latexmk
 *.synctex.gz
-paper/original-proof-candidate/rendered-review/
-paper/original-proof-candidate/source-text.txt
-formalization/Carlet/Carlet/

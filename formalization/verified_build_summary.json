@@ -1,7 +1,7 @@
 {
-  "modules": 327,
+  "modules": 270,
   "hasse_dependency_modules": 188,
-  "printed_declarations_checked": 1188,
+  "printed_declarations_checked": 923,
   "source_and_olean_hashes_match": true,
   "compiler_warnings": 0,
   "main_conjecture_proved": true,

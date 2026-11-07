@@ -1,9 +1,0 @@
-module
-
-public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.StickelbergerIdealEquality.FlexibleDescentReexport
-public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.StickelbergerIdealEquality.OrbitCoverageDischargeReexport
-public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.StickelbergerIdealEquality.PerConjugateGeneratorDescent
-
-/-!
-This module has been split into smaller implementation files.
--/

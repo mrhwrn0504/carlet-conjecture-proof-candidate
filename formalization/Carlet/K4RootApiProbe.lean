@@ -1,9 +1,0 @@
-import Mathlib
-#check Polynomial.card_roots
-#check Polynomial.card_roots_of_splits
-#check Polynomial.roots_card
-#check Polynomial.roots_nodup
-#check Polynomial.separable_iff_isCoprime_derivative
-#check Polynomial.separable_iff_no_multiple_roots
-#check Polynomial.IsSplittingField.splits
-#check IsAlgClosed.splits
