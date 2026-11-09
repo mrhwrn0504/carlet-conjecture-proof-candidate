@@ -110,3 +110,5 @@ A further source audit found that the repository already proves the general odd-
 
 Therefore the joint rational-character-sum argument in this note is **not needed to establish the main Carlet conjecture's k=4 case**. Its value is narrower: it could independently prove the exact three rational trace conditions used by the V7 single-parameter K4 chain. Keep this V7 subproblem separate from the already-proved general K4 existence theorem.
 
+The existing K4 proof is also quantitatively stronger for the general existence problem: its Hasse/trace-plane route starts at `n >= 11`, whereas the generic rational-function Weil estimate above gives `n >= 13`. The reason to retain this new route is not a better K4 threshold; it is that it targets the exact V7 one-parameter trace witness rather than merely producing some four-dimensional zero-sum subspace.
+
