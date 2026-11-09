@@ -252,11 +252,93 @@ theorem k4V7_eliminatedSystem_of_rational_traces
     k4V7_eliminatedSystem_of_chain t q z s v
       hq hq0' hq1' hD' hz_eq hs_eq hv_eq⟩
 
+
+/-- Conversely, every v7 eliminated solution forces all three rational
+    trace conditions.  Thus the trace tests are not merely sufficient:
+    they exactly encode the existence of this concrete K4 chain. -/
+theorem k4V7_rational_traces_of_eliminatedSystem
+    (t q z s v : K)
+    (hsys : EliminatedSystem 4 (by omega) (k4V7Entry t q z s v)
+      (truncate 4 (k4V7T q)) (k4V7Coefficients q)) :
+    Algebra.trace (ZMod 2) K (1 / (q ^ 3 + q + 1)) = 0 ∧
+      Algebra.trace (ZMod 2) K (q ^ 2 / (q ^ 3 + q + 1)) = 0 ∧
+      Algebra.trace (ZMod 2) K (t ^ 6 / (q ^ 3 + q + 1)) = 0 := by
+  obtain ⟨hq, hz, hs, hv⟩ :=
+    k4_parameters_of_v7_triangular t q z s v hsys.1
+  have htrace0 : Algebra.trace (ZMod 2) K
+      ((q ^ 3 + q + 1)⁻¹) = 0 := by
+    rw [← hz, map_add, Carlet.trace_square, CharTwo.add_self_eq_zero]
+  have htrace_qz : Algebra.trace (ZMod 2) K (q * (q + 1) * z) = 0 := by
+    rw [← hs, map_add, Carlet.trace_square, CharTwo.add_self_eq_zero]
+  have hfactor : q * (q + 1) * z = (q ^ 2 + q) * z := by ring
+  have htrace1 : Algebra.trace (ZMod 2) K
+      (q ^ 2 * (q ^ 3 + q + 1)⁻¹) = 0 := by
+    calc
+      _ = Algebra.trace (ZMod 2) K (q ^ 2 * (z ^ 2 + z)) := by rw [hz]
+      _ = Algebra.trace (ZMod 2) K ((q ^ 2 + q) * z) :=
+        (Carlet.k4_trace_as_pair q z).symm
+      _ = Algebra.trace (ZMod 2) K (q * (q + 1) * z) := by rw [hfactor]
+      _ = 0 := htrace_qz
+  have htrace_qs : Algebra.trace (ZMod 2) K (q * s) = 0 := by
+    rw [← hv, map_add, Carlet.trace_square, CharTwo.add_self_eq_zero]
+  have hpoly : t ^ 2 * q * (q + 1) = (t ^ 3) ^ 2 + t ^ 3 := by
+    calc
+      t ^ 2 * q * (q + 1) =
+          t ^ 2 * (t ^ 2 + t) * ((t ^ 2 + t) + 1) := by rw [hq]
+      _ = (t ^ 3) ^ 2 + t ^ 3 := k4_second_trace_polynomial t
+  have hsquare : (t ^ 3) ^ 2 = t ^ 6 := by ring
+  have htrace2 : Algebra.trace (ZMod 2) K
+      (t ^ 6 * (q ^ 3 + q + 1)⁻¹) = 0 := by
+    calc
+      _ = Algebra.trace (ZMod 2) K ((t ^ 3) ^ 2 * (z ^ 2 + z)) := by
+        rw [← hsquare, hz]
+      _ = Algebra.trace (ZMod 2) K (((t ^ 3) ^ 2 + t ^ 3) * z) :=
+        (Carlet.k4_trace_as_pair (t ^ 3) z).symm
+      _ = Algebra.trace (ZMod 2) K (t ^ 2 * q * (q + 1) * z) := by
+        rw [← hpoly]
+      _ = Algebra.trace (ZMod 2) K (q * s) :=
+        (Carlet.k4_trace_eliminate_middle t q z s hq hs).symm
+      _ = 0 := htrace_qs
+  exact ⟨by simpa [div_eq_mul_inv] using htrace0,
+    by simpa [div_eq_mul_inv] using htrace1,
+    by simpa [div_eq_mul_inv] using htrace2⟩
+
+/-- Exact equivalence between the v7 eliminated K4 system and the three
+    one-parameter rational trace conditions, under the required
+    nonvanishing conditions. -/
+theorem k4V7_rational_trace_criterion_iff
+    (t : K)
+    (hq0 : t ^ 2 + t ≠ 0)
+    (hq1 : t ^ 2 + t + 1 ≠ 0)
+    (hD : (t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1 ≠ 0) :
+    (∃ z s v : K,
+      EliminatedSystem 4 (by omega)
+        (k4V7Entry t (t ^ 2 + t) z s v)
+        (truncate 4 (k4V7T (t ^ 2 + t)))
+        (k4V7Coefficients (t ^ 2 + t))) ↔
+      Algebra.trace (ZMod 2) K
+        (1 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0 ∧
+      Algebra.trace (ZMod 2) K
+        ((t ^ 2 + t) ^ 2 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0 ∧
+      Algebra.trace (ZMod 2) K
+        (t ^ 6 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0 := by
+  constructor
+  · rintro ⟨z, s, v, hsys⟩
+    exact k4V7_rational_traces_of_eliminatedSystem
+      t (t ^ 2 + t) z s v hsys
+  · rintro ⟨htrace0, htrace1, htrace2⟩
+    obtain ⟨z, s, v, hsys⟩ :=
+      k4V7_eliminatedSystem_of_rational_traces
+        t hq0 hq1 hD htrace0 htrace1 htrace2
+    exact ⟨z, s, v, hsys⟩
+
 #print axioms k4V7_triangularRelations
 #print axioms k4_parameters_of_v7_triangular
 #print axioms hasZeroSumSubspace_four_of_k4V7_triangular
 #print axioms k4V7_originalSystem_of_chain
 #print axioms k4V7_eliminatedSystem_of_chain
 #print axioms k4V7_eliminatedSystem_of_rational_traces
+#print axioms k4V7_rational_traces_of_eliminatedSystem
+#print axioms k4V7_rational_trace_criterion_iff
 
 end Carlet.QuadraticV7
