@@ -12,6 +12,17 @@ on:
       - 'formalization/lakefile.lean'
       - 'formalization/lean-toolchain'
       - '.github/workflows/full-carlet-theorem.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'formalization/Carlet/FullTheorem.lean'
+      - 'formalization/Carlet/MainTheorem.lean'
+      - 'formalization/Carlet/EvenDegree.lean'
+      - 'formalization/Carlet/**'
+      - 'formalization/lakefile.lean'
+      - 'formalization/lean-toolchain'
+      - '.github/workflows/full-carlet-theorem.yml'
   workflow_dispatch:
 
 permissions:
