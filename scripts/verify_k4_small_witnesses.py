@@ -8,8 +8,6 @@ It is a reproducible finite certificate, not a replacement for the
 general Weil-bound argument or the Lean formalization.
 """
 
-from math import isqrt
-
 
 def degree(a: int) -> int:
     return a.bit_length() - 1
