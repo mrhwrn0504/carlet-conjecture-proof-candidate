@@ -59,7 +59,9 @@ theorem k4V7_triangularRelations (t q z s v : K)
       rcases hj with rfl | rfl
       · simp only [k4V7Entry, k4V7Coefficients]
         rw [hq]
-        simpa [pow_two] using (add_pow_char (t ^ 2) t 2).symm
+        have htwo : (2 : K) = 0 := CharP.cast_eq_zero K 2
+        ring_nf
+        simp [htwo]
       · simp [k4V7Entry, k4V7Coefficients]
         ring
     · have hj : j = 1 ∨ j = 2 ∨ j = 3 := by omega
@@ -103,8 +105,10 @@ theorem hasZeroSumSubspace_four_of_k4V7_triangular
     Carlet.HasZeroSumSubspace K 4 := by
   obtain ⟨hq, hz, hs, hv⟩ :=
     k4_parameters_of_v7_triangular t q z s v htri
+  have hz' : z ^ 2 + z = 1 / (q ^ 3 + q + 1) := by
+    simpa [div_eq_mul_inv] using hz
   exact Carlet.hasZeroSumSubspace_four_of_k4_as_parameters
-    t q z s v hq hq0 hq1 hD hz hs hv
+    t q z s v hq hq0 hq1 hD hz' hs hv
 
 /-- The concrete K4 chain supplies a full solution of the v7 original
     system, including the reciprocal recurrence and the terminal sum. -/
@@ -124,18 +128,32 @@ theorem k4V7_originalSystem_of_chain
   refine ⟨htri, ?_, ?_, ?_⟩
   · intro j
     fin_cases j
-    · simp [k4V7Coefficients, k4V7T, hq0]
-    · simp [k4V7Coefficients, k4V7T]
+    · change q * q⁻¹ = 1
+      exact mul_inv_cancel₀ hq0
+    · change q * (q + 1) * (q ^ 2 * (q + 1))⁻¹ = q⁻¹
       field_simp [hq0, hq1, hden]
       <;> ring
-    · simp [k4V7Coefficients, k4V7T]
-      field_simp [hq0, hq1, hD, hden]
-      <;> ring
+    · change (q ^ 3 + q + 1)⁻¹ *
+        ((q ^ 3 + q + 1) * (q ^ 2 * (q + 1))⁻¹) =
+          (q ^ 2 * (q + 1))⁻¹
+      calc
+        _ = ((q ^ 3 + q + 1)⁻¹ * (q ^ 3 + q + 1)) *
+            (q ^ 2 * (q + 1))⁻¹ := by ring
+        _ = 1 * (q ^ 2 * (q + 1))⁻¹ := by
+          rw [inv_mul_cancel₀ hD]
+        _ = (q ^ 2 * (q + 1))⁻¹ := by simp
   · simp [k4V7T]
-  · have hsum : 1 + totalSum 4 (k4V7T q) = 0 := by
-      simp [totalSum, evalFin, k4V7T]
-      field_simp [hq0, hq1, hden]
-      <;> ring
+  · have htotal :
+      totalSum 4 (k4V7T q) =
+        q⁻¹ + (q ^ 2 * (q + 1))⁻¹ +
+          (q ^ 3 + q + 1) * (q ^ 2 * (q + 1))⁻¹ := by
+      simp [totalSum, evalFin, k4V7T, Finset.sum_range_succ]
+    have hsum : 1 + totalSum 4 (k4V7T q) = 0 := by
+      rw [htotal]
+      have htwo : (2 : K) = 0 := CharP.cast_eq_zero K 2
+      field_simp [hq0, hden]
+      ring_nf
+      simp [htwo]
     exact hsum
 
 /-- Applying the general v7 elimination theorem to the concrete K4 chain
@@ -152,7 +170,7 @@ theorem k4V7_eliminatedSystem_of_chain
       (truncate 4 (k4V7T q)) (k4V7Coefficients q) := by
   have hsys := k4V7_originalSystem_of_chain
     t q z s v hq hq0 hq1 hD hz hs hv
-  have htwo : (2 : K) = 0 := by norm_num
+  have htwo : (2 : K) = 0 := CharP.cast_eq_zero K 2
   exact original_implies_eliminated 4 (by omega)
     (k4V7Entry t q z s v) (k4V7T q) (k4V7Coefficients q) htwo hsys
 
