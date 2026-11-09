@@ -309,6 +309,7 @@ modules = sys.argv[1:] or [
     'Carlet/K5NormOneTracePlaneProbe.lean',
     'Carlet/K5NormOneConstructionProbe.lean',
     'Carlet/MainTheorem.lean',
+    'Carlet/FullTheorem.lean',
 ]
 logs=[]
 for module in modules:
