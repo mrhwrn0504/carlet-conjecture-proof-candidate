@@ -1,0 +1,36 @@
+name: Full Carlet theorem build and axiom audit
+
+on:
+  push:
+    branches:
+      - carlet-full-conjecture-integration
+    paths:
+      - 'formalization/Carlet/FullTheorem.lean'
+      - 'formalization/Carlet/MainTheorem.lean'
+      - 'formalization/Carlet/EvenDegree.lean'
+      - 'formalization/Carlet/**'
+      - 'formalization/lakefile.lean'
+      - 'formalization/lean-toolchain'
+      - '.github/workflows/full-carlet-theorem.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-theorem:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formalization
+          build: true
+          build-args: Carlet.FullTheorem
+          use-mathlib-cache: true
+          axiom-audit: true
+          axiom-audit-root: Carlet.FullTheorem
+          axiom-audit-allow: propext,Classical.choice,Quot.sound
+          auto-config: true
+          test: false
+          lint: false
