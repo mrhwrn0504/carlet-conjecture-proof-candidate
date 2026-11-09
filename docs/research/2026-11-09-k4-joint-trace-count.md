@@ -54,11 +54,13 @@ A rational function of the form `h(t)^2-h(t)=h(t)^2+h(t)` cannot have a simple p
 
 ### Imported Weil estimate
 
-Yuan–Ding, *Secret Sharing Schemes From Three Classes of Linear Codes*, IEEE Transactions on Information Theory 52(1) (2006), Lemma 9, gives the following estimate. If `r=f/g` is not of the form `h^p-h` over the algebraic closure, t_g is the number of distinct roots of g over the algebraic closure, and `deg f <= deg g`, then
-`|sum_{x in F_Q, g(x)!=0} psi(r(x))| <= (max(deg f,deg g)+t_g-2) sqrt(Q) + 1`.
-Source: https://www.cse.ust.hk/faculty/cding/JOURNALS/it061.pdf (Lemma 9, pp. 208–209; PDF lines 139–156 in the extracted text).
+The exact rational-function estimate used here is **Theorem 2** of Carlos J. Moreno and Oscar Moreno, *Exponential Sums and Goppa Codes: I*, Proceedings of the American Mathematical Society 111(2) (1991), 523–531, DOI: 10.1090/S0002-9939-1991-1028291-1. In their notation, if `r=f/g` is not of the form `h^p-h` over the algebraic closure, and `t_g` is the number of distinct roots of `g` over the algebraic closure, then
+`|sum_{x in F_Q, g(x)!=0} psi(r(x))| <= (max(deg f,deg g)+t_g^*-2) sqrt(Q) + delta`,
+where `t_g^*=t_g` and `delta=1` when `deg f <= deg g`; otherwise `t_g^*=t_g+1` and `delta=0`.
 
-Here `deg N <= deg D = 6` and `t_D=6`, so each of the seven nontrivial sums over `D(t)!=0` is bounded by
+The same statement is reproduced as Lemma 9 by Yuan and Ding, *Secret Sharing Schemes From Three Classes of Linear Codes*, IEEE Transactions on Information Theory 52(1) (2006), pp. 206–212, citing Moreno–Moreno as their reference [13]. See Theorem 2 in the original paper and Lemma 9, pp. 208–209, in the secondary source: https://www.cse.ust.hk/faculty/cding/JOURNALS/it061.pdf (PDF lines 137–156 in the extracted text).
+
+Here `deg N <= deg D = 6` and `t_D=6`, so `t_g^*=6`, `delta=1`, and each of the seven nontrivial sums over `D(t)!=0` is bounded by
 `10 sqrt(Q) + 1`.
 Passing from `D(t)!=0` to T removes at most four further field elements (the roots of q and q+1). Thus each nontrivial sum over T is bounded by
 `10 sqrt(Q) + 5`.
@@ -111,4 +113,3 @@ A further source audit found that the repository already proves the general odd-
 Therefore the joint rational-character-sum argument in this note is **not needed to establish the main Carlet conjecture's k=4 case**. Its value is narrower: it could independently prove the exact three rational trace conditions used by the V7 single-parameter K4 chain. Keep this V7 subproblem separate from the already-proved general K4 existence theorem.
 
 The existing K4 proof is also quantitatively stronger for the general existence problem: its Hasse/trace-plane route starts at `n >= 11`, whereas the generic rational-function Weil estimate above gives `n >= 13`. The reason to retain this new route is not a better K4 threshold; it is that it targets the exact V7 one-parameter trace witness rather than merely producing some four-dimensional zero-sum subspace.
-
