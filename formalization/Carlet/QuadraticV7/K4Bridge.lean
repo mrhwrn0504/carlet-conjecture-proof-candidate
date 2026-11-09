@@ -57,7 +57,7 @@ theorem k4V7_triangularRelations (t q z s v : K)
       simp [k4V7Entry, k4V7Coefficients, hq]
     · have hj : j = 1 ∨ j = 2 := by omega
       rcases hj with rfl | rfl
-      · simp only [k4V7Entry, k4V7Coefficients]
+      · simp [k4V7Entry, k4V7Coefficients]
         rw [hq]
         have htwo : (2 : K) = 0 := CharP.cast_eq_zero K 2
         linear_combination t ^ 3 * htwo
@@ -71,7 +71,6 @@ theorem k4V7_triangularRelations (t q z s v : K)
 
 /-- The v7 triangular relations for this concrete array recover precisely
     the K4 parameter equations. -/
-omit [Fintype K] [Algebra (ZMod 2) K] [DecidableEq K] in
 theorem k4_parameters_of_v7_triangular (t q z s v : K)
     (htri : TriangularRelations (k4V7Entry t q z s v)
       (k4V7Coefficients q) 4) :
