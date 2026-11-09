@@ -175,6 +175,47 @@ def EliminatedSystem (r : ℕ) (hr : 2 ≤ r) (u : ℕ → ℕ → A)
   c (r - 1) * (1 + prefixSum r t) =
     t ⟨r - 2, by omega⟩
 
+/-!
+The retained ratio equations telescope multiplicatively.  The t-coordinate
+at position j is a multiplicative inverse of the product c₁⋯cⱼ, expressed
+without division so the lemma remains valid over a commutative ring.
+-/
+
+/-- Product c₁⋯cⱼ, with the empty product equal to one. -/
+def prefixProduct (j : ℕ) (c : ℕ → A) : A :=
+  ∏ i ∈ Finset.range j, c (i + 1)
+
+/-- Every retained t-coordinate cancels the product of its preceding c-coefficients. -/
+theorem coordinate_mul_prefixProduct_eq_one (r : ℕ) (hr : 2 ≤ r)
+    (t : Fin (r - 1) → A) (c : ℕ → A)
+    (hratio : ∀ j : Fin (r - 2),
+      c (j.val + 1) * t ⟨j.val + 1, by omega⟩ =
+        t ⟨j.val, by omega⟩)
+    (ht₁ : t ⟨0, by omega⟩ = 1) :
+    ∀ j : Fin (r - 1), t j * prefixProduct j.val c = 1 := by
+  have h : ∀ n, n < r - 1 →
+      t ⟨n, by omega⟩ * prefixProduct n c = 1 := by
+    intro n
+    induction n with
+    | zero =>
+        intro hn
+        simp [prefixProduct, ht₁]
+    | succ n ih =>
+        intro hn
+        have hn' : n < r - 2 := by omega
+        have hratio_n := hratio ⟨n, hn'⟩
+        rw [prefixProduct, Finset.prod_range_succ]
+        calc
+          t ⟨n + 1, by omega⟩ *
+              ((∏ i ∈ Finset.range n, c (i + 1)) * c (n + 1)) =
+              (c (n + 1) * t ⟨n + 1, by omega⟩) *
+                (∏ i ∈ Finset.range n, c (i + 1)) := by ring
+          _ = t ⟨n, by omega⟩ *
+                (∏ i ∈ Finset.range n, c (i + 1)) := by rw [hratio_n]
+          _ = 1 := ih (by omega)
+  intro j
+  exact h j.val j.isLt
+
 theorem original_implies_eliminated (r : ℕ) (hr : 2 ≤ r)
     (u : ℕ → ℕ → A) (t : Fin r → A) (c : ℕ → A)
     (h₂ : (2 : A) = 0)
