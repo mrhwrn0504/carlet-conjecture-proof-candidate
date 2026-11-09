@@ -193,8 +193,8 @@ theorem coordinate_mul_prefixProduct_eq_one (r : ℕ) (hr : 2 ≤ r)
         t ⟨j.val, by omega⟩)
     (ht₁ : t ⟨0, by omega⟩ = 1) :
     ∀ j : Fin (r - 1), t j * prefixProduct j.val c = 1 := by
-  have h : ∀ n, n < r - 1 →
-      t ⟨n, by omega⟩ * prefixProduct n c = 1 := by
+  have h : ∀ n (hn : n < r - 1),
+      t ⟨n, hn⟩ * prefixProduct n c = 1 := by
     intro n
     induction n with
     | zero =>
@@ -206,7 +206,7 @@ theorem coordinate_mul_prefixProduct_eq_one (r : ℕ) (hr : 2 ≤ r)
         have hratio_n := hratio ⟨n, hn'⟩
         rw [prefixProduct, Finset.prod_range_succ]
         calc
-          t ⟨n + 1, by omega⟩ *
+          t ⟨n + 1, hn⟩ *
               ((∏ i ∈ Finset.range n, c (i + 1)) * c (n + 1)) =
               (c (n + 1) * t ⟨n + 1, by omega⟩) *
                 (∏ i ∈ Finset.range n, c (i + 1)) := by ring
