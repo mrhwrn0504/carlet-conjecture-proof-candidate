@@ -12,6 +12,7 @@ on:
       - 'formalization/lakefile.lean'
       - 'formalization/lean-toolchain'
       - '.github/workflows/full-carlet-theorem.yml'
+      - 'scripts/verify_k4_small_witnesses.py'
   pull_request:
     branches:
       - main
@@ -23,6 +24,7 @@ on:
       - 'formalization/lakefile.lean'
       - 'formalization/lean-toolchain'
       - '.github/workflows/full-carlet-theorem.yml'
+      - 'scripts/verify_k4_small_witnesses.py'
   workflow_dispatch:
 
 permissions:
@@ -31,8 +33,20 @@ permissions:
 jobs:
   full-theorem:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formalization
     steps:
       - uses: actions/checkout@v4
+      - name: Bootstrap Lean and resolve the pinned Lake dependencies
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh |
+            sh -s -- -y --default-toolchain leanprover/lean4:v4.33.0
+          export PATH="$HOME/.elan/bin:$PATH"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          lake update
+      - name: Verify finite K4 trace-witness certificates
+        run: python3 ../scripts/verify_k4_small_witnesses.py
       - uses: leanprover/lean-action@v1
         with:
           lake-package-directory: formalization
