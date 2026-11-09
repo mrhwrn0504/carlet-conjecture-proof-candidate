@@ -175,10 +175,88 @@ theorem k4V7_eliminatedSystem_of_chain
   exact original_implies_eliminated 4 (by omega)
     (k4V7Entry t q z s v) (k4V7T q) (k4V7Coefficients q) htwo hsys
 
+
+/-- The three rational trace tests used by the K4 construction produce a
+    concrete solution of the v7 eliminated system.  This identifies the
+    remaining existence problem with finding one parameter t satisfying
+    those three trace conditions. -/
+theorem k4V7_eliminatedSystem_of_rational_traces
+    (t : K)
+    (hq0 : t ^ 2 + t ≠ 0)
+    (hq1 : t ^ 2 + t + 1 ≠ 0)
+    (hD : (t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1 ≠ 0)
+    (htrace0 : Algebra.trace (ZMod 2) K
+      (1 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0)
+    (htrace1 : Algebra.trace (ZMod 2) K
+      ((t ^ 2 + t) ^ 2 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0)
+    (htrace2 : Algebra.trace (ZMod 2) K
+      (t ^ 6 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0) :
+    ∃ z s v : K,
+      EliminatedSystem 4 (by omega) (k4V7Entry t (t ^ 2 + t) z s v)
+        (truncate 4 (k4V7T (t ^ 2 + t)))
+        (k4V7Coefficients (t ^ 2 + t)) := by
+  let q : K := t ^ 2 + t
+  have hq : q = t ^ 2 + t := rfl
+  have hq0' : q ≠ 0 := by simpa [q] using hq0
+  have hq1' : q + 1 ≠ 0 := by simpa [q] using hq1
+  have hD' : q ^ 3 + q + 1 ≠ 0 := by simpa [q] using hD
+  have htrace0' : Algebra.trace (ZMod 2) K
+      (1 / (q ^ 3 + q + 1)) = 0 := by
+    simpa [q] using htrace0
+  have htrace1' : Algebra.trace (ZMod 2) K
+      (q ^ 2 / (q ^ 3 + q + 1)) = 0 := by
+    simpa [q] using htrace1
+  have htrace2' : Algebra.trace (ZMod 2) K
+      (t ^ 6 / (q ^ 3 + q + 1)) = 0 := by
+    simpa [q] using htrace2
+  have hz_range : 1 / (q ^ 3 + q + 1) ∈
+      LinearMap.range (Carlet.artinSchreier (K := K)) := by
+    rw [Carlet.artinSchreier_range]
+    exact htrace0'
+  obtain ⟨z, hz⟩ := hz_range
+  have hz_eq : z ^ 2 + z = (q ^ 3 + q + 1)⁻¹ := by
+    simpa [Carlet.artinSchreier_apply, div_eq_mul_inv] using hz
+  have htrace_qz : Algebra.trace (ZMod 2) K (q * (q + 1) * z) = 0 := by
+    have hfactor : q * (q + 1) * z = (q ^ 2 + q) * z := by ring
+    rw [hfactor, Carlet.k4_trace_as_pair, hz_eq]
+    simpa [div_eq_mul_inv] using htrace1'
+  have hs_range : q * (q + 1) * z ∈
+      LinearMap.range (Carlet.artinSchreier (K := K)) := by
+    rw [Carlet.artinSchreier_range]
+    exact htrace_qz
+  obtain ⟨s, hs⟩ := hs_range
+  have hs_eq : s ^ 2 + s = q * (q + 1) * z := by
+    simpa only [Carlet.artinSchreier_apply] using hs
+  have htrace_qs : Algebra.trace (ZMod 2) K (q * s) = 0 := by
+    rw [Carlet.k4_trace_eliminate_middle t q z s hq hs_eq]
+    have hpoly : t ^ 2 * q * (q + 1) * z =
+        ((t ^ 3) ^ 2 + t ^ 3) * z := by
+      calc
+        t ^ 2 * q * (q + 1) * z =
+            (t ^ 2 * (t ^ 2 + t) * ((t ^ 2 + t) + 1)) * z := by
+              rw [hq]
+        _ = ((t ^ 3) ^ 2 + t ^ 3) * z := by
+              rw [k4_second_trace_polynomial]
+    rw [hpoly, Carlet.k4_trace_as_pair, hz_eq]
+    have hsquare : (t ^ 3) ^ 2 = t ^ 6 := by ring
+    rw [hsquare]
+    simpa [div_eq_mul_inv] using htrace2'
+  have hv_range : q * s ∈
+      LinearMap.range (Carlet.artinSchreier (K := K)) := by
+    rw [Carlet.artinSchreier_range]
+    exact htrace_qs
+  obtain ⟨v, hv⟩ := hv_range
+  have hv_eq : v ^ 2 + v = q * s := by
+    simpa only [Carlet.artinSchreier_apply] using hv
+  exact ⟨z, s, v,
+    k4V7_eliminatedSystem_of_chain t q z s v
+      hq hq0' hq1' hD' hz_eq hs_eq hv_eq⟩
+
 #print axioms k4V7_triangularRelations
 #print axioms k4_parameters_of_v7_triangular
 #print axioms hasZeroSumSubspace_four_of_k4V7_triangular
 #print axioms k4V7_originalSystem_of_chain
 #print axioms k4V7_eliminatedSystem_of_chain
+#print axioms k4V7_eliminatedSystem_of_rational_traces
 
 end Carlet.QuadraticV7
