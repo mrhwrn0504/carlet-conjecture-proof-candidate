@@ -148,9 +148,7 @@ theorem reinsert_truncate_of_original_sum (r : ℕ) (t : Fin r → A)
   by_cases hi : i.val = r - 1
   · have hiEq : i = ⟨r - 1, by omega⟩ := Fin.ext hi
     rw [hiEq]
-    change 1 + prefixSum r (truncate r t) = lastCoordinate r t (by omega)
-    rw [hprefix]
-    exact hlast.symm
+    simpa [reinsertLast, hprefix, lastCoordinate] using hlast.symm
   · simp [reinsertLast, hi, truncate]
 
 def TriangularRelations (u : ℕ → ℕ → A) (c : ℕ → A) (r : ℕ) : Prop :=
