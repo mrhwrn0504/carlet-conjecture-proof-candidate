@@ -120,11 +120,26 @@ def verify():
     expanded_axioms = set(main['theorem_axioms']['Carlet.oddCarletConjecture_original_statement'])
     if not final_axioms <= ALLOWED_AXIOMS or not expanded_axioms <= ALLOWED_AXIOMS:
         raise RuntimeError('Unexpected axioms in the final theorem')
+    full_entries = [m for m in modules if m['module'] == 'Carlet/FullTheorem.lean']
+    if len(full_entries) != 1:
+        raise RuntimeError('Missing or duplicated unified full-theorem module')
+    full = full_entries[0]
+    full_required = {'Carlet.carletConjecture_full', 'Carlet.carletConjecture_n_ge6'}
+    if not full_required <= full['theorem_axioms'].keys():
+        raise RuntimeError('Unified full-theorem axiom audit missing')
+    full_source = (ROOT / 'Carlet/FullTheorem.lean').read_text(encoding='utf-8-sig')
+    if 'theorem carletConjecture_full' not in full_source or 'theorem carletConjecture_n_ge6' not in full_source:
+        raise RuntimeError('Unified theorem source does not contain both required statements')
+    full_axioms = set(full['theorem_axioms']['Carlet.carletConjecture_full'])
+    common_axioms = set(full['theorem_axioms']['Carlet.carletConjecture_n_ge6'])
+    if not full_axioms <= ALLOWED_AXIOMS or not common_axioms <= ALLOWED_AXIOMS:
+        raise RuntimeError('Unexpected axioms in the unified full theorem')
     summary = dict(modules=len(modules), hasse_dependency_modules=len(entries), printed_declarations_checked=declarations,
                    source_and_olean_hashes_match=True, compiler_warnings=0,
                    main_conjecture_proved=True,
                    main_theorem_axioms=sorted(final_axioms), even_degree_theorem_proved=True,
-                   even_degree_theorem_axioms=sorted(even_axioms))
+                   even_degree_theorem_axioms=sorted(even_axioms), full_theorem_proved=True,
+                   full_theorem_axioms=sorted(full_axioms), common_range_theorem_axioms=sorted(common_axioms))
     (ROOT / 'verified_build_summary.json').write_text(
         json.dumps(summary, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(dict(summary, audited_axioms=sorted(axioms)), indent=2))
