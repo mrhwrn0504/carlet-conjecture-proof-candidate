@@ -126,6 +126,7 @@ theorem hasZeroSumSubspace_four_of_k4V7_triangular
 
 /-- The concrete K4 chain supplies a full solution of the v7 original
     system, including the reciprocal recurrence and the terminal sum. -/
+omit [Fintype K] [DecidableEq K] in
 theorem k4V7_originalSystem_of_chain
     (t q z s v : K)
     (hq : q = t ^ 2 + t)
@@ -268,6 +269,7 @@ theorem k4V7_eliminatedSystem_of_rational_traces
 /-- Conversely, every v7 eliminated solution forces all three rational
     trace conditions.  Thus the trace tests are not merely sufficient:
     they exactly encode the existence of this concrete K4 chain. -/
+omit [DecidableEq K] in
 theorem k4V7_rational_traces_of_eliminatedSystem
     (t q z s v : K)
     (hsys : EliminatedSystem 4 (by omega) (k4V7Entry t q z s v)
