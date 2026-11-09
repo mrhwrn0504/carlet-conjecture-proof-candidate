@@ -27,7 +27,7 @@ theorem carletConjecture_full
 /-- The common n ≥ 6, 3 ≤ k ≤ n-3 formulation used in the recent
 counting proof follows as an immediate specialization. -/
 theorem carletConjecture_n_ge6
-    (n k : ℕ) (hn : 6 ≤ n) (hk : 3 ≤ k) (hkn : k + 3 ≤ n)
+    (n k : ℕ) (_hn : 6 ≤ n) (hk : 3 ≤ k) (hkn : k + 3 ≤ n)
     (K : Type) [Field K] [Fintype K] [Algebra (ZMod 2) K]
     [DecidableEq K] (hcard : Fintype.card K = 2 ^ n) :
     HasZeroSumSubspace K k := by
