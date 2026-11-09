@@ -62,8 +62,7 @@ theorem k4V7_triangularRelations (t q z s v : K)
         have hpow : (t ^ 2 + t) ^ 2 = (t ^ 2) ^ 2 + t ^ 2 := by
           simpa using (add_pow_char (t ^ 2) t 2)
         calc
-          t ^ 2 + (t ^ 2) ^ 2 = (t ^ 2) ^ 2 + t ^ 2 := by ac_rfl
-          _ = (t ^ 2 + t) ^ 2 := hpow.symm
+          (t ^ 2) ^ 2 + t ^ 2 = (t ^ 2 + t) ^ 2 := hpow.symm
           _ = (t ^ 2 + t) * (t ^ 2 + t) := by rw [pow_two]
       · simp [k4V7Entry, k4V7Coefficients]
         ring
