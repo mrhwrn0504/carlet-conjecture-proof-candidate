@@ -231,6 +231,60 @@ theorem eliminated_implies_original (r : ℕ) (hr : 2 ≤ r)
               (1 + prefixSum r t) + (1 + prefixSum r t) := by ac_rfl
           _ = 0 := hx
 
+/-!
+The two maps above are mutually inverse on the solution subtypes.
+This packages direct elimination as an actual bijection, not only as
+two implications between predicates.
+-/
+
+/-- Bijection between original solutions and v7 solutions. -/
+def solutionEquiv (r : ℕ) (hr : 2 ≤ r)
+    (u : ℕ → ℕ → A) (c : ℕ → A) (h₂ : (2 : A) = 0) :
+    {t : Fin r → A // OriginalSystem r hr u t c} ≃
+      {t : Fin (r - 1) → A // EliminatedSystem r hr u t c} where
+  toFun x :=
+    ⟨truncate r x.val,
+      original_implies_eliminated r hr u x.val c h₂ x.property⟩
+  invFun y :=
+    ⟨reinsertLast r y.val hr,
+      eliminated_implies_original r hr u y.val c h₂ y.property⟩
+  left_inv x := by
+    apply Subtype.ext
+    exact reinsert_truncate_of_original_sum r x.val hr h₂
+      x.property.2.2.2
+  right_inv y := by
+    apply Subtype.ext
+    exact truncate_reinsertLast r y.val hr
+
+/-- Existence of an original solution is equivalent to existence of a v7 solution. -/
+theorem original_exists_iff_eliminated_exists (r : ℕ) (hr : 2 ≤ r)
+    (u : ℕ → ℕ → A) (c : ℕ → A) (h₂ : (2 : A) = 0) :
+    (∃ t : Fin r → A, OriginalSystem r hr u t c) ↔
+      (∃ t : Fin (r - 1) → A, EliminatedSystem r hr u t c) := by
+  constructor
+  · rintro ⟨t, ht⟩
+    exact ⟨truncate r t,
+      original_implies_eliminated r hr u t c h₂ ht⟩
+  · rintro ⟨t, ht⟩
+    exact ⟨reinsertLast r t hr,
+      eliminated_implies_original r hr u t c h₂ ht⟩
+
+/-- The deleted coordinate is uniquely determined by the retained coordinates. -/
+theorem original_unique_from_truncation (r : ℕ) (hr : 2 ≤ r)
+    (u : ℕ → ℕ → A) (c : ℕ → A) (h₂ : (2 : A) = 0)
+    (t₁ t₂ : Fin r → A)
+    (h₁ : OriginalSystem r hr u t₁ c)
+    (h₂' : OriginalSystem r hr u t₂ c)
+    (htr : truncate r t₁ = truncate r t₂) :
+    t₁ = t₂ := by
+  calc
+    t₁ = reinsertLast r (truncate r t₁) hr := by
+      symm
+      exact reinsert_truncate_of_original_sum r t₁ hr h₂ h₁.2.2.2
+    _ = reinsertLast r (truncate r t₂) hr := by rw [htr]
+    _ = t₂ := by
+      exact reinsert_truncate_of_original_sum r t₂ hr h₂ h₂'.2.2.2
+
 theorem boundary_r2 (t : Fin 1 → A) (c : ℕ → A)
     (ht₁ : t ⟨0, by omega⟩ = 1) :
     c 1 * (1 + prefixSum 2 t) = t ⟨0, by omega⟩ ↔ c 1 = 1 := by
