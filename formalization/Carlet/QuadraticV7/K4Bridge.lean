@@ -332,6 +332,27 @@ theorem k4V7_rational_trace_criterion_iff
         t hq0 hq1 hD htrace0 htrace1 htrace2
     exact ⟨z, s, v, hsys⟩
 
+
+/-- A rational-trace witness therefore yields the desired four-dimensional
+    zero-sum subspace through the v7 eliminated system. -/
+theorem hasZeroSumSubspace_four_of_k4V7_traceWitness
+    (t : K)
+    (hq0 : t ^ 2 + t ≠ 0)
+    (hq1 : t ^ 2 + t + 1 ≠ 0)
+    (hD : (t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1 ≠ 0)
+    (htrace0 : Algebra.trace (ZMod 2) K
+      (1 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0)
+    (htrace1 : Algebra.trace (ZMod 2) K
+      ((t ^ 2 + t) ^ 2 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0)
+    (htrace2 : Algebra.trace (ZMod 2) K
+      (t ^ 6 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0) :
+    Carlet.HasZeroSumSubspace K 4 := by
+  obtain ⟨z, s, v, hsys⟩ :=
+    k4V7_eliminatedSystem_of_rational_traces
+      t hq0 hq1 hD htrace0 htrace1 htrace2
+  exact hasZeroSumSubspace_four_of_k4V7_triangular
+    t (t ^ 2 + t) z s v hq0 hq1 hD hsys.1
+
 #print axioms k4V7_triangularRelations
 #print axioms k4_parameters_of_v7_triangular
 #print axioms hasZeroSumSubspace_four_of_k4V7_triangular
@@ -340,5 +361,6 @@ theorem k4V7_rational_trace_criterion_iff
 #print axioms k4V7_eliminatedSystem_of_rational_traces
 #print axioms k4V7_rational_traces_of_eliminatedSystem
 #print axioms k4V7_rational_trace_criterion_iff
+#print axioms hasZeroSumSubspace_four_of_k4V7_traceWitness
 
 end Carlet.QuadraticV7
