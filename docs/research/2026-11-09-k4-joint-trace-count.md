@@ -113,3 +113,14 @@ A further source audit found that the repository already proves the general odd-
 Therefore the joint rational-character-sum argument in this note is **not needed to establish the main Carlet conjecture's k=4 case**. Its value is narrower: it could independently prove the exact three rational trace conditions used by the V7 single-parameter K4 chain. Keep this V7 subproblem separate from the already-proved general K4 existence theorem.
 
 The existing K4 proof is also quantitatively stronger for the general existence problem: its Hasse/trace-plane route starts at `n >= 11`, whereas the generic rational-function Weil estimate above gives `n >= 13`. The reason to retain this new route is not a better K4 threshold; it is that it targets the exact V7 one-parameter trace witness rather than merely producing some four-dimensional zero-sum subspace.
+
+## Combined mathematical consequence and proof-status boundary
+
+Combining the analytic estimate with the three finite certificates gives the following ordinary-mathematics conclusion:
+
+> For every odd integer n >= 7 and every finite field K of characteristic two with |K| = 2^n, there exists t in K satisfying all three V7 rational trace-zero conditions and all three required nonvanishing conditions.
+
+For n >= 13 this follows from the Moreno–Moreno rational-function estimate and the positive lower bound for M. For n = 7, 9, 11 it follows from the explicit polynomial-basis witnesses, after transporting them along a finite-field isomorphism.
+
+This is a mathematical proof conditional only on the standard cited exponential-sum theorem and the finite arithmetic certificates. **It is not yet a Lean-verified theorem in this repository.** The Python script checks the finite certificates reproducibly, but does not replace a formal proof. The separate already-formalized general K4 existence theorem remains the current Lean result.
+
