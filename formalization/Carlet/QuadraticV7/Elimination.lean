@@ -340,6 +340,7 @@ theorem boundary_r2 (t : Fin 1 → A) (c : ℕ → A)
 #print axioms reinsert_truncate_of_original_sum
 #print axioms original_implies_eliminated
 #print axioms eliminated_implies_original
+#print axioms original_exists_iff_eliminated_exists
 #print axioms boundary_r2
 
 end Carlet.QuadraticV7
