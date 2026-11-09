@@ -36,7 +36,7 @@ jobs:
         with:
           lake-package-directory: formalization
           build: true
-          build-args: Carlet.QuadraticV7Elimination
+          build-args: Carlet.QuadraticV7
           use-mathlib-cache: true
           axiom-audit: true
           axiom-audit-root: Carlet.QuadraticV7
