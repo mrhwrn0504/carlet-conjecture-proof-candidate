@@ -99,3 +99,14 @@ These certificates are computational leads, not yet Lean theorems. They can be c
 5. Compose the resulting trace-witness theorem with the existing K4 bridge.
 
 Do not mark the V7 trace-existence problem PROVED until steps 1–4 have been checked in Lean.
+
+## Relationship to the already-proved K4 family
+
+A further source audit found that the repository already proves the general odd-degree K4 existence theorem by a different route:
+
+- `K4NormOneThetaBridgeProbe.lean` proves `k4NormOneTheta_hasZeroSum_four_large` for odd n >= 11 using a four-dimensional trace plane, norm-one pair counting, and elliptic-curve Hasse bounds.
+- `K4AllOddDegreesProbe.lean` combines that result with the small odd-degree constructions and proves `hasZeroSumSubspace_four_of_odd_card` for every odd n >= 7.
+- `K5NormOneConstructionProbe.lean` imports the low-dimensional assembly that uses this K4 result.
+
+Therefore the joint rational-character-sum argument in this note is **not needed to establish the main Carlet conjecture's k=4 case**. Its value is narrower: it could independently prove the exact three rational trace conditions used by the V7 single-parameter K4 chain. Keep this V7 subproblem separate from the already-proved general K4 existence theorem.
+
