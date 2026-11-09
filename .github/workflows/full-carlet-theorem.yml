@@ -5,24 +5,26 @@ on:
     branches:
       - carlet-full-conjecture-integration
     paths:
-      - 'formalization/Carlet/FullTheorem.lean'
-      - 'formalization/Carlet/MainTheorem.lean'
-      - 'formalization/Carlet/EvenDegree.lean'
       - 'formalization/Carlet/**'
+      - 'formalization/build.py'
+      - 'formalization/verify_build.py'
+      - 'formalization/audit_final_theorem.py'
       - 'formalization/lakefile.lean'
       - 'formalization/lean-toolchain'
+      - 'formalization/vendor/aintlib/**'
       - '.github/workflows/full-carlet-theorem.yml'
       - 'scripts/verify_k4_small_witnesses.py'
   pull_request:
     branches:
       - main
     paths:
-      - 'formalization/Carlet/FullTheorem.lean'
-      - 'formalization/Carlet/MainTheorem.lean'
-      - 'formalization/Carlet/EvenDegree.lean'
       - 'formalization/Carlet/**'
+      - 'formalization/build.py'
+      - 'formalization/verify_build.py'
+      - 'formalization/audit_final_theorem.py'
       - 'formalization/lakefile.lean'
       - 'formalization/lean-toolchain'
+      - 'formalization/vendor/aintlib/**'
       - '.github/workflows/full-carlet-theorem.yml'
       - 'scripts/verify_k4_small_witnesses.py'
   workflow_dispatch:
@@ -33,29 +35,39 @@ permissions:
 jobs:
   full-theorem:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     defaults:
       run:
         working-directory: formalization
     steps:
       - uses: actions/checkout@v4
-      - name: Bootstrap Lean and resolve the pinned Lake dependencies
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bootstrap Lean, resolve dependencies, and fetch Mathlib cache
+        shell: bash
         run: |
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh |
             sh -s -- -y --default-toolchain leanprover/lean4:v4.33.0
           export PATH="$HOME/.elan/bin:$PATH"
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
           lake update
+          lake exe cache get
+          mkdir -p "$RUNNER_TEMP/carlet-libraries"
+          for package in .lake/packages/*; do
+            lib="$package/.lake/build/lib/lean"
+            if [ -d "$lib" ]; then
+              ln -s "$PWD/$lib" "$RUNNER_TEMP/carlet-libraries/$(basename "$package")"
+            fi
+          done
+          echo "CARLET_LEAN_BIN=$(elan which lean)" >> "$GITHUB_ENV"
+          echo "CARLET_MATHLIB_LIBRARIES=$RUNNER_TEMP/carlet-libraries" >> "$GITHUB_ENV"
+          echo "CARLET_AINTLIB_OLEAN=$PWD/vendor/aintlib/olean" >> "$GITHUB_ENV"
       - name: Verify finite K4 trace-witness certificates
         run: python3 ../scripts/verify_k4_small_witnesses.py
-      - uses: leanprover/lean-action@v1
-        with:
-          lake-package-directory: formalization
-          build: true
-          build-args: Carlet.FullTheorem
-          use-mathlib-cache: true
-          axiom-audit: true
-          axiom-audit-root: Carlet.FullTheorem
-          axiom-audit-allow: propext,Classical.choice,Quot.sound
-          auto-config: true
-          test: false
-          lint: false
+      - name: Build the full AINTLIB and Carlet dependency closure
+        run: python3 -I build.py
+      - name: Verify full-build receipts, hashes, holes, and axioms
+        run: python3 -I verify_build.py
+      - name: Independently re-elaborate and audit both full theorem statements
+        run: python3 -I audit_final_theorem.py
