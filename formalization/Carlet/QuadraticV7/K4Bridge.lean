@@ -59,8 +59,13 @@ theorem k4V7_triangularRelations (t q z s v : K)
       rcases hj with rfl | rfl
       · simp [k4V7Entry, k4V7Coefficients]
         rw [hq]
-        have htwo : (2 : K) = 0 := CharP.cast_eq_zero K 2
-        linear_combination t ^ 3 * htwo
+        have hpow : (t ^ 2 + t) ^ 2 = (t ^ 2) ^ 2 + t ^ 2 := by
+          simpa using (add_pow_char (t ^ 2) t 2)
+        calc
+          t ^ 2 + (t ^ 2) ^ 2 = (t ^ 2) ^ 2 + t ^ 2 := by ac_rfl
+          _ = (t ^ 2 + t) ^ 2 := hpow.symm
+          _ = (t + t ^ 2) * (t + t ^ 2) := by
+            rw [pow_two, add_comm (t ^ 2) t]
       · simp [k4V7Entry, k4V7Coefficients]
         ring
     · have hj : j = 1 ∨ j = 2 ∨ j = 3 := by omega
