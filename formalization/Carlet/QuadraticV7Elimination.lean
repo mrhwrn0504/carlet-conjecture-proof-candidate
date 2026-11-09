@@ -18,45 +18,62 @@ namespace Carlet.QuadraticV7
 
 variable {A : Type*} [CommRing A]
 
+/-- Evaluate a finite coordinate vector at a natural index, returning zero out of range. -/
+def evalFin (n : ℕ) (t : Fin n → A) (i : ℕ) : A :=
+  if h : i < n then t ⟨i, h⟩ else 0
+
+/-- The retained contribution t₂ + ⋯ + t_{r-1}. -/
 def prefixSum (r : ℕ) (t : Fin (r - 1) → A) : A :=
-  ∑ i ∈ Finset.range (r - 2), t ⟨i + 1, by omega⟩
+  ∑ i ∈ Finset.range (r - 2), evalFin (r - 1) t (i + 1)
 
+/-- The same prefix, viewed in the original coordinate space. -/
 def prefixSumOriginal (r : ℕ) (t : Fin r → A) : A :=
-  ∑ i ∈ Finset.range (r - 2), t ⟨i + 1, by omega⟩
+  ∑ i ∈ Finset.range (r - 2), evalFin r t (i + 1)
 
+/-- The original contribution t₂ + ⋯ + t_r. -/
 def totalSum (r : ℕ) (t : Fin r → A) : A :=
-  ∑ i ∈ Finset.range (r - 1), t ⟨i + 1, by omega⟩
+  ∑ i ∈ Finset.range (r - 1), evalFin r t (i + 1)
 
+/-- The last original coordinate t_r. -/
 def lastCoordinate (r : ℕ) (t : Fin r → A) (hr : 1 ≤ r) : A :=
   t ⟨r - 1, by omega⟩
 
+/-- Restrict the original coordinates to t₁,…,t_{r-1}. -/
 def truncate (r : ℕ) (t : Fin r → A) : Fin (r - 1) → A :=
   fun i => t ⟨i.val, by omega⟩
 
+/-- Splitting off t_r from the original finite sum. -/
 theorem totalSum_eq_prefix_add_last (r : ℕ) (t : Fin r → A)
     (hr : 2 ≤ r) :
     totalSum r t = prefixSumOriginal r t + lastCoordinate r t (by omega) := by
   unfold totalSum prefixSumOriginal lastCoordinate
   rw [show r - 1 = (r - 2) + 1 by omega, Finset.sum_range_succ]
-  congr 1
-  apply congrArg t
-  apply Fin.ext
-  simp
-  omega
+  have hlast : evalFin r t ((r - 2) + 1) = t ⟨r - 1, by omega⟩ := by
+    simp [evalFin, show r - 2 + 1 = r - 1 by omega]
+  rw [hlast]
 
+/-- Restricting to the first r-1 coordinates preserves the prefix sum. -/
 theorem prefixSum_truncate (r : ℕ) (t : Fin r → A) :
     prefixSum r (truncate r t) = prefixSumOriginal r t := by
   unfold prefixSum prefixSumOriginal truncate
   refine Finset.sum_congr rfl ?_
   intro i hi
-  rfl
+  have hi' : i < r - 2 := Finset.mem_range.mp hi
+  have hlt : i + 1 < r - 1 := by omega
+  have hlt' : i + 1 < r := by omega
+  simp [evalFin, hlt, hlt', truncate]
 
+/-- In characteristic two, every element is its own additive inverse. -/
 theorem add_self_eq_zero_of_two_eq_zero (h₂ : (2 : A) = 0) (x : A) :
     x + x = 0 := by
   calc
     x + x = (2 : A) * x := by ring
     _ = 0 := by rw [h₂]; simp
 
+/--
+The final zero-sum equation uniquely determines the deleted coordinate:
+t_r = 1 + t₂ + ⋯ + t_{r-1}.
+-/
 theorem last_sum_iff_last_coordinate (r : ℕ) (t : Fin r → A)
     (hr : 2 ≤ r) (h₂ : (2 : A) = 0) :
     1 + totalSum r t = 0 ↔
@@ -89,6 +106,7 @@ theorem last_sum_iff_last_coordinate (r : ℕ) (t : Fin r → A)
             (1 + prefixSumOriginal r t) := by rw [hlast]; ac_rfl
       _ = 0 := hx
 
+/-- Reinsert the deleted coordinate using its forced polynomial expression. -/
 def reinsertLast (r : ℕ) (t : Fin (r - 1) → A)
     (hr : 2 ≤ r) : Fin r → A :=
   fun i =>
@@ -97,16 +115,20 @@ def reinsertLast (r : ℕ) (t : Fin (r - 1) → A)
     else
       t ⟨i.val, by omega⟩
 
+/-- The reinserted point has exactly the retained prefix sum. -/
 theorem prefixSum_reinsertLast (r : ℕ) (t : Fin (r - 1) → A)
     (hr : 2 ≤ r) :
     prefixSumOriginal r (reinsertLast r t hr) = prefixSum r t := by
-  unfold prefixSumOriginal prefixSum reinsertLast
+  unfold prefixSumOriginal prefixSum
   refine Finset.sum_congr rfl ?_
   intro i hi
   have hi' : i < r - 2 := Finset.mem_range.mp hi
+  have hlt : i + 1 < r - 1 := by omega
+  have hlt' : i + 1 < r := by omega
   have hne : i + 1 ≠ r - 1 := by omega
-  simp [hne]
+  simp [evalFin, hlt, hlt', reinsertLast, hne]
 
+/-- The original total sum after reinsertion is prefix plus the forced last term. -/
 theorem totalSum_reinsertLast (r : ℕ) (t : Fin (r - 1) → A)
     (hr : 2 ≤ r) :
     totalSum r (reinsertLast r t hr) =
@@ -115,6 +137,7 @@ theorem totalSum_reinsertLast (r : ℕ) (t : Fin (r - 1) → A)
   rw [prefixSum_reinsertLast r t hr]
   simp [lastCoordinate, reinsertLast]
 
+/-- Truncating after reinsertion recovers every retained coordinate. -/
 theorem truncate_reinsertLast (r : ℕ) (t : Fin (r - 1) → A)
     (hr : 2 ≤ r) :
     truncate r (reinsertLast r t hr) = t := by
@@ -122,6 +145,7 @@ theorem truncate_reinsertLast (r : ℕ) (t : Fin (r - 1) → A)
   have hne : i.val ≠ r - 1 := by omega
   simp [truncate, reinsertLast, hne]
 
+/-- Truncating an original point and reinserting it recovers it under the sum equation. -/
 theorem reinsert_truncate_of_original_sum (r : ℕ) (t : Fin r → A)
     (hr : 2 ≤ r) (h₂ : (2 : A) = 0)
     (hsum : 1 + totalSum r t = 0) :
