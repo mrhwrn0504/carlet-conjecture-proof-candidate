@@ -32,7 +32,7 @@ theorem carletConjecture_n_ge6
     [DecidableEq K] (hcard : Fintype.card K = 2 ^ n) :
     HasZeroSumSubspace K k := by
   rcases Nat.even_or_odd n with hEven | hOdd
-  · exact evenDegreeCarlet_unconditional n hEven K hcard k hk (by omega)
+  · exact evenDegreeCarlet_unconditional n hEven K hcard k (by omega) (by omega)
   · exact oddCarletConjecture_main n k hOdd hk (by omega) K hcard
 
 #print axioms carletConjecture_full
