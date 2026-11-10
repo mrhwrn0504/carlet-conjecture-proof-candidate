@@ -1,0 +1,43 @@
+name: Lean v7 direct elimination
+
+on:
+  push:
+    branches:
+      - carlet-v7-direct-elimination
+  pull_request:
+    branches:
+      - carlet-v7-direct-elimination
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  v7-algebra:
+    name: Build v7 elimination and audit axioms
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formalization
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Bootstrap Lean and resolve the pinned Lake dependencies
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh |
+            sh -s -- -y --default-toolchain leanprover/lean4:v4.33.0
+          export PATH="$HOME/.elan/bin:$PATH"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          lake update
+
+      - name: Install Lean, fetch Mathlib cache, build and audit
+        uses: leanprover/lean-action@v1
+        with:
+          lake-package-directory: formalization
+          build: true
+          build-args: Carlet.QuadraticV7
+          use-mathlib-cache: true
+          axiom-audit: true
+          axiom-audit-root: Carlet.QuadraticV7
+          axiom-audit-allow: propext,Classical.choice,Quot.sound
