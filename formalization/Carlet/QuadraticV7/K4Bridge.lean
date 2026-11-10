@@ -375,6 +375,7 @@ theorem hasZeroSumSubspace_four_of_k4V7_traceWitness
     (htrace2 : Algebra.trace (ZMod 2) K
       (t ^ 6 / ((t ^ 2 + t) ^ 3 + (t ^ 2 + t) + 1)) = 0) :
     Carlet.HasZeroSumSubspace K 4 := by
+  classical
   obtain ⟨z, s, v, hsys⟩ :=
     k4V7_eliminatedSystem_of_rational_traces
       t hq0 hq1 hD htrace0 htrace1 htrace2
