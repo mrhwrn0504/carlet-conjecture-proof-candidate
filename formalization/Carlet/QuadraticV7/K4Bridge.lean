@@ -188,6 +188,10 @@ theorem k4V7_eliminatedSystem_of_chain
     (k4V7Entry t q z s v) (k4V7T q) (k4V7Coefficients q) htwo hsys
 
 
+section TraceForward
+
+variable [Fintype K] [DecidableEq K]
+
 /-- The three rational trace tests used by the K4 construction produce a
     concrete solution of the v7 eliminated system.  This identifies the
     remaining existence problem with finding one parameter t satisfying
@@ -265,6 +269,12 @@ theorem k4V7_eliminatedSystem_of_rational_traces
       hq hq0' hq1' hD' hz_eq hs_eq hv_eq⟩
 
 
+end TraceForward
+
+section TraceBackward
+
+variable [Fintype K]
+
 /-- Conversely, every v7 eliminated solution forces all three rational
     trace conditions.  Thus the trace tests are not merely sufficient:
     they exactly encode the existence of this concrete K4 chain. -/
@@ -315,6 +325,12 @@ theorem k4V7_rational_traces_of_eliminatedSystem
     by simpa [div_eq_mul_inv] using htrace1,
     by simpa [div_eq_mul_inv] using htrace2⟩
 
+end TraceBackward
+
+section TraceConclusion
+
+variable [Fintype K] [DecidableEq K]
+
 /-- Exact equivalence between the v7 eliminated K4 system and the three
     one-parameter rational trace conditions, under the required
     nonvanishing conditions. -/
@@ -364,6 +380,8 @@ theorem hasZeroSumSubspace_four_of_k4V7_traceWitness
       t hq0 hq1 hD htrace0 htrace1 htrace2
   exact hasZeroSumSubspace_four_of_k4V7_triangular
     t (t ^ 2 + t) z s v hq0 hq1 hD hsys.1
+
+end TraceConclusion
 
 #print axioms k4V7_triangularRelations
 #print axioms k4_parameters_of_v7_triangular
