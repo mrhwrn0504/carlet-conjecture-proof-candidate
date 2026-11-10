@@ -196,6 +196,7 @@ variable [Fintype K] [DecidableEq K]
     concrete solution of the v7 eliminated system.  This identifies the
     remaining existence problem with finding one parameter t satisfying
     those three trace conditions. -/
+omit [DecidableEq K] in
 theorem k4V7_eliminatedSystem_of_rational_traces
     (t : K)
     (hq0 : t ^ 2 + t ≠ 0)
