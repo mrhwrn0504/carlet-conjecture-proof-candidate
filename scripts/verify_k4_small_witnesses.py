@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
-"""Reproduce the small-degree K4 trace-witness certificates.
+"""Reproduce the small-degree K4 trace and Artin--Schreier certificates.
 
 Elements of F_2[X]/(P) are represented by bit masks: bit i is the
-coefficient of X^i. This script checks irreducibility, the K4 parameter
-identities, the three rational trace values, and their zero traces.
-It is a reproducible finite certificate, not a replacement for the
+coefficient of X^i. This checks irreducibility, the K4 parameter
+identities, all three rational traces, and explicit roots z,s,v of
+
+    z^2 + z = 1/D,
+    s^2 + s = q(q+1)z,
+    v^2 + v = qs.
+
+These are finite computational certificates, not a replacement for the
 general Weil-bound argument or the Lean formalization.
 """
 
@@ -102,15 +107,17 @@ def polynomial_string(a: int) -> str:
     return " + ".join(terms)
 
 
-# (degree, modulus, t); all values use the polynomial-basis bit encoding.
+# (degree, modulus, t, z, s, v), in polynomial-basis bit encoding.
+# The roots were recomputed for the exact t values in the original trace
+# certificate list; do not substitute the earlier, mismatched display values.
 CERTIFICATES = [
-    (7,  0x083, 0x002),
-    (9,  0x203, 0x034),
-    (11, 0x805, 0x04C),
+    (7,  0x083, 0x002, 0x07A, 0x078, 0x010),
+    (9,  0x203, 0x034, 0x134, 0x1CE, 0x1FC),
+    (11, 0x805, 0x04C, 0x742, 0x61C, 0x3EC),
 ]
 
 
-def verify(n: int, modulus: int, t: int) -> None:
+def verify(n: int, modulus: int, t: int, z: int, s: int, v: int) -> None:
     assert degree(modulus) == n
     assert is_irreducible(modulus, n), (n, "modulus is not irreducible")
 
@@ -136,18 +143,31 @@ def verify(n: int, modulus: int, t: int) -> None:
     ]
     assert trace_values == [0, 0, 0], (n, trace_values)
 
+    z2_plus_z = mul(z, z, modulus) ^ z
+    s2_plus_s = mul(s, s, modulus) ^ s
+    v2_plus_v = mul(v, v, modulus) ^ v
+    s_rhs = mul(mul(q, q ^ 1, modulus), z, modulus)
+    v_rhs = mul(q, s, modulus)
+    assert z2_plus_z == d_inv, (n, "z equation", hex(z2_plus_z), hex(d_inv))
+    assert s2_plus_s == s_rhs, (n, "s equation", hex(s2_plus_s), hex(s_rhs))
+    assert v2_plus_v == v_rhs, (n, "v equation", hex(v2_plus_v), hex(v_rhs))
+
     print(f"n={n}")
     print(f"  P(X) = {polynomial_string(modulus)}")
     print(f"  t    = {polynomial_string(t)}")
     print(f"  q    = {polynomial_string(q)}")
     print(f"  D    = {polynomial_string(denominator)}")
+    print(f"  z    = {polynomial_string(z)}")
+    print(f"  s    = {polynomial_string(s)}")
+    print(f"  v    = {polynomial_string(v)}")
     print(f"  1/D  = {polynomial_string(d_inv)}")
     print(f"  q²/D = {polynomial_string(q2_over_d)}")
     print(f"  t⁶/D = {polynomial_string(t6_over_d)}")
     print(f"  traces = {trace_values}")
+    print("  Artin-Schreier equations = [True, True, True]")
 
 
 if __name__ == "__main__":
     for certificate in CERTIFICATES:
         verify(*certificate)
-    print("All small-degree K4 trace-witness certificates verified.")
+    print("All small-degree K4 trace and Artin-Schreier certificates verified.")
