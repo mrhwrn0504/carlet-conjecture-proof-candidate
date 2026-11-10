@@ -102,7 +102,7 @@ theorem k4_parameters_of_v7_triangular (t q z s v : K)
 
 section K4Construction
 
-variable [Fintype K] [Algebra (ZMod 2) K] [DecidableEq K]
+variable [Algebra (ZMod 2) K]
 
 local instance : CharP K 2 :=
   charP_of_injective_algebraMap (algebraMap (ZMod 2) K).injective 2
@@ -111,7 +111,7 @@ local instance : CharP K 2 :=
     established K4 subspace construction (under its explicit nonvanishing
     hypotheses). -/
 theorem hasZeroSumSubspace_four_of_k4V7_triangular
-    (t q z s v : K)
+    [Fintype K] [DecidableEq K] (t q z s v : K)
     (hq0 : q ≠ 0) (hq1 : q + 1 ≠ 0)
     (hD : q ^ 3 + q + 1 ≠ 0)
     (htri : TriangularRelations (k4V7Entry t q z s v)
@@ -126,7 +126,6 @@ theorem hasZeroSumSubspace_four_of_k4V7_triangular
 
 /-- The concrete K4 chain supplies a full solution of the v7 original
     system, including the reciprocal recurrence and the terminal sum. -/
-omit [Fintype K] [DecidableEq K] in
 theorem k4V7_originalSystem_of_chain
     (t q z s v : K)
     (hq : q = t ^ 2 + t)
@@ -269,7 +268,6 @@ theorem k4V7_eliminatedSystem_of_rational_traces
 /-- Conversely, every v7 eliminated solution forces all three rational
     trace conditions.  Thus the trace tests are not merely sufficient:
     they exactly encode the existence of this concrete K4 chain. -/
-omit [DecidableEq K] in
 theorem k4V7_rational_traces_of_eliminatedSystem
     (t q z s v : K)
     (hsys : EliminatedSystem 4 (by omega) (k4V7Entry t q z s v)
