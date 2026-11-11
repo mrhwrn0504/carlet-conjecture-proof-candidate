@@ -4,4 +4,4 @@ Unless a file carries a separate third-party notice, the papers and manuscript m
 
 You may share and adapt those materials, including commercially, provided you give appropriate credit, link to the license, and indicate changes. The complete legal code is available at <https://creativecommons.org/licenses/by/4.0/legalcode>.
 
-Attribution: Wang Quanzhi; the Lean formalization paper also identifies ChatGPT as an AI research collaborator.
+Attribution: Wang Quanzhi; the Lean formalization paper additionally lists ChatGPT as a contributing AI system. The original candidate manuscript is reproduced as supplied and has not been mathematically edited in this release.

@@ -15,7 +15,10 @@
 \newcommand{\dimf}{\dim_{\Ftwo}}
 \title[The Carlet zero-sum subspace conjecture]{A Proof and Lean Formalization of the Carlet Zero-Sum Subspace Conjecture}
 \author{Wang Quanzhi}
-\thanks{Email: \href{mailto:mrhwrn0504@gmail.com}{\texttt{mrhwrn0504@gmail.com}}.}
+\email{mrhwrn120504@gmail.com}
+\thanks{Email: \href{mailto:mrhwrn120504@gmail.com}{mrhwrn120504@gmail.com}.}
+\author{ChatGPT}
+\thanks{ChatGPT is an artificial intelligence system developed by OpenAI and contributed as a research-writing assistant. The human author accepts responsibility for the mathematical statements, code, and final manuscript.}
 \date{November 2026}
 
 \begin{document}
@@ -24,7 +27,7 @@ Let $K$ be a finite field of cardinality $2^n$, viewed as an $n$-dimensional vec
 \[
   \sum_{x\in E\setminus\{0\}}x^{-1}=0.
 \]
-Both parity ranges have been formalized in Lean 4 with universal quantification over the corresponding finite fields. The odd-degree proof uses root-product polynomials, Hasse bounds, low-dimensional constructions, and energy iteration; the even-degree proof uses two- and three-dimensional base cases, dimension recurrence, and complementary-dimension symmetry. The complete default build, independent verification, and final axiom audit pass: there are no compiler warnings, source and OLean hashes match, and the audited dependencies are only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}, with no \texttt{sorryAx} or custom axiom.
+Both parity ranges have been formalized in Lean 4 with universal quantification over the corresponding finite fields. The odd-degree proof uses root-product polynomials, Hasse bounds, low-dimensional constructions, and energy iteration; the even-degree proof uses two- and three-dimensional base cases, dimension recurrence, and complementary-dimension symmetry. The complete default build, independent verification, and final axiom audit pass: there are no compiler warnings, source and OLean hashes match, and the audited dependencies are only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}, with no \texttt{sorryAx} or custom axiom. The author has a separate geometric/cohomological proof-candidate manuscript; line-by-line formalization of that route remains in progress and is not claimed complete here.
 \end{abstract}
 
 \keywords{finite fields, multiplicative inverse, zero-sum subspace, subspace polynomial, Kloosterman sum, Hasse bound, Lean formalization}
@@ -351,11 +354,7 @@ The formalization uses Lean 4 and mathlib~\cite{Lean4,Mathlib}. The original odd
 \forall n,k,\quad \operatorname{Odd}(n)\to 3\le k\to k+3\le n\to
 \forall K,\quad |K|=2^n\to \operatorname{HasZeroSumSubspace}(K,k).
 \]
-{\raggedright
-The original statement is defined in \texttt{Statement.lean}; the odd-degree theorem is \texttt{oddCarletConjecture\_main} in \texttt{MainTheorem.lean}.
-The unconditional even theorem, \texttt{evenDegreeCarlet\_unconditional}, is in \texttt{EvenDegree.lean}. It covers every even $n$, every finite field $K$ with $|K|=2^n$, and every $k$ with $2\le k$ and $k+2\le n$.
-Together these declarations imply Theorem~\ref{thm:full}. The main proof entry points are:
-\par}
+The definition is in \url{carlet-formalization/Carlet/Statement.lean}, and the odd-degree theorem is \texttt{oddCarletConjecture\_main : OddCarletConjecture} in \url{Carlet/MainTheorem.lean}. The unconditional even-degree theorem is \texttt{evenDegreeCarlet\_unconditional} in \url{Carlet/EvenDegree.lean}; it quantifies over every even $n$, every finite field $K$ with $|K|=2^n$, and every $k$ with $2\le k$ and $k+2\le n$. Together these Lean declarations imply Theorem~\ref{thm:full}. The main proof entry points are:
 \begin{center}
 \small\begin{tabular}{>{\raggedright\arraybackslash}p{0.43\textwidth}>{\raggedright\arraybackslash}p{0.47\textwidth}}
 \toprule
@@ -374,14 +373,9 @@ Combined odd/even parameter ranges & \texttt{MainTheorem.lean}, \texttt{EvenDegr
 \end{tabular}
 \end{center}
 
-{\raggedright
-The 7 November 2026 acceptance record uses Lean 4.33.0. The complete default build checked 270 modules; the independent verifier audited 923 declarations and checked 188 Hasse dependency modules. There were zero compiler warnings, and all source/OLean hashes match.
-Both main theorems passed independent statement checks. Their axiom sets contain only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}; the audit found no \texttt{sorryAx} or custom unproved axiom.
-The Hasse bound is imported from the fixed AINTLIB snapshot~\cite{AINTLIB} (\texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b}); its source is \texttt{HasseBound.lean} and it is licensed under Apache 2.0.
-The pinned mathlib source baseline is \texttt{db584cd6\allowbreak d46c92f2\allowbreak 09a44c0f\allowbreak 1c829460\allowbreak d327499d}. Reproduction commands are:
-\par}
+The 7 November 2026 acceptance record uses Lean 4.33.0. The complete default build checked 327 modules; the independent verifier audited 1,188 printed declarations and also checked 188 Hasse dependency modules. There were zero compiler warnings, and all source/OLean hashes match. Both the odd main theorem and the unconditional even theorem passed independent statement checks. Their axiom sets are exactly \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}; the audit found no \texttt{sorryAx}, custom unproved axiom, or hidden assumption containing the target conclusion. The Hasse bound is imported through the fixed AINTLIB snapshot~\cite{AINTLIB} \texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b}, vendored at \url{carlet-formalization/vendor/aintlib/src/HasseWeil/HasseBound.lean} under Apache License 2.0. The pinned mathlib source baseline is \texttt{db584cd6\allowbreak d46c92f2\allowbreak 09a44c0f\allowbreak 1c829460\allowbreak d327499d}. Reproduction commands are:
 \begin{verbatim}
-cd formalization
+cd carlet-formalization
 python -I build.py
 python -I verify_build.py
 python -I audit_final_theorem.py
@@ -389,6 +383,8 @@ python -I audit_final_theorem.py
 The full-build summary and final axiom audit are recorded in \texttt{verified\_build\_summary.json} and \texttt{final\_theorem\_audit.json}.
 
 The odd-degree proof follows the route checked by Lean: subspace polynomials, Hasse-controlled character sums, norm-one counts, and energy iteration. The even-degree proof uses two- and three-dimensional bases, dimension addition, and complementary-dimension symmetry. Finite computations are used only in the explicitly bounded small-degree branches, with the relevant constructions and transfer to arbitrary fields of the same cardinality checked in Lean.
+
+The author's separate proof-candidate manuscript follows a distinct geometric and cohomological route. Formalization of that manuscript is in progress: some finite-field algebra, subspace-polynomial, and coordinate identities have Lean counterparts, while its projective-geometric identification, boundary geometry, cohomology, and point-count estimates have not all been certified. The main odd- and even-degree theorems in this paper are fully formalized; this does not claim that the candidate manuscript's particular proof has been formalized line by line. The project research notes contain the section-by-section correspondence and open obligations.
 
 \section*{AI-use statement}
 ChatGPT assisted with research organization, formalization support, and manuscript drafting. The human author is responsible for the mathematical content, verification record, and final text.

@@ -8,7 +8,6 @@ import ast
 import hashlib
 import json
 import re
-import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -44,8 +43,7 @@ def verify():
     # the imported Hasse theorem and the final Carlet theorems are checked below.
     vendor = ROOT / 'vendor/aintlib'
     entries = {}
-    aintlib_olean = Path(os.environ.get('CARLET_AINTLIB_OLEAN') or vendor / 'olean')
-    lines = (aintlib_olean / 'probe-receipt.jsonl').read_text(encoding='utf-8').splitlines()
+    lines = (vendor / 'olean/probe-receipt.jsonl').read_text(encoding='utf-8').splitlines()
     for line in lines:
         item = json.loads(line)
         entries[item['module']] = item
@@ -57,7 +55,7 @@ def verify():
         source = ((vendor / 'src' / 'Common').joinpath(*parts[1:]) if parts[0] == 'Common'
                   else (vendor / 'src/projects/HasseWeil').joinpath(*parts))
         source = source.with_suffix('.lean')
-        olean = aintlib_olean.joinpath(*parts).with_suffix('.olean')
+        olean = (vendor / 'olean').joinpath(*parts).with_suffix('.olean')
         for line in source.read_text(encoding='utf-8-sig').splitlines():
             match = re.match(r'^\s*import\s+(.+)$', line)
             if not match:

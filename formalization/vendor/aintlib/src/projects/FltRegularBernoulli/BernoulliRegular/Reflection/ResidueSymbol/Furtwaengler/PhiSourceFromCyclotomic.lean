@@ -1,0 +1,13 @@
+module
+
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PhiSourceFromCyclotomic.K2_2SourceDataFromCyclotomic
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PhiSourceFromCyclotomic.K2_2SourceDataAtomicSplit
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PhiSourceFromCyclotomic.K2_2SourceDataNormalizedFactor
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PhiSourceFromCyclotomic.KellyEndpointFromSourceData
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PhiSourceFromCyclotomic.PrimeFactorBundleConstructors
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PhiSourceFromCyclotomic.KellyEndpoints
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.PhiSourceFromCyclotomic.KellyEndpointsAwayFromP
+
+/-!
+This module has been split into smaller implementation files.
+-/

@@ -13,20 +13,12 @@ import sys
 
 sys.stdout.reconfigure(encoding='utf-8')
 sys.stderr.reconfigure(encoding='utf-8')
-PROJECT = Path(__file__).resolve().parents[2]
-WORKSPACE = PROJECT.parent.parent.parent
-SOURCE = PROJECT / 'vendor/aintlib/src'
-OUT = PROJECT / 'vendor/aintlib/olean'
-OUT = Path(os.environ.get('CARLET_AINTLIB_OLEAN') or OUT)
-RUNTIME = Path(os.environ.get('CARLET_MATHLIB_LIBRARIES') or
-               'C:/Users/Administrator/Documents/ChatGPT/jsp423_fast_runtime_20261101/libraries')
-LEAN = Path(os.environ.get('CARLET_LEAN_BIN') or
-            WORKSPACE / 'jsp423-repro/_toolchain/bin/lean.exe')
-LIMIT = int(sys.argv[1]) if len(sys.argv) > 1 else 188
-if not LEAN.is_file():
-    raise FileNotFoundError('Lean not found; set CARLET_LEAN_BIN to the Lean 4.33.0 executable')
-if not RUNTIME.is_dir():
-    raise FileNotFoundError('Mathlib libraries not found; set CARLET_MATHLIB_LIBRARIES to the directory containing the compiled libraries')
+ROOT = Path(__file__).resolve().parents[3]
+SOURCE = ROOT / 'carlet-formalization/vendor/aintlib/src'
+OUT = ROOT / 'carlet-formalization/vendor/aintlib/olean'
+RUNTIME = ROOT.parent / 'jsp423_fast_runtime_20261101' / 'libraries'
+LEAN = ROOT / 'jsp423-repro' / '_toolchain' / 'bin' / 'lean.exe'
+LIMIT = int(sys.argv[1]) if len(sys.argv) > 1 else 3
 OUT.mkdir(parents=True, exist_ok=True)
 
 module_paths = {}
@@ -75,7 +67,6 @@ for i, mod in enumerate(ordered[:LIMIT], 1):
     print(f'[{i}/{min(LIMIT,len(ordered))}] {mod}', flush=True)
     if (output.exists() and old.get('exit_code') == 0 and
         old.get('source_sha256') == sourcehash and old.get('olean_sha256') == digest(output)):
-        previous[mod] = old
         print('matching prior probe output', flush=True)
         continue
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -86,9 +77,8 @@ for i, mod in enumerate(ordered[:LIMIT], 1):
     entry = {'module': mod, 'exit_code': run.returncode, 'source_sha256': sourcehash,
              'olean_sha256': digest(output) if run.returncode == 0 and output.exists() else None,
              'output': combined}
-    previous[mod] = entry
-    receipt.write_text(''.join(json.dumps(previous[name], ensure_ascii=False) + '\n'
-                                   for name in ordered if name in previous), encoding='utf-8')
+    with receipt.open('a', encoding='utf-8') as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + '\n')
     print('exit', run.returncode, flush=True)
     if combined:
         print(combined[-4000:], flush=True)

@@ -1,0 +1,12 @@
+module
+
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.CrossRingBridge.ResidueFieldBridgeAndDescentGenerator
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.CrossRingBridge.GaloisCovarianceAndK21CrossRing
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.CrossRingBridge.DescentAtomCrossRing
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.CrossRingBridge.CanonicalResidueCharK22Path
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.CrossRingBridge.ConductorFlexibleK22PathReexport
+public import BernoulliRegular.Reflection.ResidueSymbol.Furtwaengler.CrossRingBridge.K2PhiPrimeGenViaExtractedUnit
+
+/-!
+This module has been split into smaller implementation files.
+-/

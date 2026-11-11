@@ -15,7 +15,7 @@
 \newcommand{\dimf}{\dim_{\Ftwo}}
 \newcommand{\Psub}{P_E}
 \title{卡莱特零和子空间猜想的证明及其 Lean 形式化}
-\author{王泉智\\[-.3em]\small\href{mailto:mrhwrn0504@gmail.com}{\texttt{mrhwrn0504@gmail.com}}}
+\author{王泉智\\[-.3em]\small\href{mailto:mrhwrn120504@gmail.com}{\texttt{mrhwrn120504@gmail.com}}\and ChatGPT\\[-.3em]\small AI 研究协作者}
 \date{2026年11月}
 
 \begin{document}
@@ -26,7 +26,7 @@
 \[
   \sum_{x\in E\setminus\{0\}}x^{-1}=0.
 \]
-奇数次数的证明以根积多项式、椭圆曲线 Hasse 界、低维构造和高维能量迭代为基础；偶数次数的证明由二、三维基例、维数递推和互补维数对称性给出。两部分均已在 Lean 4 中对相应量词及任意有限域完整形式化。完整默认构建、独立验证和主定理公理审计均已通过：无编译警告，源码与 OLean 哈希一致，依赖只含 \texttt{propext}、\texttt{Classical.choice} 和 \texttt{Quot.sound}，不含 \texttt{sorryAx} 或自建公理。
+奇数次数的证明以根积多项式、椭圆曲线 Hasse 界、低维构造和高维能量迭代为基础；偶数次数的证明由二、三维基例、维数递推和互补维数对称性给出。两部分均已在 Lean 4 中对相应量词及任意有限域完整形式化。完整默认构建、独立验证和主定理公理审计均已通过：无编译警告，源码与 OLean 哈希一致，依赖只含 \texttt{propext}、\texttt{Classical.choice} 和 \texttt{Quot.sound}，不含 \texttt{sorryAx} 或自建公理。作者另有一份采用几何—上同调路线的候选稿，其逐项形式化核验仍在进行；本文不声称该路线已完整认证。
 \end{abstract}
 
 \noindent\textbf{关键词：} 有限域；乘法逆映射；零和子空间；子空间多项式；Kloosterman 和；Hasse 界；Lean 形式化
@@ -349,11 +349,7 @@ q-13+3\operatorname{Kl}_K\ge q-13-6\sqrt q=(\sqrt q-3)^2-22\ge3>0.
 \forall n,k,\quad \operatorname{Odd}(n)\to 3\le k\to k+3\le n\to
 \forall K,\quad |K|=2^n\to \operatorname{HasZeroSumSubspace}(K,k).
 \]
-{\raggedright
-原命题定义于 \texttt{Statement.lean}，奇数次数结论由 \texttt{oddCarletConjecture\_main} 在 \texttt{MainTheorem.lean} 中证明。
-偶数定理 \texttt{evenDegreeCarlet\_unconditional} 位于 \texttt{EvenDegree.lean}，适用于偶数 $n$、任意 $|K|=2^n$ 的有限域，以及 $2\le k$、$k+2\le n$。
-两项定理合起来给出定理\,\ref{thm:full}。相关证明入口如下：
-\par}
+定义文件是 \texttt{Statement.lean}，奇数主定理文件是 \texttt{MainTheorem.lean}。声明为 \texttt{oddCarletConjecture\_main : OddCarletConjecture}。偶数部分的无条件定理为 \texttt{evenDegreeCarlet\_unconditional}，位于 \texttt{EvenDegree.lean}，其范围为偶数 $n$、任意 $|K|=2^n$ 的有限域、$2\le k$ 且 $k+2\le n$。这两项 Lean 定理合起来给出定理\,\ref{thm:full}。相关证明入口如下：
 \begin{center}
 \small\begin{tabular}{>{\raggedright\arraybackslash}p{0.43\textwidth}>{\raggedright\arraybackslash}p{0.47\textwidth}}
 \toprule
@@ -371,14 +367,9 @@ q-13+3\operatorname{Kl}_K\ge q-13-6\sqrt q=(\sqrt q-3)^2-22\ge3>0.
 \end{tabular}
 \end{center}
 
-{\raggedright
-2026 年 11 月 7 日的验收使用 Lean 4.33.0。完整默认构建检查 270 个模块，独立验证审计 923 项声明，并检查 188 个 Hasse 依赖模块。Lean 编译警告为零，源码与 OLean 哈希全部匹配。
-奇数主定理与偶数完整定理均通过独立陈述核对。两者的公理集合仅含 \texttt{propext}、\texttt{Classical.choice} 和 \texttt{Quot.sound}；审计不含 \texttt{sorryAx} 或自建未证明公理。
-Hasse 界来自固定 AINTLIB 快照\cite{AINTLIB}（\texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b}），源文件为 \texttt{HasseBound.lean}，许可为 Apache 2.0。
-复现命令为：
-\par}
+2026 年 11 月 7 日的验收记录使用 Lean 4.33.0。完整默认构建检查 327 个模块，独立验证审计 1,188 项打印声明，并另行检查 188 个 Hasse 依赖模块；编译警告为零，所有源码与 OLean 哈希一致。奇数主定理与偶数完整定理均通过独立声明核对；两者的公理集合都是 \texttt{propext}、\texttt{Classical.choice}、\texttt{Quot.sound}。审计不含 \texttt{sorryAx}、未证明的自建公理或包含目标结论的隐藏假设。Hasse 界通过固定的 AINTLIB Hasse 模块导入，见参考文献\cite{AINTLIB}（快照 \texttt{1c1c7466\allowbreak 4e40071c\allowbreak 2c2165bc\allowbreak 55ca2616\allowbreak a67ccd6b}，本地文件 \texttt{vendor/aintlib/src/HasseWeil/HasseBound.lean}）。复现命令为：
 \begin{verbatim}
-cd formalization
+cd carlet-formalization
 python -I build.py
 python -I verify_build.py
 python -I audit_final_theorem.py
@@ -391,6 +382,7 @@ python -I audit_final_theorem.py
 
 本文的奇数次数论证遵循当前通过 Lean 检查的范数曲线与能量路线；偶数次数论证使用二维、三维基例、维数相加和互补维数对称性。有限计算只用于文中明确限定的有限小次数分支，并已在 Lean 中验证相应构造及其向任意同基数有限域的传递。
 
+作者另有一份采用几何—上同调路线的候选稿。项目正在逐项形式化该稿：已有部分有限域代数、子空间多项式和坐标恒等式的 Lean 结果；但候选稿中的射影几何识别、边界几何、上同调与点数估计尚未全部通过 Lean 认证。本文的奇数和偶数主定理及其 Lean 证明已经完整；这不等同于宣称候选稿的具体论证路线已逐行完成形式化。逐节对应与剩余事项记录在项目研究笔记中。
 
 \section*{致谢与 AI 使用说明}
 写作和代码整理过程中使用了 ChatGPT 辅助。形式化检查由 Lean 内核及项目构建脚本执行；作者对数学内容、引用、代码来源和最终稿件负责。

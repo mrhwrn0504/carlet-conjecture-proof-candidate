@@ -1,0 +1,62 @@
+import Carlet.N29K5SubsetSumProbe
+import Carlet.N29K5CodeEquivProbe
+import Carlet.N29K5InverseAdjoinProbe
+import Mathlib.Tactic
+open Carlet
+set_option linter.unnecessarySeqFocus false
+open Polynomial
+noncomputable section
+set_option maxHeartbeats 4000000
+local instance : Fact (Irreducible f29K5) := ⟨f29K5_irreducible⟩
+theorem n29K5DecodeInv21 : (n29K5SubsetSum (n29K5SubsetDecode (⟨21, by omega⟩ : Fin 32)))⁻¹ = AdjoinRoot.mk f29K5 n29K5I21 := by
+  have hc : n29K5SubsetCode ({0,2,4} : Finset (Fin 5)) = (⟨21, by omega⟩ : Fin 32) := by
+    apply n29K5SubsetCodeEquiv.symm.injective
+    change n29K5SubsetDecode (n29K5SubsetCode _ ) = n29K5SubsetDecode _
+    rw [n29K5SubsetCodeDecode_left]
+    decide
+  rw [← hc, n29K5SubsetCodeDecode_left]
+  simp only [n29K5SubsetSum]
+  rw [n29K5SubsetSum21]
+  exact (eq_inv_of_mul_eq_one_right n29K5InvAdjoin21).symm
+theorem n29K5DecodeInv22 : (n29K5SubsetSum (n29K5SubsetDecode (⟨22, by omega⟩ : Fin 32)))⁻¹ = AdjoinRoot.mk f29K5 n29K5I22 := by
+  have hc : n29K5SubsetCode ({1,2,4} : Finset (Fin 5)) = (⟨22, by omega⟩ : Fin 32) := by
+    apply n29K5SubsetCodeEquiv.symm.injective
+    change n29K5SubsetDecode (n29K5SubsetCode _ ) = n29K5SubsetDecode _
+    rw [n29K5SubsetCodeDecode_left]
+    decide
+  rw [← hc, n29K5SubsetCodeDecode_left]
+  simp only [n29K5SubsetSum]
+  rw [n29K5SubsetSum22]
+  exact (eq_inv_of_mul_eq_one_right n29K5InvAdjoin22).symm
+theorem n29K5DecodeInv23 : (n29K5SubsetSum (n29K5SubsetDecode (⟨23, by omega⟩ : Fin 32)))⁻¹ = AdjoinRoot.mk f29K5 n29K5I23 := by
+  have hc : n29K5SubsetCode ({0,1,2,4} : Finset (Fin 5)) = (⟨23, by omega⟩ : Fin 32) := by
+    apply n29K5SubsetCodeEquiv.symm.injective
+    change n29K5SubsetDecode (n29K5SubsetCode _ ) = n29K5SubsetDecode _
+    rw [n29K5SubsetCodeDecode_left]
+    decide
+  rw [← hc, n29K5SubsetCodeDecode_left]
+  simp only [n29K5SubsetSum]
+  rw [n29K5SubsetSum23]
+  exact (eq_inv_of_mul_eq_one_right n29K5InvAdjoin23).symm
+theorem n29K5DecodeInv24 : (n29K5SubsetSum (n29K5SubsetDecode (⟨24, by omega⟩ : Fin 32)))⁻¹ = AdjoinRoot.mk f29K5 n29K5I24 := by
+  have hc : n29K5SubsetCode ({3,4} : Finset (Fin 5)) = (⟨24, by omega⟩ : Fin 32) := by
+    apply n29K5SubsetCodeEquiv.symm.injective
+    change n29K5SubsetDecode (n29K5SubsetCode _ ) = n29K5SubsetDecode _
+    rw [n29K5SubsetCodeDecode_left]
+    decide
+  rw [← hc, n29K5SubsetCodeDecode_left]
+  simp only [n29K5SubsetSum]
+  rw [n29K5SubsetSum24]
+  exact (eq_inv_of_mul_eq_one_right n29K5InvAdjoin24).symm
+theorem n29K5DecodeInv25 : (n29K5SubsetSum (n29K5SubsetDecode (⟨25, by omega⟩ : Fin 32)))⁻¹ = AdjoinRoot.mk f29K5 n29K5I25 := by
+  have hc : n29K5SubsetCode ({0,3,4} : Finset (Fin 5)) = (⟨25, by omega⟩ : Fin 32) := by
+    apply n29K5SubsetCodeEquiv.symm.injective
+    change n29K5SubsetDecode (n29K5SubsetCode _ ) = n29K5SubsetDecode _
+    rw [n29K5SubsetCodeDecode_left]
+    decide
+  rw [← hc, n29K5SubsetCodeDecode_left]
+  simp only [n29K5SubsetSum]
+  rw [n29K5SubsetSum25]
+  exact (eq_inv_of_mul_eq_one_right n29K5InvAdjoin25).symm
+#print axioms n29K5DecodeInv21
+#print axioms n29K5DecodeInv25

@@ -5,18 +5,13 @@ import hashlib
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parent
-WORKSPACE = ROOT.parent.parent.parent
-DEFAULT_LEAN = WORKSPACE / 'jsp423-repro/_toolchain/bin/lean.exe'
-DEFAULT_LIBRARIES = Path('C:/Users/Administrator/Documents/ChatGPT/jsp423_fast_runtime_20261101/libraries')
-LEAN = Path(os.environ.get('CARLET_LEAN_BIN') or shutil.which('lean') or DEFAULT_LEAN)
-LIBRARIES = Path(os.environ.get('CARLET_MATHLIB_LIBRARIES') or DEFAULT_LIBRARIES)
-AINTLIB_OLEAN = Path(os.environ.get('CARLET_AINTLIB_OLEAN') or ROOT/'vendor/aintlib/olean')
+LEAN = ROOT.parent / 'jsp423-repro/_toolchain/bin/lean.exe'
+LIBRARIES = Path('C:/Users/Administrator/Documents/ChatGPT/jsp423_fast_runtime_20261101/libraries')
 ALLOWED = {'propext', 'Classical.choice', 'Quot.sound'}
 REQUIRED = {'Carlet.oddCarletConjecture_main',
             'Carlet.oddCarletConjecture_original_statement',
@@ -58,7 +53,7 @@ def main():
         raise RuntimeError('Even-degree theorem source or compiled artifact does not match the full build')
 
     env = os.environ.copy()
-    env['LEAN_PATH'] = os.pathsep.join([str(ROOT), str(AINTLIB_OLEAN),
+    env['LEAN_PATH'] = os.pathsep.join([str(ROOT), str(ROOT / 'vendor/aintlib/olean'),
                                        *[str(p) for p in LIBRARIES.iterdir() if p.is_dir()]])
     env['LEAN_SYSROOT'] = str(LEAN.parent.parent)
     env['LEAN_NUM_THREADS'] = '1'

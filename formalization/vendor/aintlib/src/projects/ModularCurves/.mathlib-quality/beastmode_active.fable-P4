@@ -1,0 +1,1 @@
+FOCUS: [T-E5f] g0/g-transfer/g-away/g-uniq ALL CLEAN + committed. overlapIso (transition iso) done. NOW the SCHEME GLUING: g-glue-base (Scheme.GlueData, 2 charts, f=overlap open immersions, t=overlapIso.base). GATE: is Spec.map(awayProdHomLeft) an open immersion (Away localization)? investigating.
